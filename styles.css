@@ -33,3 +33,78 @@ details{border-top:1px solid var(--line2);margin-top:18px;padding-top:12px}summa
  .compactIntro{padding:15px 14px}.compactIntro h1{font-size:22px}.compactIntro p{font-size:10.5px}.interactivePhases .phase{flex:0 0 126px}.homeCard{padding:15px}.homeIntro{grid-template-columns:58px minmax(0,1fr);gap:10px}.homeAlfred{width:56px;height:56px;border-radius:13px}.moduleGrid{grid-template-columns:1fr}.moduleCard{min-height:78px}.categoryOptions{grid-template-columns:1fr}.popularGrid{grid-template-columns:1fr}.mobileOnly{display:inline}.routeBody.mobileCollapsed{display:none}.routeSidebar{padding:9px}.routeHeader{margin-bottom:0}.workspace{gap:8px}.withArt{padding-right:68px}.stageArt{width:46px;height:46px}.footerCredit span{display:none}
 }
 .forceMobile .moduleGrid{grid-template-columns:1fr}.forceMobile .categoryOptions{grid-template-columns:1fr}.forceMobile .popularGrid{grid-template-columns:1fr}.forceMobile .mobileOnly{display:inline}.forceMobile .routeBody.mobileCollapsed{display:none}.forceMobile .homeIntro{grid-template-columns:58px minmax(0,1fr)}.forceMobile .homeAlfred{width:56px;height:56px}.forceMobile.homeMode .routeSidebar{display:none}.forceMobile.homeMode .workspace{display:block}
+
+
+/* ===== v1.0 premium monochrome aesthetic ===== */
+:root{
+ --bg:#f3f3f3; --paper:#ffffff; --ink:#111111; --ink2:#1b1b1b; --muted:#6f6f6f;
+ --line:#e6e6e6; --line2:#f0f0f0; --gold:#111111; --goldSoft:#f6f6f6;
+ --shadow:0 12px 40px rgba(0,0,0,.05); --shadowSm:0 6px 18px rgba(0,0,0,.04);
+}
+html{background:var(--bg)}
+body{background:linear-gradient(180deg,#fafafa 0,#f3f3f3 100%); color:var(--ink);}
+.topbar{background:rgba(255,255,255,.94); border-bottom:1px solid #ececec;}
+.brandMark{width:38px;height:38px;filter:grayscale(1) contrast(1.15)}
+.brandCopy strong{font-family:Inter,Segoe UI,Arial,sans-serif;font-weight:800;letter-spacing:-.02em;font-size:22px}
+.brandCopy small{font-size:11px;color:#7a7a7a}
+.beta{color:#111;background:#f5f5f5;border-color:#e6e6e6}
+.compactIntro{background:linear-gradient(180deg,#fbfbfb,#f7f7f7); border:1px solid #ececec; border-radius:28px; box-shadow:none;}
+.eyebrow,.kicker{color:#777}
+.compactIntro h1,.card h2,.modalhead h2{font-family:Inter,Segoe UI,Arial,sans-serif;font-weight:800;letter-spacing:-.035em;color:#111}
+.compactIntro h1{font-size:31px;line-height:1.1}
+.compactIntro p,.intro,.sub,.destinationLead,.homeIntro p{color:#666}
+.phasebar{gap:10px}
+.phase,.interactivePhases .phase{background:#f7f7f7;border:1px solid #ececec;border-radius:18px;box-shadow:none;color:#666}
+.phase b{background:#ececec;color:#333}
+.phase strong{font-size:12px;color:#111}
+.phase em{font-size:10px;color:#7b7b7b}
+.phase.active{background:#ffffff;border-color:#dddddd;box-shadow:none}
+.phase.active b{background:#111;color:#fff}
+.routeSidebar{background:#fbfbfb;border:1px solid #ececec;border-radius:22px;box-shadow:none}
+.routeLabel,.aside-title{color:#707070}
+.hist{background:#fff;border:1px solid #ededed;border-left:3px solid #111; border-radius:14px}
+.hist b{color:#111}.hist span,.sideHint,.routeCount{color:#767676}
+.card{background:#fff;border:1px solid #ececec;border-radius:28px;box-shadow:none}
+.withArt{padding-right:24px}
+.stageArt,.homeAlfred{width:42px;height:42px;border-radius:0;mix-blend-mode:normal;opacity:1;filter:grayscale(1) contrast(1.1);object-fit:contain;background:transparent}
+.stageArt{position:static;display:block;margin-bottom:8px}
+.homeIntro{grid-template-columns:42px minmax(0,1fr);gap:14px;align-items:start}
+.cardHead{margin-bottom:6px}.assistantPill{background:#f6f6f6;border-color:#ececec;color:#444}
+.option,.moduleCard,.miniDest,.searchInput,.block,.checkItem,.helpPanel{border-color:#ececec;box-shadow:none}
+.option,.moduleCard,.miniDest,.block,.checkItem{border-radius:18px}
+.option:hover,.moduleCard:hover,.miniDest:hover,.interactivePhases .phase:hover{background:#fafafa;border-color:#d9d9d9;transform:none;box-shadow:none}
+.moduleCard.featured{background:#111;border-color:#111;color:#fff}
+.moduleCard.featured small{color:#d8d8d8}
+.moduleNumber{background:#ededed;color:#111}.featured .moduleNumber{background:#fff;color:#111}
+.helpBtn{background:#111;color:#fff;border:1px solid #111;border-radius:14px}
+.helpBtn:hover{background:#242424}
+.helpPanel{background:#fafafa;border-radius:18px}.helpPanel h3{color:#555}.helpNote{border-left:2px solid #111}
+summary{color:#333}
+.primary{background:#111;border-color:#111;color:#fff;border-radius:14px}
+.primary:hover{background:#222}
+.secondary{background:#fff;border:1px solid #e5e5e5;color:#111;border-radius:14px}
+.searchInput{background:#fff;border-radius:16px}.searchInput:focus{border-color:#999;box-shadow:0 0 0 3px rgba(0,0,0,.04)}
+.footerBar{margin-top:18px;padding-top:14px;border-top:1px solid #ececec;display:flex;justify-content:space-between;align-items:center;color:#888;font-size:10px}
+.footerLogo{display:none}.footerMini{font-size:10px;color:#8a8a8a}.footerLink{color:#666}
+.legalDisclaimer{max-width:920px;margin:18px auto 6px;padding:0 8px 8px;text-align:center}
+.legalDisclaimer h3{margin:0 0 10px;font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:#7a7a7a;font-weight:800}
+.legalDisclaimer p{margin:0 auto;font-size:11px;line-height:1.68;color:#7b7b7b;text-align:center}
+.legalDisclaimer em{font-style:italic}
+.status.mid{background:#f3f3f3;color:#444}
+.emptyResult{background:#fafafa;border-color:#ececec}
+.modalbox{border:1px solid #ececec;box-shadow:0 20px 80px rgba(0,0,0,.12)}
+.testcode{background:#f7f7f7}
+@media(max-width:760px){
+ .compactIntro{padding:17px 16px;border-radius:22px}
+ .compactIntro h1{font-size:24px}
+ .phase,.interactivePhases .phase{border-radius:15px}
+ .routeSidebar,.card{border-radius:18px}
+ .withArt{padding-right:15px}
+ .stageArt{width:34px;height:34px;margin-bottom:6px}
+ .homeIntro{grid-template-columns:34px minmax(0,1fr)}
+ .legalDisclaimer{padding-bottom:4px}
+ .legalDisclaimer p{font-size:10px;line-height:1.6}
+}
+.forceMobile .withArt{padding-right:15px}
+.forceMobile .stageArt{position:static;width:34px;height:34px;margin-bottom:6px}
+.forceMobile .homeIntro{grid-template-columns:34px minmax(0,1fr)}
