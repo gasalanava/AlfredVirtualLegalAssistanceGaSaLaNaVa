@@ -1,0 +1,15 @@
+{
+  "version": "0.4",
+  "legalNodes": 56,
+  "uxLegalCoverage": 56,
+  "destinationRoutes": 10,
+  "uxDestinationRouteCoverage": 10,
+  "uxEntries": 66,
+  "uxOptionNodes": 24,
+  "uxOptions": 103,
+  "terminalMappings": 78,
+  "destinations": 32,
+  "checklists": 31,
+  "requirements": 101,
+  "structuralErrors": []
+}

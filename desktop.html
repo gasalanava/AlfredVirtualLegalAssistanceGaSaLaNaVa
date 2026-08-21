@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#171614">
+<meta name="color-scheme" content="light">
+<meta name="description" content="ALFRED: asistente para orientar el tratamiento, destino, custodia y requisitos de bienes y evidencia en el proceso penal colombiano.">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="icon" href="assets/icon-192.png">
+<title>ALFRED · Escritorio | · Bienes y evidencia en el proceso penal</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="forceDesktop">
+<header class="topbar">
+  <div class="topbarInner">
+    <a class="brand" href="./" aria-label="ALFRED, inicio">
+      <img src="assets/alfred-mark.webp" alt="" class="brandMark">
+      <span class="brandCopy"><strong>ALFRED</strong><small>Bienes y evidencia en el proceso penal</small></span>
+    </a>
+    <span class="beta">BETA</span>
+  </div>
+</header>
+
+<div class="appShell">
+  <section class="introPanel">
+    <div class="introCopy">
+      <span class="eyebrow">ASISTENTE LEGAL-TECH</span>
+      <h1>¿Qué hacer con los bienes o elementos resultantes de una investigación penal?</h1>
+      <p>Responde hechos que puedas observar o verificar. Alfred hace la inferencia jurídica y te conduce hasta el destino y los requisitos de recepción.</p>
+    </div>
+    <img src="assets/alfred-main.webp" alt="Alfred" class="introAlfred">
+  </section>
+
+  <nav class="phasebar" aria-label="Progreso de la consulta">
+    <div id="ph1" class="phase active"><b>1</b><span><strong>Identificar</strong><em>Qué tienes</em></span></div>
+    <div id="ph2" class="phase"><b>2</b><span><strong>Destino</strong><em>Dónde debe quedar</em></span></div>
+    <div id="ph3" class="phase"><b>3</b><span><strong>Validar</strong><em>Si puede recibirse</em></span></div>
+    <div id="ph4" class="phase"><b>4</b><span><strong>Resultado</strong><em>Qué hacer</em></span></div>
+  </nav>
+
+  <div class="workspace">
+    <aside class="routeSidebar" aria-label="Ruta recorrida">
+      <div class="routeHeader">
+        <div><span class="routeLabel">Ruta recorrida</span><span id="routeCount" class="routeCount">0 pasos</span></div>
+        <button id="restart" class="textButton" type="button">Reiniciar</button>
+      </div>
+      <div id="history" class="history"></div>
+      <button id="back" class="secondary fullWidth" disabled type="button">← Volver</button>
+      <p class="sideHint">No necesitas memorizar la norma: responde lo que conoces del objeto o bien.</p>
+    </aside>
+
+    <main class="mainColumn">
+      <div id="notice" class="hidden"></div>
+      <div id="coherence" class="warn hidden"></div>
+
+      <section id="legalCard" class="card withArt">
+        <img src="assets/alfred-curious.webp" alt="Alfred preguntando" class="stageArt">
+        <div class="cardHead">
+          <div class="tags"><span id="nodeCode" class="tag internalCode"></span><span id="nodeKind" class="tag muted"></span></div>
+          <span class="assistantPill">Alfred te guía</span>
+        </div>
+        <h2 id="nodeTitle"></h2>
+        <p id="nodeIntro" class="intro"></p>
+        <p id="nodeQuestion" class="question"></p>
+        <div id="options" class="options"></div>
+        <button id="helpBtn" class="helpBtn" type="button">Alfred, explícame cómo decidir esta pregunta</button>
+        <div id="helpPanel" class="helpPanel hidden"></div>
+        <details class="legalDetails"><summary>Ver fundamento jurídico</summary><div id="legalDetails"></div></details>
+      </section>
+
+      <section id="destRouteCard" class="card withArt hidden">
+        <img src="assets/alfred-idea.webp" alt="Alfred orientando" class="stageArt">
+        <div class="cardHead"><div class="tags"><span id="drCode" class="tag internalCode"></span><span class="tag desttag">DESTINO</span></div><span class="assistantPill">Alfred orienta</span></div>
+        <h2 id="drTitle">Determinar dónde debe quedar ahora</h2>
+        <p id="drIntro" class="intro"></p><p id="drQuestion" class="question"></p>
+        <div id="drOptions" class="options"></div>
+        <button id="drHelpBtn" class="helpBtn" type="button">Alfred, explícame cómo decidir esta pregunta</button>
+        <div id="drHelpPanel" class="helpPanel hidden"></div>
+      </section>
+
+      <section id="destinationCard" class="card withArt hidden">
+        <img src="assets/alfred-idea.webp" alt="Alfred encontró el destino" class="stageArt">
+        <div class="kicker">DESTINO QUE CORRESPONDE</div><h2 id="destTitle"></h2>
+        <p class="destinationLead">Ya sabemos dónde debe quedar. Ahora verifiquemos si está listo para ser recibido allí.</p>
+        <div id="destSummary" class="resultGrid"></div>
+        <div class="buttons"><button id="validateBtn" class="primary" type="button">Validar requisitos de recepción</button><button id="destBack" class="secondary" type="button">← Revisar ruta</button></div>
+        <details><summary>Ver fundamento del destino</summary><div id="destLegal"></div></details>
+      </section>
+
+      <section id="checkCard" class="card withArt hidden">
+        <img src="assets/alfred-main.webp" alt="Alfred verificando" class="stageArt">
+        <div class="kicker">CHECKLIST DE RECEPCIÓN</div><h2 id="checkTitle"></h2>
+        <p class="sub">Marca cada requisito según la situación real. Los requisitos condicionales permiten “No aplica”.</p>
+        <div id="checkItems"></div>
+        <div class="buttons"><button id="evaluateBtn" class="primary" type="button">Evaluar</button><button id="checkBack" class="secondary" type="button">← Volver al destino</button></div>
+      </section>
+
+      <section id="finalCard" class="card final withArt hidden">
+        <img src="assets/alfred-done.webp" alt="Alfred finalizó" class="stageArt">
+        <div id="finalStatus" class="status"></div><h2 id="finalTitle"></h2>
+        <div id="finalBody"></div>
+        <div class="buttons"><button id="copy" class="primary" type="button">Copiar resultado</button><button id="again" class="secondary" type="button">Nueva consulta</button></div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="footerBar">
+    <div class="footerCredit"><img src="assets/gsn-logo.webp" alt="Gabriel Salazar Navarro" class="footerLogo"><span>Desarrollado por Gabriel Salazar Navarro · Proyecto personal</span></div>
+    <div class="footerMeta"><span>ALFRED · versión beta</span><button id="testsBtn" class="footerLink" type="button">Validación técnica</button></div>
+  </footer>
+</div>
+
+<div id="modal" class="modal hidden"><div class="modalbox"><div class="modalhead"><div><span class="eyebrow">VALIDACIÓN TÉCNICA</span><h2>Casos de prueba de ALFRED</h2></div><button id="closeModal" class="modalGhost" type="button">Cerrar</button></div><div id="testList"></div></div></div>
+
+<script src="data.js"></script><script src="app.js"></script>
+</body></html>

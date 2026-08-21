@@ -1,0 +1,13 @@
+{
+  "version": "0.8",
+  "responsive": true,
+  "pwa": true,
+  "entrypoints": [
+    "index.html",
+    "desktop.html",
+    "mobile.html"
+  ],
+  "files": 23,
+  "total_bytes": 1641240,
+  "preserves_data_js": true
+}
