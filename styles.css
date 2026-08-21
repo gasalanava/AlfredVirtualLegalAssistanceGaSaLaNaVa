@@ -108,3 +108,19 @@ summary{color:#333}
 .forceMobile .withArt{padding-right:15px}
 .forceMobile .stageArt{position:static;width:34px;height:34px;margin-bottom:6px}
 .forceMobile .homeIntro{grid-template-columns:34px minmax(0,1fr)}
+
+
+/* ===== v1.1 brand placement and social preview ===== */
+.brandMark{width:42px;height:42px;border-radius:10px;object-fit:cover;filter:none}
+.homeIntro{grid-template-columns:1fr !important;gap:0 !important}
+.homeAlfred,.stageArt{display:none !important}
+.withArt{padding-right:24px !important}
+.routeSidebar{display:flex;flex-direction:column;gap:14px}
+.sidebarBrandPanel{margin-top:2px;padding:10px 8px 2px;border-top:1px solid #ececec;display:flex;justify-content:center;align-items:center}
+.sidebarBrandImage{display:block;max-width:170px;width:100%;height:auto;object-fit:contain;filter:none}
+.footerBar{margin-top:14px}
+@media(max-width:760px){
+  .sidebarBrandPanel{padding-top:8px}
+  .sidebarBrandImage{max-width:145px}
+}
+.forceMobile .sidebarBrandImage{max-width:145px}

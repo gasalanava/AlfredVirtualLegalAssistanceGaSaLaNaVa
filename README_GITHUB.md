@@ -14,3 +14,10 @@ Versión con estética premium monocromática (negro, gris y blanco), sin ilustr
 - `mobile.html`: vista forzada móvil.
 - `styles.css`, `app.js`, `data.js`: motor visual y lógico.
 - `assets/`: iconos y marca.
+
+
+## Cambios v1.1
+- Logo oficial reemplazado por la primera imagen del cactus.
+- Piezа gráfica con texto ubicada en la parte inferior izquierda del sidebar.
+- Eliminadas repeticiones del logo/imagen en tarjetas internas.
+- Metadatos Open Graph y Twitter configurados para compartir el enlace con vista previa de ALFRED.

@@ -6,9 +6,19 @@
 <meta name="theme-color" content="#171614">
 <meta name="color-scheme" content="light">
 <meta name="description" content="ALFRED: Asistente Virtual para la gestión de bienes en materia penal.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ALFRED">
+<meta property="og:description" content="Asistente Virtual para la gestión de bienes en materia penal">
+<meta property="og:url" content="https://gasalanava.github.io/AlfredVirtualLegalAssistanceGaSaLaNaVa/">
+<meta property="og:image" content="https://gasalanava.github.io/AlfredVirtualLegalAssistanceGaSaLaNaVa/assets/alfred-social-preview.jpg">
+<meta property="og:image:alt" content="ALFRED, asistente virtual para la gestión de bienes en materia penal">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ALFRED">
+<meta name="twitter:description" content="Asistente Virtual para la gestión de bienes en materia penal">
+<meta name="twitter:image" content="https://gasalanava.github.io/AlfredVirtualLegalAssistanceGaSaLaNaVa/assets/alfred-social-preview.jpg">
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<link rel="icon" href="assets/icon-192.png">
+<link rel="apple-touch-icon" href="assets/alfred-official-logo.jpg">
+<link rel="icon" href="assets/alfred-official-logo.jpg">
 <title>ALFRED Desktop · Asistente Virtual para la gestión de bienes en materia penal</title>
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -16,7 +26,7 @@
 <header class="topbar">
   <div class="topbarInner">
     <button id="brandHome" class="brand brandButton" type="button" aria-label="ALFRED, inicio">
-      <img src="assets/alfred-mark.webp" alt="" class="brandMark">
+      <img src="assets/alfred-official-logo.jpg" alt="ALFRED" class="brandMark">
       <span class="brandCopy"><strong>ALFRED</strong><small>Asistente Virtual para la gestión de bienes en materia penal</small></span>
     </button>
     <span class="beta">BETA PRIVADA</span>
@@ -50,6 +60,9 @@
         <button id="back" class="secondary fullWidth" disabled type="button">← Volver</button>
         <p class="sideHint">Responde hechos que puedas observar o verificar. No necesitas memorizar la norma.</p>
       </div>
+      <div class="sidebarBrandPanel">
+        <img src="assets/alfred-official-lockup.jpg" alt="ALFRED · Asistente Virtual para la gestión de bienes en materia penal" class="sidebarBrandImage">
+      </div>
     </aside>
 
     <main class="mainColumn">
@@ -57,7 +70,6 @@
 
       <section id="homeCard" class="card homeCard">
         <div class="homeIntro">
-          <img src="assets/alfred-mark.webp" alt="Alfred" class="homeAlfred">
           <div><span class="kicker">ALFRED</span><h2>¿Qué necesitas resolver hoy?</h2><p>Puedes empezar desde cero o entrar directamente al módulo que necesitas.</p></div>
         </div>
         <div class="moduleGrid">
@@ -87,21 +99,18 @@
       </section>
 
       <section id="identifyResultCard" class="card withArt hidden">
-        <img src="assets/alfred-mark.webp" alt="Alfred orientando" class="stageArt">
         <span class="kicker">IDENTIFICACIÓN DE FUNCIÓN</span><h2 id="identifyResultTitle"></h2>
         <div id="identifyResultBody"></div>
         <div class="buttons"><button id="identifyContinue" class="primary" type="button">Continuar hasta saber qué hacer</button><button id="identifyHome" class="secondary" type="button">Volver al inicio</button></div>
       </section>
 
       <section id="lastResultCard" class="card withArt hidden">
-        <img src="assets/alfred-mark.webp" alt="Alfred con resultado" class="stageArt">
         <span class="kicker">ÚLTIMO RESULTADO</span><h2 id="lastResultTitle">Tu último resultado</h2>
         <div id="lastResultBody"></div>
         <div class="buttons"><button id="lastResultNew" class="primary" type="button">Nueva consulta</button></div>
       </section>
 
       <section id="legalCard" class="card withArt hidden">
-        <img src="assets/alfred-mark.webp" alt="Alfred preguntando" class="stageArt">
         <div class="cardHead"><div class="tags"><span id="nodeCode" class="tag internalCode"></span><span id="nodeKind" class="tag muted"></span></div><span class="assistantPill">Alfred te guía</span></div>
         <h2 id="nodeTitle"></h2>
         <p id="nodeIntro" class="intro"></p>
@@ -112,7 +121,6 @@
       </section>
 
       <section id="destRouteCard" class="card withArt hidden">
-        <img src="assets/alfred-mark.webp" alt="Alfred orientando" class="stageArt">
         <div class="cardHead"><div class="tags"><span id="drCode" class="tag internalCode"></span><span class="tag desttag">DESTINO</span></div><span class="assistantPill">Alfred orienta</span></div>
         <h2 id="drTitle"></h2><p id="drIntro" class="intro"></p>
         <div id="drOptions" class="options"></div>
@@ -121,7 +129,6 @@
       </section>
 
       <section id="destinationCard" class="card withArt hidden">
-        <img src="assets/alfred-mark.webp" alt="Alfred encontró el destino" class="stageArt">
         <div class="kicker">DESTINO QUE CORRESPONDE</div><h2 id="destTitle"></h2>
         <p class="destinationLead">Ya sabemos dónde debe quedar. Ahora puedes revisar si está listo para ser recibido allí.</p>
         <div id="destSummary" class="resultGrid"></div>
@@ -130,7 +137,6 @@
       </section>
 
       <section id="checkCard" class="card withArt hidden">
-        <img src="assets/alfred-mark.webp" alt="Alfred verificando" class="stageArt">
         <div class="kicker">CHECKLIST DE RECEPCIÓN</div><h2 id="checkTitle"></h2>
         <p class="sub">Marca cada requisito según la situación real. Los requisitos condicionales permiten “No aplica”.</p>
         <div id="checkItems"></div>
@@ -138,7 +144,6 @@
       </section>
 
       <section id="finalCard" class="card final withArt hidden">
-        <img src="assets/alfred-mark.webp" alt="Alfred finalizó" class="stageArt">
         <div id="finalStatus" class="status"></div><h2 id="finalTitle"></h2>
         <div id="finalBody"></div>
         <div class="buttons"><button id="copy" class="primary" type="button">Copiar resultado</button><button id="again" class="secondary" type="button">Nueva consulta</button></div>
