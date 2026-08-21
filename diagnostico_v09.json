@@ -1,0 +1,16 @@
+{
+  "version": "0.9",
+  "legalNodes": 56,
+  "destinations": 32,
+  "destinationRoutes": 10,
+  "terminalMappings": 78,
+  "checklists": 31,
+  "quickDestinationEntries": 13,
+  "interactiveModules": [
+    "Identificar",
+    "Destino",
+    "Validar",
+    "Resultado"
+  ],
+  "primaryUXRule": "Una sola pregunta por pantalla"
+}

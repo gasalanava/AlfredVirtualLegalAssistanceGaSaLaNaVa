@@ -1,7 +1,7 @@
 {
-  "name": "ALFRED · Bienes y evidencia en el proceso penal",
+  "name": "ALFRED · Asistente Virtual para la gestión de bienes en materia penal",
   "short_name": "ALFRED",
-  "description": "Asistente legal-tech para orientar el tratamiento y destino de bienes, EMP y EF en el proceso penal colombiano.",
+  "description": "Asistente Virtual para orientar la gestión, destino, custodia y recepción de bienes y elementos en materia penal.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
