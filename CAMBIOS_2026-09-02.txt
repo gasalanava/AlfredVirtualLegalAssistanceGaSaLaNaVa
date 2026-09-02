@@ -1,0 +1,24 @@
+ALFRED — ajustes de interfaz aplicados el 2 de septiembre de 2026
+
+1. Franja superior
+   1 Identificar — ¿Qué función tiene dentro de la investigación?
+   2 Destino — ¿A quién corresponde su custodia o administración?
+   3 Requisitos — ¿Qué debe cumplir para ser recibido?
+   4 Resultado — ¿Qué corresponde hacer?
+
+2. Accesos de inicio
+   A No sé qué hacer
+   B Quiero identificar su función
+   C Quiero determinar su destino
+   D Quiero revisar los requisitos
+
+3. Acceso directo a requisitos
+   Se reemplazó la lógica visual de “Validar” por “Requisitos”.
+   La pantalla ahora pide seleccionar el destinatario ya conocido para abrir los requisitos de recepción.
+
+4. Terminología de comiso
+   Se eliminó “bien comisado” de la tarjeta de acceso directo.
+   Ahora: “Bien incautado con fines de comiso / comiso”.
+
+5. Caché
+   Se cambió la clave del service worker para forzar la actualización de la interfaz al desplegar.

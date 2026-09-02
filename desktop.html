@@ -6,19 +6,9 @@
 <meta name="theme-color" content="#171614">
 <meta name="color-scheme" content="light">
 <meta name="description" content="ALFRED: Asistente Virtual para la gestión de bienes en materia penal.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="ALFRED">
-<meta property="og:description" content="Asistente Virtual para la gestión de bienes en materia penal">
-<meta property="og:url" content="https://gasalanava.github.io/AlfredVirtualLegalAssistanceGaSaLaNaVa/">
-<meta property="og:image" content="https://gasalanava.github.io/AlfredVirtualLegalAssistanceGaSaLaNaVa/assets/alfred-social-preview.jpg">
-<meta property="og:image:alt" content="ALFRED, asistente virtual para la gestión de bienes en materia penal">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="ALFRED">
-<meta name="twitter:description" content="Asistente Virtual para la gestión de bienes en materia penal">
-<meta name="twitter:image" content="https://gasalanava.github.io/AlfredVirtualLegalAssistanceGaSaLaNaVa/assets/alfred-social-preview.jpg">
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="apple-touch-icon" href="assets/alfred-official-logo.jpg">
-<link rel="icon" href="assets/alfred-official-logo.jpg">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="icon" href="assets/icon-192.png">
 <title>ALFRED Desktop · Asistente Virtual para la gestión de bienes en materia penal</title>
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -26,27 +16,27 @@
 <header class="topbar">
   <div class="topbarInner">
     <button id="brandHome" class="brand brandButton" type="button" aria-label="ALFRED, inicio">
-      <img src="assets/alfred-official-logo.jpg" alt="ALFRED" class="brandMark">
+      <img src="assets/alfred-mark.webp" alt="" class="brandMark">
       <span class="brandCopy"><strong>ALFRED</strong><small>Asistente Virtual para la gestión de bienes en materia penal</small></span>
     </button>
-    <span class="beta">BETA PRIVADA</span>
+    <span class="beta">BETA</span>
   </div>
 </header>
 
 <div class="appShell">
   <section class="introPanel compactIntro">
     <div class="introCopy">
-      <span class="eyebrow">ASISTENTE VIRTUAL</span>
+      <span class="eyebrow">ASISTENTE LEGAL-TECH</span>
       <h1>¿Qué hacer con los bienes o elementos resultantes de una investigación penal?</h1>
-      <p>Un asistente orientador para ayudarte a decidir qué hacer con bienes y elementos en materia penal.</p>
+      <p>Elige cómo quieres empezar. Puedes recorrer la ruta completa o entrar directamente a identificar la función, determinar el destino o revisar los requisitos de recepción.</p>
     </div>
   </section>
 
-  <nav class="phasebar interactivePhases" aria-label="Accesos de ALFRED">
-    <button id="ph1" class="phase" type="button" data-module="identify"><b>1</b><span><strong>Identificar</strong><em>¿Puede servir como evidencia?</em></span></button>
-    <button id="ph2" class="phase" type="button" data-module="destination"><b>2</b><span><strong>Destino</strong><em>¿Dónde debe quedar?</em></span></button>
-    <button id="ph3" class="phase" type="button" data-module="validate"><b>3</b><span><strong>Validar</strong><em>¿Puede recibirse?</em></span></button>
-    <button id="ph4" class="phase" type="button" data-module="result"><b>4</b><span><strong>Resultado</strong><em>Última respuesta obtenida</em></span></button>
+  <nav class="phasebar interactivePhases" aria-label="Etapas de ALFRED">
+    <button id="ph1" class="phase" type="button" data-module="identify"><b>1</b><span><strong>Identificar</strong><em>¿Qué función tiene dentro de la investigación?</em></span></button>
+    <button id="ph2" class="phase" type="button" data-module="destination"><b>2</b><span><strong>Destino</strong><em>¿A quién corresponde su custodia o administración?</em></span></button>
+    <button id="ph3" class="phase" type="button" data-module="validate"><b>3</b><span><strong>Requisitos</strong><em>¿Qué debe cumplir para ser recibido?</em></span></button>
+    <button id="ph4" class="phase" type="button" data-module="result"><b>4</b><span><strong>Resultado</strong><em>¿Qué corresponde hacer?</em></span></button>
   </nav>
 
   <div class="workspace">
@@ -60,9 +50,6 @@
         <button id="back" class="secondary fullWidth" disabled type="button">← Volver</button>
         <p class="sideHint">Responde hechos que puedas observar o verificar. No necesitas memorizar la norma.</p>
       </div>
-      <div class="sidebarBrandPanel">
-        <img src="assets/alfred-official-lockup.jpg" alt="ALFRED · Asistente Virtual para la gestión de bienes en materia penal" class="sidebarBrandImage">
-      </div>
     </aside>
 
     <main class="mainColumn">
@@ -70,13 +57,14 @@
 
       <section id="homeCard" class="card homeCard">
         <div class="homeIntro">
-          <div><span class="kicker">ALFRED</span><h2>¿Qué necesitas resolver hoy?</h2><p>Puedes empezar desde cero o entrar directamente al módulo que necesitas.</p></div>
+          <img src="assets/alfred-main.webp" alt="Alfred" class="homeAlfred">
+          <div><span class="kicker">EMPECEMOS</span><h2>¿Cómo quieres empezar?</h2><p>Elige el punto de entrada que más se parezca a lo que ya sabes. Si no tienes claro por dónde comenzar, usa la ruta completa.</p></div>
         </div>
         <div class="moduleGrid">
           <button class="moduleCard featured" type="button" data-home="guided"><span class="moduleNumber">A</span><strong>No sé qué hacer</strong><small>Guíame desde el comienzo hasta una respuesta operativa.</small></button>
-          <button class="moduleCard" type="button" data-home="identify"><span class="moduleNumber">1</span><strong>Quiero identificar su función</strong><small>Saber si el objeto puede tener función probatoria.</small></button>
-          <button class="moduleCard" type="button" data-home="destination"><span class="moduleNumber">2</span><strong>Quiero saber dónde debe quedar</strong><small>Ya conozco algo del caso y necesito el destinatario o custodio.</small></button>
-          <button class="moduleCard" type="button" data-home="validate"><span class="moduleNumber">3</span><strong>Quiero validar una entrega</strong><small>Ya conozco el destino y quiero revisar sus requisitos de recepción.</small></button>
+          <button class="moduleCard" type="button" data-home="identify"><span class="moduleNumber">B</span><strong>Quiero identificar su función</strong><small>Determinar si debe tratarse como EMP y EF, como bien, o si concurren ambas condiciones.</small></button>
+          <button class="moduleCard" type="button" data-home="destination"><span class="moduleNumber">C</span><strong>Quiero determinar su destino</strong><small>Ya conozco algo del caso y necesito establecer quién debe recibirlo, custodiarlo o administrarlo.</small></button>
+          <button class="moduleCard" type="button" data-home="validate"><span class="moduleNumber">D</span><strong>Quiero revisar los requisitos</strong><small>Ya conozco el destinatario y necesito verificar qué debe cumplirse para su recepción.</small></button>
         </div>
       </section>
 
@@ -89,9 +77,9 @@
       </section>
 
       <section id="directValidateCard" class="card hidden">
-        <div class="cardHead"><span class="kicker">ACCESO DIRECTO · VALIDAR</span><span class="assistantPill">Alfred verifica</span></div>
-        <h2>¿Dónde necesitas entregarlo o dejarlo?</h2>
-        <p class="intro">Selecciona el destinatario que ya tienes identificado. Alfred abrirá directamente su checklist.</p>
+        <div class="cardHead"><span class="kicker">ACCESO DIRECTO · REQUISITOS</span><span class="assistantPill">Alfred verifica</span></div>
+        <h2>Selecciona el destinatario</h2>
+        <p class="intro">Elige la entidad, área o custodio que ya tienes identificado. Alfred te mostrará los requisitos de recepción aplicables.</p>
         <label class="searchLabel" for="destinationSearch">Buscar destino</label>
         <input id="destinationSearch" class="searchInput" type="search" placeholder="Ej. Almacén, FEAB, SAE, DIAN, Medicina Legal…" autocomplete="off">
         <div id="popularDestinations" class="popularGrid"></div>
@@ -99,18 +87,21 @@
       </section>
 
       <section id="identifyResultCard" class="card withArt hidden">
+        <img src="assets/alfred-idea.webp" alt="Alfred orientando" class="stageArt">
         <span class="kicker">IDENTIFICACIÓN DE FUNCIÓN</span><h2 id="identifyResultTitle"></h2>
         <div id="identifyResultBody"></div>
         <div class="buttons"><button id="identifyContinue" class="primary" type="button">Continuar hasta saber qué hacer</button><button id="identifyHome" class="secondary" type="button">Volver al inicio</button></div>
       </section>
 
       <section id="lastResultCard" class="card withArt hidden">
+        <img src="assets/alfred-done.webp" alt="Alfred con resultado" class="stageArt">
         <span class="kicker">ÚLTIMO RESULTADO</span><h2 id="lastResultTitle">Tu último resultado</h2>
         <div id="lastResultBody"></div>
         <div class="buttons"><button id="lastResultNew" class="primary" type="button">Nueva consulta</button></div>
       </section>
 
       <section id="legalCard" class="card withArt hidden">
+        <img src="assets/alfred-curious.webp" alt="Alfred preguntando" class="stageArt">
         <div class="cardHead"><div class="tags"><span id="nodeCode" class="tag internalCode"></span><span id="nodeKind" class="tag muted"></span></div><span class="assistantPill">Alfred te guía</span></div>
         <h2 id="nodeTitle"></h2>
         <p id="nodeIntro" class="intro"></p>
@@ -121,6 +112,7 @@
       </section>
 
       <section id="destRouteCard" class="card withArt hidden">
+        <img src="assets/alfred-idea.webp" alt="Alfred orientando" class="stageArt">
         <div class="cardHead"><div class="tags"><span id="drCode" class="tag internalCode"></span><span class="tag desttag">DESTINO</span></div><span class="assistantPill">Alfred orienta</span></div>
         <h2 id="drTitle"></h2><p id="drIntro" class="intro"></p>
         <div id="drOptions" class="options"></div>
@@ -129,14 +121,16 @@
       </section>
 
       <section id="destinationCard" class="card withArt hidden">
+        <img src="assets/alfred-idea.webp" alt="Alfred encontró el destino" class="stageArt">
         <div class="kicker">DESTINO QUE CORRESPONDE</div><h2 id="destTitle"></h2>
-        <p class="destinationLead">Ya sabemos dónde debe quedar. Ahora puedes revisar si está listo para ser recibido allí.</p>
+        <p class="destinationLead">Ya identificamos a quién corresponde su recepción, custodia o administración. Ahora puedes revisar los requisitos aplicables.</p>
         <div id="destSummary" class="resultGrid"></div>
-        <div class="buttons"><button id="validateBtn" class="primary" type="button">Validar requisitos de recepción</button><button id="destBack" class="secondary" type="button">← Revisar ruta</button></div>
+        <div class="buttons"><button id="validateBtn" class="primary" type="button">Revisar requisitos de recepción</button><button id="destBack" class="secondary" type="button">← Revisar ruta</button></div>
         <details><summary>Ver fundamento del destino</summary><div id="destLegal"></div></details>
       </section>
 
       <section id="checkCard" class="card withArt hidden">
+        <img src="assets/alfred-main.webp" alt="Alfred verificando" class="stageArt">
         <div class="kicker">CHECKLIST DE RECEPCIÓN</div><h2 id="checkTitle"></h2>
         <p class="sub">Marca cada requisito según la situación real. Los requisitos condicionales permiten “No aplica”.</p>
         <div id="checkItems"></div>
@@ -144,6 +138,7 @@
       </section>
 
       <section id="finalCard" class="card final withArt hidden">
+        <img src="assets/alfred-done.webp" alt="Alfred finalizó" class="stageArt">
         <div id="finalStatus" class="status"></div><h2 id="finalTitle"></h2>
         <div id="finalBody"></div>
         <div class="buttons"><button id="copy" class="primary" type="button">Copiar resultado</button><button id="again" class="secondary" type="button">Nueva consulta</button></div>
@@ -152,13 +147,9 @@
   </div>
 
   <footer class="footerBar">
-    <div class="footerMini">Desarrollado por Gabriel Salazar Navarro · Proyecto personal</div>
-    <div class="footerMeta"><span>ALFRED · beta privada</span><button id="testsBtn" class="footerLink" type="button">Validación técnica</button></div>
+    <div class="footerCredit"><img src="assets/gsn-logo.webp" alt="Gabriel Salazar Navarro" class="footerLogo"><span>Desarrollado por Gabriel Salazar Navarro · Proyecto personal</span></div>
+    <div class="footerMeta"><span>ALFRED · versión beta 0.9</span><button id="testsBtn" class="footerLink" type="button">Validación técnica</button></div>
   </footer>
-  <section class="legalDisclaimer">
-    <h3>Aviso legal y descargo de responsabilidad</h3>
-    <p><em>Alfred Virtual Legal Assistance</em> es una herramienta interactiva y orientadora elaborada con base en la Constitución Política de Colombia, la Ley 600 de 2000, la Ley 906 de 2004, la Ley 1615 de 2013 y su decreto reglamentario (Decreto 696 de 2014), el Decreto Ley 016 de 2014, el Manual del Sistema de Cadena de Custodia, el Manual de Policía Judicial, el <em>Manual de Procedimientos de la Fiscalía en el Sistema Penal Acusatorio Colombiano</em> (ISBN 958-97542-5-2) y la obra <em>Bienes en el Proceso Penal</em> (ISBN 978-958-8374-24-6 y su actualización ISBN 978-958-8374-39-0). Las respuestas, orientaciones y recomendaciones generadas constituyen una guía técnica de apoyo para la gestión de Policía Judicial y no reemplazan el criterio, la autonomía, la valoración ni la decisión del operador jurídico, que deben ejercerse conforme a la Constitución, la ley y las particularidades de cada caso.</p>
-  </section>
 </div>
 
 <div id="modal" class="modal hidden"><div class="modalbox"><div class="modalhead"><div><span class="eyebrow">VALIDACIÓN TÉCNICA</span><h2>Casos de prueba de ALFRED</h2></div><button id="closeModal" class="modalGhost" type="button">Cerrar</button></div><div id="testList"></div></div></div>

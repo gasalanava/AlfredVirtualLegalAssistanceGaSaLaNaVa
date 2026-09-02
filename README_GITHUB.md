@@ -1,23 +1,24 @@
-# ALFRED Web App v1.0
+# ALFRED · Beta 0.9
 
-Versión con estética premium monocromática (negro, gris y blanco), sin ilustraciones 3D en la interfaz principal y con aviso legal al pie.
+Asistente Virtual para la gestión de bienes en materia penal.
 
-## Publicación en GitHub Pages
-1. Suba el contenido de esta carpeta a la raíz del repositorio.
-2. Active `Settings > Pages > Deploy from a branch`.
-3. Seleccione `main` y `/(root)`.
-4. Espere unos minutos y abra la URL pública.
+## Qué cambia en esta versión
 
-## Archivos principales
-- `index.html`: versión responsive principal.
-- `desktop.html`: vista forzada de escritorio.
-- `mobile.html`: vista forzada móvil.
-- `styles.css`, `app.js`, `data.js`: motor visual y lógico.
-- `assets/`: iconos y marca.
+La v0.9 reorganiza la experiencia de usuario sin modificar el motor jurídico de la matriz.
 
+- Una sola pregunta principal por pantalla.
+- La explicación ayuda a responder; no repite la pregunta.
+- La barra superior es interactiva.
+- Acceso directo a Identificar, Destino, Requisitos y al último Resultado.
+- Ruta completa para quien no sabe por dónde empezar.
+- Acceso rápido al checklist cuando el destinatario ya es conocido.
+- El último resultado se conserva localmente en el navegador.
+- La vista móvil colapsa el historial para no quitar espacio a la decisión.
 
-## Cambios v1.1
-- Logo oficial reemplazado por la primera imagen del cactus.
-- Piezа gráfica con texto ubicada en la parte inferior izquierda del sidebar.
-- Eliminadas repeticiones del logo/imagen en tarjetas internas.
-- Metadatos Open Graph y Twitter configurados para compartir el enlace con vista previa de ALFRED.
+## GitHub Pages
+
+Sube **todo el contenido de esta carpeta** a la raíz del repositorio. Deben verse directamente `index.html`, `app.js`, `styles.css`, `data.js`, `assets/`, etc.
+
+En GitHub: `Settings → Pages → Deploy from a branch → main → /(root)`.
+
+La entrada principal es `index.html`. `desktop.html` y `mobile.html` son vistas de prueba.
