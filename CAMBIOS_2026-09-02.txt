@@ -1,4 +1,6 @@
-ALFRED — ajustes de interfaz aplicados el 2 de septiembre de 2026
+ALFRED — ajustes acumulados aplicados el 2 de septiembre de 2026
+
+BLOQUE 1 — ARQUITECTURA DE INTERFAZ
 
 1. Franja superior
    1 Identificar — ¿Qué función tiene dentro de la investigación?
@@ -14,11 +16,43 @@ ALFRED — ajustes de interfaz aplicados el 2 de septiembre de 2026
 
 3. Acceso directo a requisitos
    Se reemplazó la lógica visual de “Validar” por “Requisitos”.
-   La pantalla ahora pide seleccionar el destinatario ya conocido para abrir los requisitos de recepción.
+   La pantalla pide seleccionar el destinatario ya conocido para abrir los requisitos de recepción.
 
 4. Terminología de comiso
    Se eliminó “bien comisado” de la tarjeta de acceso directo.
    Ahora: “Bien incautado con fines de comiso / comiso”.
 
-5. Caché
-   Se cambió la clave del service worker para forzar la actualización de la interfaz al desplegar.
+BLOQUE 2 — IDENTIFICACIÓN DE EMP Y EF / BIEN / COMISO
+
+5. Se eliminó el falso cierre después de responder NO a la función probatoria.
+   P01 NO ya no conduce a una pantalla que parece resultado final: continúa a identificar si el objeto es un bien.
+
+6. Nuevo nodo P01B — Identificación como bien.
+   Pregunta si el objeto es susceptible de valoración económica, puede recaer sobre él un derecho de dominio o representa un derecho sobre un bien.
+   La ayuda “Alfred, explícame cómo decidir” desarrolla el concepto y da ejemplos.
+
+7. Concurrencia EMP y EF + bien.
+   P03 ahora pregunta expresamente si, además de la función probatoria, el objeto también es un bien.
+   Se mantiene la regla de que ambas condiciones pueden concurrir.
+
+8. Susceptibilidad de comiso.
+   Una vez identificado el bien, ALFRED pregunta si cumple alguna de las condiciones legales para considerarlo susceptible de comiso.
+   La ayuda explica los criterios derivados del artículo 100 del Código Penal y del artículo 82 del Código de Procedimiento Penal.
+   Se agregó la opción “No estoy seguro” para abrir la ayuda sin forzar una respuesta.
+
+9. Secuencia de comiso.
+   Cuando previamente se descartó la función probatoria y se identifica una causal de comiso, la ruta pasa directamente a verificar la habilitación para materializar la incautación u ocupación con fines de comiso.
+   No se confunde susceptibilidad de comiso, materialización de la medida y comiso definitivo.
+
+10. Reencauzamiento al descartar comiso.
+    Si se identifica un bien pero no una causal de comiso, ALFRED verifica primero si existe manejo especial y luego continúa con otras finalidades patrimoniales.
+    Si solo se identificó EMP y EF, conserva la ruta probatoria.
+    Si no se identificó EMP y EF ni bien, continúa hacia la definición de entrega/devolución u otra consecuencia jurídica.
+
+11. Acceso directo “Identificar”.
+    Ya no concluye después de una sola pregunta.
+    Determina si el objeto es: EMP y EF; bien; ambas condiciones; o ninguna de ellas por ahora.
+    Desde ese resultado permite continuar la ruta completa.
+
+12. Caché
+    Se cambió la clave del service worker a alfred-ux-20260902-02 para forzar actualización al desplegar.

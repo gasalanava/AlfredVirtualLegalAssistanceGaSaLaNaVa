@@ -25,10 +25,21 @@
  function helpHTML(u){if(!u)return"";return `<div class="helpLayout"><img src="assets/alfred-doubt.webp" class="helpMascot" alt="Alfred pensando"><div class="helpNote">${non(u.how)?`<h3>Cómo decidir</h3><p>${esc(u.how)}</p>`:""}${non(u.examples)?`<h3>Ejemplos</h3><p>${esc(u.examples)}</p>`:""}${non(u.dontNeed)?`<h3>No necesitas saber esto todavía</h3><p>${esc(u.dontNeed)}</p>`:""}${non(u.ifUncertain)?`<h3>Si todavía tienes dudas</h3><p>${esc(u.ifUncertain)}</p>`:""}</div></div>`}
  function getOptions(nid,baseOptions){if(UXO[nid]&&UXO[nid].length)return UXO[nid];return(baseOptions||[]).map((o,i)=>({label:o.label,next:o.next,subtext:"",action:"navigate",order:i+1}))}
  function coherenceFilter(nid,opts){
-   $("coherence").classList.add("hidden");if(nid!=="P04A")return opts;const p03=lastChoice("P03"),p01=lastChoice("P01");
-   if(p03&&p03.startsWith("No,")){ $("coherence").textContent="Alfred mantiene coherencia con tu respuesta anterior: por ahora no identificaste una decisión patrimonial autónoma. Para cambiarla, vuelve a la pregunta anterior.";$("coherence").classList.remove("hidden");return opts.filter(o=>o.next==="FIN-EMP-EF") }
-   if(p03&&p03.startsWith("Sí,")){ $("coherence").textContent="Alfred mantiene coherencia con tu respuesta anterior: además de evidencia, indicaste que existe una decisión patrimonial sobre el bien.";$("coherence").classList.remove("hidden");return opts.filter(o=>o.next==="P05") }
-   if(p01==="No")return opts.filter(o=>o.next!=="FIN-EMP-EF");return opts;
+   $("coherence").classList.add("hidden");if(nid!=="P04A")return opts;
+   const p01=lastChoice("P01"),p01b=lastChoice("P01B"),p03=lastChoice("P03"),p05=lastChoice("P05");
+   if(p01==="Sí"&&p03&&p03.startsWith("No,")){
+     $("coherence").textContent="Alfred mantiene coherencia con tus respuestas: identificaste función probatoria, pero no naturaleza de bien.";
+     $("coherence").classList.remove("hidden");return opts.filter(o=>o.next==="FIN-EMP-EF");
+   }
+   if(((p01==="No"&&p01b&&p01b.startsWith("Sí,"))||(p01==="Sí"&&p03&&p03.startsWith("Sí,")))&&p05&&p05.startsWith("No,")){
+     $("coherence").textContent="Alfred mantiene coherencia con tus respuestas: identificaste un bien, pero no una causal concreta de comiso. Ahora corresponde revisar otras finalidades patrimoniales.";
+     $("coherence").classList.remove("hidden");return opts.filter(o=>o.next==="P07");
+   }
+   if(p01==="No"&&p01b&&p01b.startsWith("No,")){
+     $("coherence").textContent="Alfred mantiene coherencia con tus respuestas: por ahora no identificaste función probatoria ni naturaleza de bien.";
+     $("coherence").classList.remove("hidden");return opts.filter(o=>o.next==="P10");
+   }
+   return opts;
  }
  function screenQuestion(nid,u,n){
    if(nid==="P04") return u.question||u.title||n.question;
@@ -48,13 +59,40 @@
  }
  function chooseLegal(n,o){
    history.push({id:n.id,title:screenQuestion(n.id,UX[n.id]||{},n),choice:o.label||o.next,nodeId:n.id,phase:"legal"});renderHist();
-   if(mode==="identifyOnly"&&n.id==="P01") return showIdentifyResult(o);
-   const t=o.next||"";if(t.startsWith("FIN-"))return handleResult(t,n,o);if(t.startsWith("DEST-"))return enterDestination(t,{sourceNode:n,sourceOption:o});if(/^D\d+$/.test(t))return renderDestRoute(t);current=t;renderLegal();
+   if(mode==="identifyOnly"){
+     if(n.id==="P01"){
+       const yes=String(o.label||"").toLowerCase().startsWith("sí")||String(o.label||"").toLowerCase().startsWith("si");
+       current=yes?"P03":"P01B";return renderLegal();
+     }
+     if(n.id==="P01B"||n.id==="P03") return showIdentifyResult();
+   }
+   let t=o.next||"";
+   if(n.id==="P05"&&String(o.label||"").startsWith("Sí")&&lastChoice("P01")==="No")t="P05B";
+   if(t==="P03"&&lastChoice("P03")){
+     const prior=lastChoice("P03");current=prior.startsWith("Sí,")?"P05":"P04";return renderLegal();
+   }
+   if(t.startsWith("FIN-"))return handleResult(t,n,o);if(t.startsWith("DEST-"))return enterDestination(t,{sourceNode:n,sourceOption:o});if(/^D\d+$/.test(t))return renderDestRoute(t);current=t;renderLegal();
  }
- function showIdentifyResult(o){
-   phase(1);show("identifyResultCard");const yes=String(o.label||"").toLowerCase().startsWith("sí")||String(o.label||"").toLowerCase().startsWith("si");
-   if(yes){$("identifyResultTitle").textContent="Sí: tiene función probatoria.";$("identifyResultBody").innerHTML=`<div class="resultGrid">${block("Qué significa","Con la información que diste, el objeto puede aportar información útil a la investigación y debe tratarse como EMP y EF mientras conserve esa función.",true)}${block("Qué no decide todavía","Esto no define por sí solo si además existe una dimensión patrimonial, un régimen especial o cuál será su destino físico definitivo.",true)}</div>`;resumeAfterIdentify=o.next||"P02"}
-   else{$("identifyResultTitle").textContent="No identificaste una función probatoria actual.";$("identifyResultBody").innerHTML=`<div class="resultGrid">${block("Qué significa","Con la información que diste, no has identificado por ahora que el objeto sirva para probar algo dentro de la investigación.",true)}${block("Importante","Esto no significa que el objeto sea irrelevante: todavía puede ser un bien, tener un régimen especial o requerir otra decisión jurídica.",true)}</div>`;resumeAfterIdentify=o.next||"P04"}
+ function showIdentifyResult(){
+   phase(1);show("identifyResultCard");
+   const p01=lastChoice("P01"),p01b=lastChoice("P01B"),p03=lastChoice("P03");
+   if(p01==="Sí"&&p03&&p03.startsWith("Sí,")){
+     $("identifyResultTitle").textContent="Es EMP y EF y también es un bien.";
+     $("identifyResultBody").innerHTML=`<div class="resultGrid">${block("Qué identificaste","El objeto puede cumplir función probatoria y, al mismo tiempo, tiene naturaleza patrimonial. Las dos condiciones pueden concurrir.",true)}${block("Qué sigue","Si quieres continuar, Alfred revisará si el bien cumple alguna causal de comiso y después determinará las actuaciones que correspondan.",true)}</div>`;
+     resumeAfterIdentify="P02";$("identifyContinue").textContent="Continuar con el tratamiento y posible comiso";
+   }else if(p01==="Sí"){
+     $("identifyResultTitle").textContent="Es EMP y EF.";
+     $("identifyResultBody").innerHTML=`<div class="resultGrid">${block("Qué identificaste","El objeto puede aportar información útil a la investigación y, por ahora, no identificaste naturaleza de bien.",true)}${block("Qué sigue","Alfred puede continuar con el tratamiento probatorio y verificar si existe algún manejo especial.",true)}</div>`;
+     resumeAfterIdentify="P02";$("identifyContinue").textContent="Continuar con el tratamiento";
+   }else if(p01b&&p01b.startsWith("Sí,")){
+     $("identifyResultTitle").textContent="Es un bien, sin función probatoria identificada por ahora.";
+     $("identifyResultBody").innerHTML=`<div class="resultGrid">${block("Qué identificaste","Descartaste provisionalmente una función probatoria y determinaste que el objeto tiene naturaleza patrimonial.",true)}${block("Qué sigue","El siguiente paso es establecer si cumple alguna causal legal de comiso. Si no la cumple, Alfred revisará otras finalidades jurídicas del bien.",true)}</div>`;
+     resumeAfterIdentify="P05";$("identifyContinue").textContent="Continuar: revisar posible comiso";
+   }else{
+     $("identifyResultTitle").textContent="No se identificó función probatoria ni naturaleza de bien.";
+     $("identifyResultBody").innerHTML=`<div class="resultGrid">${block("Qué significa","Con la información suministrada, el objeto no se identificó por ahora como EMP y EF ni como bien.",true)}${block("Qué sigue","Eso no autoriza a disponer de él automáticamente. Alfred puede revisar si existe un manejo especial u otra consecuencia jurídica.",true)}</div>`;
+     resumeAfterIdentify="P04";$("identifyContinue").textContent="Continuar: revisar manejo especial";
+   }
  }
  function handleResult(code,n,o){const m=RM[code];currentMap={code,...(m||{}),sourceNode:n,sourceOption:o};if(!m)return enterDestination("DEST-CONSULTA",currentMap);if(m.target.startsWith("DEST-"))return enterDestination(m.target,m);if(/^D\d+$/.test(m.target))return renderDestRoute(m.target);current=m.target;renderLegal()}
  function renderDestRoute(id){

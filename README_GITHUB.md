@@ -2,18 +2,20 @@
 
 Asistente Virtual para la gestión de bienes en materia penal.
 
-## Qué cambia en esta versión
+## Qué cambia en esta revisión
 
-La v0.9 reorganiza la experiencia de usuario sin modificar el motor jurídico de la matriz.
+Esta revisión ajusta tanto la arquitectura de información como una parte concreta de la navegación jurídica inicial, sin alterar las demás ramas que todavía no han sido revisadas en esta etapa.
 
-- Una sola pregunta principal por pantalla.
-- La explicación ayuda a responder; no repite la pregunta.
-- La barra superior es interactiva.
-- Acceso directo a Identificar, Destino, Requisitos y al último Resultado.
-- Ruta completa para quien no sabe por dónde empezar.
-- Acceso rápido al checklist cuando el destinatario ya es conocido.
-- El último resultado se conserva localmente en el navegador.
-- La vista móvil colapsa el historial para no quitar espacio a la decisión.
+- Identificar, Destino, Requisitos y Resultado quedan claramente diferenciados.
+- Los accesos de inicio usan A, B, C y D para no confundirse con las etapas 1–4.
+- Se elimina el falso resultado al responder que el objeto no tiene función probatoria.
+- Después de descartar función probatoria, ALFRED pregunta si estamos frente a un bien.
+- Si existe función probatoria, se verifica también si el objeto es simultáneamente un bien.
+- Identificado un bien, se analiza su posible susceptibilidad de comiso.
+- “Alfred, explícame cómo decidir” desarrolla el concepto de bien y las causales de comiso sin exigir que el usuario memorice la norma.
+- Se distingue susceptibilidad de comiso, materialización de incautación/ocupación con fines de comiso, control posterior y comiso definitivo.
+- Si no se identifica causal de comiso, la ruta continúa hacia manejo especial u otras finalidades patrimoniales.
+- El acceso directo “Identificar” determina EMP y EF / bien / concurrencia antes de mostrar su resultado.
 
 ## GitHub Pages
 
