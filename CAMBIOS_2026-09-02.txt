@@ -1,58 +1,61 @@
-ALFRED — ajustes acumulados aplicados el 2 de septiembre de 2026
+ALFRED — AJUSTES DE LÓGICA Y UX — 02/09/2026 — v14
 
-BLOQUE 1 — ARQUITECTURA DE INTERFAZ
-
-1. Franja superior
+1. Se mantiene la arquitectura superior:
    1 Identificar — ¿Qué función tiene dentro de la investigación?
    2 Destino — ¿A quién corresponde su custodia o administración?
    3 Requisitos — ¿Qué debe cumplir para ser recibido?
    4 Resultado — ¿Qué corresponde hacer?
 
-2. Accesos de inicio
-   A No sé qué hacer
-   B Quiero identificar su función
-   C Quiero determinar su destino
-   D Quiero revisar los requisitos
+2. Rama bien / comiso:
+   - P01 NO continúa a identificación como bien; no se presenta como resultado final.
+   - P01B identifica si el objeto debe tratarse como bien.
+   - P05 revisa causales de susceptibilidad de comiso conforme a art. 100 CP y art. 82 CPP.
+   - Si P01 fue NO, P05 no repite la barrera probatoria P05A y continúa a habilitación.
 
-3. Acceso directo a requisitos
-   Se reemplazó la lógica visual de “Validar” por “Requisitos”.
-   La pantalla pide seleccionar el destinatario ya conocido para abrir los requisitos de recepción.
+3. Se separaron cinco momentos que no deben confundirse:
+   - naturaleza de bien;
+   - susceptibilidad de comiso;
+   - habilitación para materializar incautación/ocupación;
+   - materialización efectiva de la medida;
+   - control posterior de legalidad;
+   - decisión definitiva de comiso.
 
-4. Terminología de comiso
-   Se eliminó “bien comisado” de la tarjeta de acceso directo.
-   Ahora: “Bien incautado con fines de comiso / comiso”.
+4. Nuevo nodo P05M — Materialización de la medida:
+   - distingue una orden/habilitación existente de una medida ya ejecutada por Policía Judicial;
+   - si aún no se ha materializado, ALFRED emite un resultado temporal accionable;
+   - una vez materializada, continúa a P05C (control posterior de legalidad).
 
-BLOQUE 2 — IDENTIFICACIÓN DE EMP Y EF / BIEN / COMISO
+5. P05B fue reescrito:
+   - se eliminó la frase ambigua sobre “cambiar la custodia”;
+   - ahora explica que la susceptibilidad de comiso no habilita por sí sola la ejecución de la medida;
+   - el botón “Alfred, explícame cómo decidir” conserva la explicación legal y práctica.
 
-5. Se eliminó el falso cierre después de responder NO a la función probatoria.
-   P01 NO ya no conduce a una pantalla que parece resultado final: continúa a identificar si el objeto es un bien.
+6. Resultados temporales:
+   - ya no se presentan como “Destino” ni abren checklists de recepción cuando no existe una entrega que validar;
+   - nueva pantalla de RESULTADO TEMPORAL indica:
+       • qué debe hacer ahora;
+       • qué pasa con el bien mientras tanto;
+       • qué falta para continuar;
+       • cuándo cambia la respuesta;
+       • botón para retomar el punto cuando cambie el hecho externo.
 
-6. Nuevo nodo P01B — Identificación como bien.
-   Pregunta si el objeto es susceptible de valoración económica, puede recaer sobre él un derecho de dominio o representa un derecho sobre un bien.
-   La ayuda “Alfred, explícame cómo decidir” desarrolla el concepto y da ejemplos.
+7. Se aplicó la nueva lógica temporal, al menos, a:
+   - pendiente de habilitación para comiso;
+   - medida habilitada pero pendiente de materialización;
+   - control judicial pendiente;
+   - comunicación pendiente en devolución;
+   - término de reclamación en curso;
+   - macroelemento pendiente de examen cuando la custodia actual resulta válida.
 
-7. Concurrencia EMP y EF + bien.
-   P03 ahora pregunta expresamente si, además de la función probatoria, el objeto también es un bien.
-   Se mantiene la regla de que ambas condiciones pueden concurrir.
+8. La ruta de una nueva medida después de una medida no avalada ahora pasa directamente a P05M una vez confirmada una nueva habilitación, evitando repetir P05B.
 
-8. Susceptibilidad de comiso.
-   Una vez identificado el bien, ALFRED pregunta si cumple alguna de las condiciones legales para considerarlo susceptible de comiso.
-   La ayuda explica los criterios derivados del artículo 100 del Código Penal y del artículo 82 del Código de Procedimiento Penal.
-   Se agregó la opción “No estoy seguro” para abrir la ayuda sin forzar una respuesta.
+9. Acceso directo FEAB:
+   - texto ajustado a “Bien incautado con fines de comiso o con comiso decretado”.
 
-9. Secuencia de comiso.
-   Cuando previamente se descartó la función probatoria y se identifica una causal de comiso, la ruta pasa directamente a verificar la habilitación para materializar la incautación u ocupación con fines de comiso.
-   No se confunde susceptibilidad de comiso, materialización de la medida y comiso definitivo.
+10. Validaciones técnicas realizadas:
+   - sintaxis JavaScript de app.js y sw.js validada con Node;
+   - referencias del grafo verificadas: 0 destinos/nodos rotos;
+   - 58 nodos, 79 resultados, 32 destinos y 10 rutas de destino en esta versión;
+   - caché del service worker incrementada para evitar que el navegador conserve la versión anterior.
 
-10. Reencauzamiento al descartar comiso.
-    Si se identifica un bien pero no una causal de comiso, ALFRED verifica primero si existe manejo especial y luego continúa con otras finalidades patrimoniales.
-    Si solo se identificó EMP y EF, conserva la ruta probatoria.
-    Si no se identificó EMP y EF ni bien, continúa hacia la definición de entrega/devolución u otra consecuencia jurídica.
-
-11. Acceso directo “Identificar”.
-    Ya no concluye después de una sola pregunta.
-    Determina si el objeto es: EMP y EF; bien; ambas condiciones; o ninguna de ellas por ahora.
-    Desde ese resultado permite continuar la ruta completa.
-
-12. Caché
-    Se cambió la clave del service worker a alfred-ux-20260902-02 para forzar actualización al desplegar.
+NOTA: no se modificaron las rutas especiales que no estaban involucradas en este bloque, salvo el comportamiento genérico de resultados temporales indicado arriba.

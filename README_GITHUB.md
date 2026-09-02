@@ -1,26 +1,26 @@
-# ALFRED · Beta 0.9
+# ALFRED
 
 Asistente Virtual para la gestión de bienes en materia penal.
 
-## Qué cambia en esta revisión
+## Publicación en GitHub Pages
 
-Esta revisión ajusta tanto la arquitectura de información como una parte concreta de la navegación jurídica inicial, sin alterar las demás ramas que todavía no han sido revisadas en esta etapa.
+Copie **el contenido de esta carpeta** en la raíz del repositorio de GitHub Pages, reemplazando los archivos anteriores. No cree una subcarpeta `ALFRED_webapp_v14` dentro del repositorio.
 
-- Identificar, Destino, Requisitos y Resultado quedan claramente diferenciados.
-- Los accesos de inicio usan A, B, C y D para no confundirse con las etapas 1–4.
-- Se elimina el falso resultado al responder que el objeto no tiene función probatoria.
-- Después de descartar función probatoria, ALFRED pregunta si estamos frente a un bien.
-- Si existe función probatoria, se verifica también si el objeto es simultáneamente un bien.
-- Identificado un bien, se analiza su posible susceptibilidad de comiso.
-- “Alfred, explícame cómo decidir” desarrolla el concepto de bien y las causales de comiso sin exigir que el usuario memorice la norma.
-- Se distingue susceptibilidad de comiso, materialización de incautación/ocupación con fines de comiso, control posterior y comiso definitivo.
-- Si no se identifica causal de comiso, la ruta continúa hacia manejo especial u otras finalidades patrimoniales.
-- El acceso directo “Identificar” determina EMP y EF / bien / concurrencia antes de mostrar su resultado.
+Archivos principales:
+- `index.html`
+- `app.js`
+- `data.js`
+- `styles.css`
+- `sw.js`
+- `manifest.webmanifest`
+- carpeta `assets`
 
-## GitHub Pages
+Si trabaja sobre una copia local del repositorio, no elimine la carpeta oculta `.git`.
 
-Sube **todo el contenido de esta carpeta** a la raíz del repositorio. Deben verse directamente `index.html`, `app.js`, `styles.css`, `data.js`, `assets/`, etc.
+Después de publicar, espere la actualización de GitHub Pages y, si el navegador conserva textos anteriores, recargue con `Ctrl + F5`.
 
-En GitHub: `Settings → Pages → Deploy from a branch → main → /(root)`.
+## Ajuste principal de esta versión
 
-La entrada principal es `index.html`. `desktop.html` y `mobile.html` son vistas de prueba.
+Esta versión distingue expresamente entre susceptibilidad de comiso, habilitación jurídica, materialización por Policía Judicial, control posterior de legalidad y comiso definitivo. Los estados temporales ya no se muestran como destinos ni abren checklists de recepción cuando todavía no existe una entrega que validar.
+
+Véase `CAMBIOS_2026-09-02.txt` para el detalle.
