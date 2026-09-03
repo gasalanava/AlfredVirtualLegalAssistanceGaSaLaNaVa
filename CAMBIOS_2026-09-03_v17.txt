@@ -1,0 +1,25 @@
+ALFRED v17 · beta 0.12
+Fecha: 3 de septiembre de 2026
+
+OBJETIVO
+Ordenar internamente el universo de actores sin complicar todavía la interfaz centrada en Policía Judicial.
+
+CAMBIOS
+1. Se incorpora `actorModel` al motor con una taxonomía común de actores: ALFRED, Policía Judicial, Fiscal, Juez, Perito/área técnico-científica, Custodio material, Administrador legal, Autoridad especial o sectorial, Titular/legitimado y Ministerio Público.
+2. Los 79 nodos incluyen `actorMeta` con ocho dimensiones: observa, define, decide, ejecuta, controla, recibe, custodia y administra.
+3. Cada nodo incorpora `pjMode`, que permite distinguir si Policía Judicial resuelve con hechos, aporta hechos, verifica una decisión externa, ejecuta, coordina/remite, preserva/documenta o necesita comprender una competencia ajena.
+4. Se marca `externalForPJ` cuando el punto depende de una definición, orden, concepto o competencia externa a Policía Judicial.
+5. No se modifica la navegación visible ni se introduce selector de rol. La beta sigue pensada principalmente para Policía Judicial.
+6. Se crea `MATRIZ_ACTORES_v17.csv` para revisar la clasificación nodo por nodo.
+7. Se crea `ARQUITECTURA_ACTORES_v17.md` con los principios para una futura personalización por rol.
+8. `ruta_destinos_ux.json` se sincroniza con el motor actualizado.
+9. Se actualiza la versión visible a beta 0.12 y el caché del service worker a v17.
+
+VALIDACIÓN
+- 79/79 nodos etiquetados.
+- 0 códigos de actor inválidos.
+- 0 referencias rotas detectadas en opciones de nodos.
+- 48 nodos marcan alguna dependencia externa para la perspectiva de Policía Judicial.
+
+PRINCIPIO
+Una sola lógica jurídica y operativa por detrás; la experiencia visible se adapta al rol sin crear árboles jurídicos independientes.

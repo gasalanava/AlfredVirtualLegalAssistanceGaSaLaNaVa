@@ -1,10 +1,10 @@
 {
   "meta": {
     "title": "¿Qué hacer con los bienes o elementos resultantes de una investigación penal?",
-    "version": "ALFRED · beta 0.11",
+    "version": "ALFRED · beta 0.12",
     "generated": "2026-09-03",
     "startNode": "P01",
-    "note": "Responde con hechos observables o actuaciones que puedas verificar. Alfred no traslada al usuario conclusiones que correspondan al fiscal, juez, perito u otra autoridad: identifica quién define cada punto, evita preguntas compuestas y entrega resultados temporales accionables cuando falta una decisión externa."
+    "note": "Responde con hechos observables o actuaciones verificables. v17 añade una capa interna de actores; la revisión auditada separa expresamente la inferencia del sistema de la competencia de los actores, sin alterar la navegación visible centrada en Policía Judicial."
   },
   "nodes": {
     "P01": {
@@ -47,7 +47,39 @@
           "executes": "Policía Judicial materializa la subsanación, entrega o actuación que sea ordenada o legalmente procedente.",
           "receives": "Depende de la ruta posterior: legitimado, administrador general, autoridad especial u otro destinatario legal."
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "hecho_observable",
+        "pjMode": [
+          "RESUELVE_CON_HECHOS",
+          "PRESERVA_DOCUMENTA"
+        ],
+        "externalForPJ": false,
+        "observa": [
+          "PJ"
+        ],
+        "define": [
+          "PJ",
+          "FISCAL"
+        ],
+        "decide": [],
+        "ejecuta": [
+          "PJ"
+        ],
+        "controla": [],
+        "recibe": [],
+        "custodia": [
+          "PJ"
+        ],
+        "administra": [],
+        "involved": [
+          "PJ",
+          "FISCAL"
+        ],
+        "primaryView": "PJ",
+        "note": "Identificación operativa inicial; no equivale a una conclusión pericial ni a una decisión judicial.",
+        "systemInference": false
+      }
     },
     "P02": {
       "id": "P02",
@@ -89,7 +121,44 @@
           "executes": "Policía Judicial/custodio mantiene preservación y trazabilidad.",
           "receives": "Custodio actual de cadena de custodia hasta que otra ruta determine destino."
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "necesidad_investigativa",
+        "pjMode": [
+          "RESUELVE_CON_HECHOS",
+          "APORTA_HECHOS"
+        ],
+        "externalForPJ": false,
+        "observa": [
+          "PJ",
+          "FISCAL"
+        ],
+        "define": [
+          "PJ",
+          "FISCAL"
+        ],
+        "decide": [
+          "FISCAL"
+        ],
+        "ejecuta": [
+          "PJ"
+        ],
+        "controla": [],
+        "recibe": [
+          "PERITO"
+        ],
+        "custodia": [
+          "PJ"
+        ],
+        "administra": [],
+        "involved": [
+          "PJ",
+          "FISCAL",
+          "PERITO"
+        ],
+        "primaryView": "PJ",
+        "systemInference": false
+      }
     },
     "P02A": {
       "id": "P02A",
@@ -148,7 +217,45 @@
           "executes": "Experto/laboratorio documenta la no realización; PJ materializa la reformulación o nueva remisión.",
           "receives": "Custodio técnico o de cadena de custodia hasta nueva decisión."
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "decision_tecnica_externa",
+        "pjMode": [
+          "VERIFICA_DECISION_EXTERNA",
+          "COORDINA_REMITE"
+        ],
+        "externalForPJ": true,
+        "observa": [
+          "PJ",
+          "FISCAL",
+          "PERITO"
+        ],
+        "define": [
+          "PERITO"
+        ],
+        "decide": [],
+        "ejecuta": [
+          "PERITO"
+        ],
+        "controla": [],
+        "recibe": [
+          "PERITO"
+        ],
+        "custodia": [
+          "PERITO",
+          "CUSTODIO"
+        ],
+        "administra": [],
+        "involved": [
+          "PJ",
+          "FISCAL",
+          "PERITO",
+          "CUSTODIO"
+        ],
+        "primaryView": "PJ",
+        "note": "El usuario verifica la existencia de una definición técnica; no sustituye al experto.",
+        "systemInference": false
+      }
     },
     "P03": {
       "id": "P03",
@@ -190,7 +297,39 @@
           "executes": "Policía Judicial/custodio ejecuta preservación y traslado conforme a la ruta aplicable.",
           "receives": "Custodio de cadena de custodia o autoridad especial según P04."
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "clasificacion_concurrente",
+        "pjMode": [
+          "RESUELVE_CON_HECHOS",
+          "APORTA_HECHOS"
+        ],
+        "externalForPJ": false,
+        "observa": [
+          "PJ"
+        ],
+        "define": [
+          "PJ",
+          "FISCAL"
+        ],
+        "decide": [],
+        "ejecuta": [
+          "PJ"
+        ],
+        "controla": [],
+        "recibe": [],
+        "custodia": [
+          "PJ"
+        ],
+        "administra": [],
+        "involved": [
+          "PJ",
+          "FISCAL",
+          "ALFRED"
+        ],
+        "primaryView": "PJ",
+        "systemInference": true
+      }
     },
     "P04": {
       "id": "P04",
@@ -232,7 +371,43 @@
           "executes": "Policía Judicial continúa la documentación y preservación que corresponda hasta completar P04A.",
           "receives": "Sin cambio de custodio por esta respuesta; se define en P04A y en la ruta posterior."
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "seleccion_regimen",
+        "pjMode": [
+          "RESUELVE_CON_HECHOS"
+        ],
+        "externalForPJ": false,
+        "observa": [
+          "PJ"
+        ],
+        "define": [
+          "PJ",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "decide": [],
+        "ejecuta": [
+          "PJ"
+        ],
+        "controla": [],
+        "recibe": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "custodia": [
+          "PJ",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "administra": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "involved": [
+          "PJ",
+          "ALFRED",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "primaryView": "PJ",
+        "systemInference": true
+      }
     },
     "P05": {
       "id": "P05",
@@ -342,7 +517,49 @@
           "executes": "Policía Judicial continúa la clasificación y las actuaciones de preservación legalmente procedentes.",
           "receives": "Custodio/administrador actual hasta determinar otra ruta."
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "hechos_para_conclusion_juridica",
+        "pjMode": [
+          "APORTA_HECHOS"
+        ],
+        "externalForPJ": false,
+        "observa": [
+          "PJ"
+        ],
+        "define": [
+          "FISCAL"
+        ],
+        "decide": [
+          "FISCAL",
+          "JUEZ"
+        ],
+        "ejecuta": [
+          "PJ"
+        ],
+        "controla": [
+          "JUEZ"
+        ],
+        "recibe": [],
+        "custodia": [
+          "PJ",
+          "CUSTODIO"
+        ],
+        "administra": [
+          "ADMINISTRADOR"
+        ],
+        "involved": [
+          "PJ",
+          "FISCAL",
+          "ALFRED",
+          "JUEZ",
+          "CUSTODIO",
+          "ADMINISTRADOR"
+        ],
+        "primaryView": "PJ",
+        "note": "PJ aporta la relación fáctica; la medida y sus efectos no se producen por la sola respuesta del usuario.",
+        "systemInference": true
+      }
     },
     "P05A": {
       "id": "P05A",
@@ -384,7 +601,46 @@
           "executes": "Aún no se materializa medida en este nodo; Policía Judicial prepara soportes.",
           "receives": "Custodia lícita existente hasta que se adopte y materialice una medida."
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "estado_necesidad_probatoria",
+        "pjMode": [
+          "VERIFICA_DECISION_EXTERNA",
+          "APORTA_HECHOS"
+        ],
+        "externalForPJ": true,
+        "observa": [
+          "PJ",
+          "PERITO",
+          "FISCAL"
+        ],
+        "define": [
+          "FISCAL"
+        ],
+        "decide": [
+          "FISCAL"
+        ],
+        "ejecuta": [
+          "PJ",
+          "PERITO"
+        ],
+        "controla": [],
+        "recibe": [],
+        "custodia": [
+          "PJ",
+          "PERITO",
+          "CUSTODIO"
+        ],
+        "administra": [],
+        "involved": [
+          "PJ",
+          "PERITO",
+          "FISCAL",
+          "CUSTODIO"
+        ],
+        "primaryView": "PJ",
+        "systemInference": false
+      }
     },
     "P05B": {
       "id": "P05B",
@@ -426,7 +682,43 @@
           "executes": "Nadie ejecuta incautación/ocupación hasta que exista habilitación legal.",
           "receives": "Permanece con el custodio o tenedor jurídicamente habilitado; no pasa al FEAB por esta sola inferencia."
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "habilitacion_juridica",
+        "pjMode": [
+          "VERIFICA_DECISION_EXTERNA",
+          "EJECUTA"
+        ],
+        "externalForPJ": true,
+        "observa": [
+          "PJ",
+          "FISCAL"
+        ],
+        "define": [
+          "FISCAL"
+        ],
+        "decide": [
+          "FISCAL"
+        ],
+        "ejecuta": [
+          "PJ"
+        ],
+        "controla": [
+          "JUEZ"
+        ],
+        "recibe": [],
+        "custodia": [
+          "PJ"
+        ],
+        "administra": [],
+        "involved": [
+          "PJ",
+          "FISCAL",
+          "JUEZ"
+        ],
+        "primaryView": "PJ",
+        "systemInference": false
+      }
     },
     "P05C": {
       "id": "P05C",
@@ -502,7 +794,49 @@
           "executes": "Policía Judicial, FEAB o custodio material ejecuta la devolución cuando corresponda.",
           "receives": "Persona legitimada o custodio definido por otra medida válida."
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "control_judicial",
+        "pjMode": [
+          "VERIFICA_DECISION_EXTERNA",
+          "CONTEXTO"
+        ],
+        "externalForPJ": true,
+        "observa": [
+          "PJ",
+          "FISCAL"
+        ],
+        "define": [
+          "JUEZ"
+        ],
+        "decide": [
+          "JUEZ"
+        ],
+        "ejecuta": [
+          "FISCAL",
+          "PJ"
+        ],
+        "controla": [
+          "JUEZ"
+        ],
+        "recibe": [],
+        "custodia": [
+          "CUSTODIO",
+          "ADMINISTRADOR"
+        ],
+        "administra": [
+          "ADMINISTRADOR"
+        ],
+        "involved": [
+          "PJ",
+          "FISCAL",
+          "JUEZ",
+          "CUSTODIO",
+          "ADMINISTRADOR"
+        ],
+        "primaryView": "PJ",
+        "systemInference": false
+      }
     },
     "P06": {
       "id": "P06",
@@ -578,7 +912,50 @@
           "executes": "Las partes/autoridades procesales promueven la adición; la consecuencia material se ejecuta solo cuando exista pronunciamiento.",
           "receives": "FEAB continúa administración provisional mientras subsista la medida y no exista decisión definitiva."
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "estado_procesal",
+        "pjMode": [
+          "VERIFICA_DECISION_EXTERNA",
+          "CONTEXTO"
+        ],
+        "externalForPJ": true,
+        "observa": [
+          "PJ",
+          "FISCAL",
+          "ADMINISTRADOR"
+        ],
+        "define": [
+          "FISCAL",
+          "JUEZ"
+        ],
+        "decide": [
+          "JUEZ"
+        ],
+        "ejecuta": [
+          "ADMINISTRADOR"
+        ],
+        "controla": [],
+        "recibe": [],
+        "custodia": [
+          "CUSTODIO"
+        ],
+        "administra": [
+          "ADMINISTRADOR"
+        ],
+        "involved": [
+          "PJ",
+          "FISCAL",
+          "ADMINISTRADOR",
+          "JUEZ",
+          "CUSTODIO"
+        ],
+        "primaryView": "PJ",
+        "specificActors": [
+          "FEAB"
+        ],
+        "systemInference": false
+      }
     },
     "P06A": {
       "id": "P06A",
@@ -671,7 +1048,53 @@
           "executes": "Autoridad o servidor competente materializa la destinación.",
           "receives": "Destinatario definido por la norma especial."
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "decision_definitiva",
+        "pjMode": [
+          "VERIFICA_DECISION_EXTERNA",
+          "CONTEXTO"
+        ],
+        "externalForPJ": true,
+        "observa": [
+          "PJ",
+          "FISCAL",
+          "ADMINISTRADOR"
+        ],
+        "define": [
+          "JUEZ"
+        ],
+        "decide": [
+          "JUEZ"
+        ],
+        "ejecuta": [
+          "ADMINISTRADOR"
+        ],
+        "controla": [],
+        "recibe": [
+          "TITULAR",
+          "ADMINISTRADOR"
+        ],
+        "custodia": [
+          "CUSTODIO"
+        ],
+        "administra": [
+          "ADMINISTRADOR"
+        ],
+        "involved": [
+          "PJ",
+          "FISCAL",
+          "ADMINISTRADOR",
+          "JUEZ",
+          "TITULAR",
+          "CUSTODIO"
+        ],
+        "primaryView": "PJ",
+        "specificActors": [
+          "FEAB"
+        ],
+        "systemInference": false
+      }
     },
     "P07": {
       "id": "P07",
@@ -713,7 +1136,47 @@
           "executes": "Policía Judicial continúa la clasificación.",
           "receives": "Custodio/administrador actual hasta P08-P09."
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "existencia_medida_reparadora",
+        "pjMode": [
+          "VERIFICA_DECISION_EXTERNA",
+          "APORTA_HECHOS"
+        ],
+        "externalForPJ": true,
+        "observa": [
+          "PJ",
+          "FISCAL"
+        ],
+        "define": [
+          "FISCAL",
+          "JUEZ"
+        ],
+        "decide": [
+          "FISCAL",
+          "JUEZ"
+        ],
+        "ejecuta": [
+          "PJ"
+        ],
+        "controla": [
+          "JUEZ"
+        ],
+        "recibe": [],
+        "custodia": [
+          "PJ",
+          "CUSTODIO"
+        ],
+        "administra": [],
+        "involved": [
+          "PJ",
+          "FISCAL",
+          "JUEZ",
+          "CUSTODIO"
+        ],
+        "primaryView": "PJ",
+        "systemInference": false
+      }
     },
     "P07A": {
       "id": "P07A",
@@ -823,7 +1286,46 @@
           "executes": "Solo se ejecuta la decisión válida que se determine.",
           "receives": "Custodio actual hasta definición."
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "identificacion_medida",
+        "pjMode": [
+          "VERIFICA_DECISION_EXTERNA",
+          "CONTEXTO"
+        ],
+        "externalForPJ": true,
+        "observa": [
+          "PJ",
+          "FISCAL"
+        ],
+        "define": [
+          "FISCAL",
+          "JUEZ"
+        ],
+        "decide": [
+          "FISCAL",
+          "JUEZ"
+        ],
+        "ejecuta": [
+          "PJ"
+        ],
+        "controla": [
+          "JUEZ"
+        ],
+        "recibe": [],
+        "custodia": [
+          "CUSTODIO"
+        ],
+        "administra": [],
+        "involved": [
+          "PJ",
+          "FISCAL",
+          "JUEZ",
+          "CUSTODIO"
+        ],
+        "primaryView": "PJ",
+        "systemInference": false
+      }
     },
     "P07B": {
       "id": "P07B",
@@ -865,7 +1367,48 @@
           "executes": "Secuestre materializa custodia/administración; Policía Judicial puede apoyar la entrega.",
           "receives": "Secuestre designado por el juez."
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "hecho_custodia_medida",
+        "pjMode": [
+          "RESUELVE_CON_HECHOS",
+          "CONTEXTO"
+        ],
+        "externalForPJ": true,
+        "observa": [
+          "PJ",
+          "CUSTODIO"
+        ],
+        "define": [
+          "JUEZ"
+        ],
+        "decide": [
+          "JUEZ"
+        ],
+        "ejecuta": [
+          "CUSTODIO"
+        ],
+        "controla": [
+          "JUEZ"
+        ],
+        "recibe": [
+          "CUSTODIO"
+        ],
+        "custodia": [
+          "CUSTODIO"
+        ],
+        "administra": [
+          "ADMINISTRADOR"
+        ],
+        "involved": [
+          "PJ",
+          "CUSTODIO",
+          "JUEZ",
+          "ADMINISTRADOR"
+        ],
+        "primaryView": "PJ",
+        "systemInference": false
+      }
     },
     "P07C": {
       "id": "P07C",
@@ -907,7 +1450,47 @@
           "executes": "Policía Judicial o custodio material entrega el bien en los términos de la decisión.",
           "receives": "Propietario, poseedor o tenedor legítimo; régimen especial para servicio público colectivo cuando corresponda."
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "estado_medida_cautelar",
+        "pjMode": [
+          "VERIFICA_DECISION_EXTERNA",
+          "CONTEXTO"
+        ],
+        "externalForPJ": true,
+        "observa": [
+          "PJ",
+          "FISCAL"
+        ],
+        "define": [
+          "JUEZ"
+        ],
+        "decide": [
+          "JUEZ"
+        ],
+        "ejecuta": [
+          "PJ",
+          "CUSTODIO"
+        ],
+        "controla": [
+          "JUEZ"
+        ],
+        "recibe": [
+          "CUSTODIO"
+        ],
+        "custodia": [
+          "CUSTODIO"
+        ],
+        "administra": [],
+        "involved": [
+          "PJ",
+          "FISCAL",
+          "JUEZ",
+          "CUSTODIO"
+        ],
+        "primaryView": "PJ",
+        "systemInference": false
+      }
     },
     "P08": {
       "id": "P08",
@@ -949,7 +1532,52 @@
           "executes": "No se ejecuta destrucción.",
           "receives": "Se mantiene el custodio/administrador vigente hasta nueva definición."
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "base_para_disposicion",
+        "pjMode": [
+          "RESUELVE_CON_HECHOS",
+          "APORTA_HECHOS"
+        ],
+        "externalForPJ": false,
+        "observa": [
+          "PJ",
+          "FISCAL",
+          "ADMINISTRADOR"
+        ],
+        "define": [
+          "FISCAL",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "decide": [
+          "FISCAL",
+          "JUEZ",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "ejecuta": [
+          "PJ",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "controla": [],
+        "recibe": [],
+        "custodia": [
+          "CUSTODIO"
+        ],
+        "administra": [
+          "ADMINISTRADOR"
+        ],
+        "involved": [
+          "PJ",
+          "FISCAL",
+          "ADMINISTRADOR",
+          "ALFRED",
+          "AUTORIDAD_ESPECIAL",
+          "JUEZ",
+          "CUSTODIO"
+        ],
+        "primaryView": "PJ",
+        "systemInference": true
+      }
     },
     "P08A": {
       "id": "P08A",
@@ -1019,7 +1647,46 @@
           "concept": "Cuando no puede identificarse con seguridad el fundamento de una actuación irreversible, la herramienta no debe inferirlo por analogía.",
           "action": "Conservar bajo el título vigente y obtener definición jurídica o técnica antes de destruir."
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "seleccion_regimen",
+        "pjMode": [
+          "RESUELVE_CON_HECHOS"
+        ],
+        "externalForPJ": false,
+        "observa": [
+          "PJ",
+          "FISCAL",
+          "ADMINISTRADOR"
+        ],
+        "define": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "decide": [],
+        "ejecuta": [
+          "PJ"
+        ],
+        "controla": [],
+        "recibe": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "custodia": [
+          "CUSTODIO"
+        ],
+        "administra": [
+          "ADMINISTRADOR"
+        ],
+        "involved": [
+          "PJ",
+          "FISCAL",
+          "ADMINISTRADOR",
+          "ALFRED",
+          "AUTORIDAD_ESPECIAL",
+          "CUSTODIO"
+        ],
+        "primaryView": "PJ",
+        "systemInference": true
+      }
     },
     "P09": {
       "id": "P09",
@@ -1061,7 +1728,54 @@
           "executes": "Policía Judicial o custodio documenta la situación y continúa la clasificación.",
           "receives": "Custodio actual hasta que P09A determine la ruta jurídicamente aplicable."
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "estado_residual",
+        "pjMode": [
+          "VERIFICA_DECISION_EXTERNA",
+          "CONTEXTO"
+        ],
+        "externalForPJ": true,
+        "observa": [
+          "PJ",
+          "FISCAL",
+          "ADMINISTRADOR"
+        ],
+        "define": [
+          "FISCAL",
+          "ADMINISTRADOR"
+        ],
+        "decide": [
+          "FISCAL",
+          "JUEZ"
+        ],
+        "ejecuta": [
+          "ADMINISTRADOR"
+        ],
+        "controla": [],
+        "recibe": [
+          "ADMINISTRADOR"
+        ],
+        "custodia": [
+          "CUSTODIO"
+        ],
+        "administra": [
+          "ADMINISTRADOR"
+        ],
+        "involved": [
+          "PJ",
+          "FISCAL",
+          "ADMINISTRADOR",
+          "ALFRED",
+          "JUEZ",
+          "CUSTODIO"
+        ],
+        "primaryView": "PJ",
+        "specificActors": [
+          "FEAB"
+        ],
+        "systemInference": true
+      }
     },
     "P09A": {
       "id": "P09A",
@@ -1103,7 +1817,55 @@
           "executes": "Policía Judicial mantiene solo las medidas lícitas temporales y ejecuta después la decisión válida.",
           "receives": "Custodio actual hasta definición; luego el destinatario de P10 u otra subruta."
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "titulo_juridico",
+        "pjMode": [
+          "VERIFICA_DECISION_EXTERNA",
+          "CONTEXTO"
+        ],
+        "externalForPJ": true,
+        "observa": [
+          "PJ",
+          "FISCAL",
+          "ADMINISTRADOR"
+        ],
+        "define": [
+          "FISCAL",
+          "JUEZ",
+          "ADMINISTRADOR"
+        ],
+        "decide": [
+          "FISCAL",
+          "JUEZ",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "ejecuta": [
+          "ADMINISTRADOR",
+          "CUSTODIO"
+        ],
+        "controla": [],
+        "recibe": [
+          "ADMINISTRADOR",
+          "CUSTODIO"
+        ],
+        "custodia": [
+          "CUSTODIO"
+        ],
+        "administra": [
+          "ADMINISTRADOR"
+        ],
+        "involved": [
+          "PJ",
+          "FISCAL",
+          "ADMINISTRADOR",
+          "JUEZ",
+          "AUTORIDAD_ESPECIAL",
+          "CUSTODIO"
+        ],
+        "primaryView": "PJ",
+        "systemInference": false
+      }
     },
     "P10": {
       "id": "P10",
@@ -1247,7 +2009,50 @@
           "executes": "No se materializa entrega hasta decisión válida.",
           "receives": "Custodio actual hasta que se defina el receptor legítimo."
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "causa_entrega_devolucion",
+        "pjMode": [
+          "RESUELVE_CON_HECHOS",
+          "VERIFICA_DECISION_EXTERNA"
+        ],
+        "externalForPJ": true,
+        "observa": [
+          "PJ",
+          "FISCAL",
+          "CUSTODIO"
+        ],
+        "define": [
+          "FISCAL",
+          "JUEZ"
+        ],
+        "decide": [
+          "FISCAL",
+          "JUEZ"
+        ],
+        "ejecuta": [
+          "PJ",
+          "CUSTODIO"
+        ],
+        "controla": [],
+        "recibe": [
+          "TITULAR"
+        ],
+        "custodia": [
+          "CUSTODIO"
+        ],
+        "administra": [],
+        "involved": [
+          "PJ",
+          "FISCAL",
+          "CUSTODIO",
+          "JUEZ",
+          "ALFRED",
+          "TITULAR"
+        ],
+        "primaryView": "PJ",
+        "systemInference": true
+      }
     },
     "P11": {
       "id": "P11",
@@ -1289,7 +2094,44 @@
           "executes": "Policía Judicial o custodio realiza comunicaciones, conserva y luego ejecuta la actuación que corresponda.",
           "receives": "Custodio actual hasta que P11A determine entrega, FEAB u otra salida."
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "estado_materializacion",
+        "pjMode": [
+          "RESUELVE_CON_HECHOS",
+          "EJECUTA"
+        ],
+        "externalForPJ": false,
+        "observa": [
+          "PJ",
+          "CUSTODIO",
+          "TITULAR"
+        ],
+        "define": [
+          "PJ",
+          "CUSTODIO"
+        ],
+        "decide": [],
+        "ejecuta": [
+          "PJ",
+          "CUSTODIO"
+        ],
+        "controla": [],
+        "recibe": [
+          "TITULAR"
+        ],
+        "custodia": [
+          "CUSTODIO"
+        ],
+        "administra": [],
+        "involved": [
+          "PJ",
+          "CUSTODIO",
+          "TITULAR"
+        ],
+        "primaryView": "PJ",
+        "systemInference": false
+      }
     },
     "P11A": {
       "id": "P11A",
@@ -1382,7 +2224,54 @@
           "executes": "Policía Judicial/custodio ejecuta únicamente la decisión válida posterior.",
           "receives": "Depende de la subruta de origen; no pasa automáticamente al FEAB."
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "impedimento_entrega",
+        "pjMode": [
+          "RESUELVE_CON_HECHOS",
+          "COORDINA_REMITE"
+        ],
+        "externalForPJ": false,
+        "observa": [
+          "PJ",
+          "CUSTODIO",
+          "TITULAR"
+        ],
+        "define": [
+          "PJ",
+          "FISCAL"
+        ],
+        "decide": [
+          "FISCAL",
+          "JUEZ"
+        ],
+        "ejecuta": [
+          "PJ",
+          "CUSTODIO"
+        ],
+        "controla": [],
+        "recibe": [
+          "TITULAR",
+          "ADMINISTRADOR"
+        ],
+        "custodia": [
+          "CUSTODIO"
+        ],
+        "administra": [
+          "ADMINISTRADOR"
+        ],
+        "involved": [
+          "PJ",
+          "CUSTODIO",
+          "TITULAR",
+          "FISCAL",
+          "ALFRED",
+          "JUEZ",
+          "ADMINISTRADOR"
+        ],
+        "primaryView": "PJ",
+        "systemInference": true
+      }
     },
     "P12": {
       "id": "P12",
@@ -1424,7 +2313,43 @@
           "executes": "Policía Judicial ejecuta la reclasificación y las actuaciones de la ruta aplicable.",
           "receives": "Custodio/administrador según la subruta correcta."
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "clasificacion_macroelemento",
+        "pjMode": [
+          "RESUELVE_CON_HECHOS",
+          "PRESERVA_DOCUMENTA"
+        ],
+        "externalForPJ": false,
+        "observa": [
+          "PJ",
+          "PERITO"
+        ],
+        "define": [
+          "PJ",
+          "PERITO"
+        ],
+        "decide": [],
+        "ejecuta": [
+          "PJ",
+          "PERITO"
+        ],
+        "controla": [],
+        "recibe": [],
+        "custodia": [
+          "PJ",
+          "CUSTODIO"
+        ],
+        "administra": [],
+        "involved": [
+          "PJ",
+          "PERITO",
+          "ALFRED",
+          "CUSTODIO"
+        ],
+        "primaryView": "PJ",
+        "systemInference": true
+      }
     },
     "P12A": {
       "id": "P12A",
@@ -1466,7 +2391,43 @@
           "executes": "Perito y Policía Judicial completan las actuaciones del art. 256.",
           "receives": "Custodio temporal del macroelemento hasta completar la actuación; EMP y EF bajo cadena de custodia."
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "estado_examen",
+        "pjMode": [
+          "VERIFICA_DECISION_EXTERNA",
+          "COORDINA_REMITE"
+        ],
+        "externalForPJ": true,
+        "observa": [
+          "PJ",
+          "PERITO"
+        ],
+        "define": [
+          "PERITO"
+        ],
+        "decide": [],
+        "ejecuta": [
+          "PERITO"
+        ],
+        "controla": [],
+        "recibe": [
+          "PJ"
+        ],
+        "custodia": [
+          "PJ",
+          "PERITO",
+          "CUSTODIO"
+        ],
+        "administra": [],
+        "involved": [
+          "PJ",
+          "PERITO",
+          "CUSTODIO"
+        ],
+        "primaryView": "PJ",
+        "systemInference": false
+      }
     },
     "P12B": {
       "id": "P12B",
@@ -1610,7 +2571,56 @@
           "executes": "No materializar cambio definitivo hasta definición.",
           "receives": "Custodio lícito actual hasta definición."
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "estado_juridico_posterior",
+        "pjMode": [
+          "VERIFICA_DECISION_EXTERNA",
+          "CONTEXTO"
+        ],
+        "externalForPJ": true,
+        "observa": [
+          "PJ",
+          "FISCAL",
+          "CUSTODIO"
+        ],
+        "define": [
+          "FISCAL",
+          "JUEZ"
+        ],
+        "decide": [
+          "FISCAL",
+          "JUEZ"
+        ],
+        "ejecuta": [
+          "PJ",
+          "CUSTODIO"
+        ],
+        "controla": [
+          "JUEZ"
+        ],
+        "recibe": [
+          "TITULAR",
+          "ADMINISTRADOR"
+        ],
+        "custodia": [
+          "CUSTODIO"
+        ],
+        "administra": [
+          "ADMINISTRADOR"
+        ],
+        "involved": [
+          "PJ",
+          "FISCAL",
+          "CUSTODIO",
+          "JUEZ",
+          "ALFRED",
+          "TITULAR",
+          "ADMINISTRADOR"
+        ],
+        "primaryView": "PJ",
+        "systemInference": true
+      }
     },
     "P04A": {
       "id": "P04A",
@@ -1669,7 +2679,40 @@
           "executes": "Policía Judicial o custodio materializa la entrega una vez exista habilitación.",
           "receives": "Persona legitimada, según P10-P11, cuando proceda."
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "reencauzamiento",
+        "pjMode": [
+          "RESUELVE_CON_HECHOS"
+        ],
+        "externalForPJ": false,
+        "observa": [
+          "PJ"
+        ],
+        "define": [
+          "PJ",
+          "FISCAL"
+        ],
+        "decide": [],
+        "ejecuta": [
+          "PJ"
+        ],
+        "controla": [],
+        "recibe": [],
+        "custodia": [
+          "PJ",
+          "CUSTODIO"
+        ],
+        "administra": [],
+        "involved": [
+          "PJ",
+          "ALFRED",
+          "FISCAL",
+          "CUSTODIO"
+        ],
+        "primaryView": "PJ",
+        "systemInference": true
+      }
     },
     "P07D": {
       "id": "P07D",
@@ -1711,7 +2754,51 @@
           "executes": "Operador indicado por la providencia.",
           "receives": "Custodio o destinatario definido por la providencia."
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "decision_judicial",
+        "pjMode": [
+          "VERIFICA_DECISION_EXTERNA",
+          "CONTEXTO"
+        ],
+        "externalForPJ": true,
+        "observa": [
+          "PJ",
+          "FISCAL"
+        ],
+        "define": [
+          "JUEZ"
+        ],
+        "decide": [
+          "JUEZ"
+        ],
+        "ejecuta": [
+          "CUSTODIO",
+          "ADMINISTRADOR"
+        ],
+        "controla": [
+          "JUEZ"
+        ],
+        "recibe": [
+          "CUSTODIO",
+          "ADMINISTRADOR"
+        ],
+        "custodia": [
+          "CUSTODIO"
+        ],
+        "administra": [
+          "ADMINISTRADOR"
+        ],
+        "involved": [
+          "PJ",
+          "FISCAL",
+          "JUEZ",
+          "CUSTODIO",
+          "ADMINISTRADOR"
+        ],
+        "primaryView": "PJ",
+        "systemInference": false
+      }
     },
     "ESP-ARM": {
       "id": "ESP-ARM",
@@ -1750,7 +2837,59 @@
           "label": "Armas, elementos y dispositivos menos letales, accesorios, partes y municiones",
           "next": "ESP-ARM-D"
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "seleccion_regimen",
+        "pjMode": [
+          "RESUELVE_CON_HECHOS",
+          "PRESERVA_DOCUMENTA"
+        ],
+        "externalForPJ": false,
+        "observa": [
+          "PJ"
+        ],
+        "define": [
+          "PJ",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "decide": [
+          "FISCAL",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "ejecuta": [
+          "PJ",
+          "PERITO",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "controla": [],
+        "recibe": [
+          "PERITO",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "custodia": [
+          "PJ",
+          "CUSTODIO",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "administra": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "involved": [
+          "PJ",
+          "ALFRED",
+          "AUTORIDAD_ESPECIAL",
+          "FISCAL",
+          "PERITO",
+          "CUSTODIO"
+        ],
+        "primaryView": "PJ",
+        "specificActors": [
+          "DCCAE",
+          "INDUMIL",
+          "autoridades militares/policiales"
+        ],
+        "systemInference": true
+      }
     },
     "ESP-ARM-A": {
       "id": "ESP-ARM-A",
@@ -1781,7 +2920,55 @@
           "label": "Disposición final del arma o munición después de agotada la necesidad probatoria",
           "next": "ESP-ARM-A2"
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "estado_tecnico_probatorio",
+        "pjMode": [
+          "RESUELVE_CON_HECHOS",
+          "VERIFICA_DECISION_EXTERNA"
+        ],
+        "externalForPJ": true,
+        "observa": [
+          "PJ",
+          "PERITO",
+          "FISCAL"
+        ],
+        "define": [
+          "PERITO",
+          "FISCAL"
+        ],
+        "decide": [
+          "FISCAL"
+        ],
+        "ejecuta": [
+          "PJ",
+          "PERITO"
+        ],
+        "controla": [],
+        "recibe": [
+          "PERITO",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "custodia": [
+          "PERITO",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "administra": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "involved": [
+          "PJ",
+          "PERITO",
+          "FISCAL",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "primaryView": "PJ",
+        "specificActors": [
+          "laboratorio de balística",
+          "autoridad militar/policial"
+        ],
+        "systemInference": false
+      }
     },
     "ESP-ARM-A1": {
       "id": "ESP-ARM-A1",
@@ -1812,7 +2999,47 @@
           "label": "Disposición final del arma o munición después de agotada la necesidad probatoria",
           "next": "ESP-ARM-A2"
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "estado_examen_necesidad",
+        "pjMode": [
+          "VERIFICA_DECISION_EXTERNA",
+          "CONTEXTO"
+        ],
+        "externalForPJ": true,
+        "observa": [
+          "PJ",
+          "PERITO",
+          "FISCAL"
+        ],
+        "define": [
+          "PERITO",
+          "FISCAL"
+        ],
+        "decide": [
+          "FISCAL"
+        ],
+        "ejecuta": [
+          "PERITO"
+        ],
+        "controla": [],
+        "recibe": [],
+        "custodia": [
+          "PERITO",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "administra": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "involved": [
+          "PJ",
+          "PERITO",
+          "FISCAL",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "primaryView": "PJ",
+        "systemInference": false
+      }
     },
     "ESP-ARM-A2": {
       "id": "ESP-ARM-A2",
@@ -1859,7 +3086,57 @@
           "label": "Consulta jurídica o técnica requerida",
           "next": "FIN-CONSULTA"
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "disposicion_post_probatoria",
+        "pjMode": [
+          "VERIFICA_DECISION_EXTERNA",
+          "CONTEXTO"
+        ],
+        "externalForPJ": true,
+        "observa": [
+          "PJ",
+          "FISCAL",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "define": [
+          "FISCAL",
+          "JUEZ",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "decide": [
+          "FISCAL",
+          "JUEZ",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "ejecuta": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "controla": [
+          "JUEZ"
+        ],
+        "recibe": [
+          "AUTORIDAD_ESPECIAL",
+          "TITULAR"
+        ],
+        "custodia": [
+          "AUTORIDAD_ESPECIAL",
+          "CUSTODIO"
+        ],
+        "administra": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "involved": [
+          "PJ",
+          "FISCAL",
+          "AUTORIDAD_ESPECIAL",
+          "JUEZ",
+          "TITULAR",
+          "CUSTODIO"
+        ],
+        "primaryView": "PJ",
+        "systemInference": false
+      }
     },
     "ESP-ARM-B": {
       "id": "ESP-ARM-B",
@@ -1898,7 +3175,54 @@
           "label": "Aislar y esperar experto antiexplosivos",
           "next": "FIN-EXP-SEGURIDAD"
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "estado_explosivo_seguridad",
+        "pjMode": [
+          "RESUELVE_CON_HECHOS",
+          "COORDINA_REMITE"
+        ],
+        "externalForPJ": false,
+        "observa": [
+          "PJ",
+          "PERITO"
+        ],
+        "define": [
+          "PERITO",
+          "FISCAL"
+        ],
+        "decide": [
+          "FISCAL",
+          "PJ"
+        ],
+        "ejecuta": [
+          "PERITO",
+          "PJ"
+        ],
+        "controla": [],
+        "recibe": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "custodia": [
+          "PJ",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "administra": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "involved": [
+          "PJ",
+          "PERITO",
+          "FISCAL",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "primaryView": "PJ",
+        "specificActors": [
+          "técnicos en explosivos",
+          "polvorín autorizado"
+        ],
+        "systemInference": false
+      }
     },
     "ESP-ARM-C": {
       "id": "ESP-ARM-C",
@@ -1945,7 +3269,55 @@
           "label": "Explosivos, artefactos explosivos, sustancias explosivas y accesorios de voladura",
           "next": "ESP-ARM-B"
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "titulo_sectorial",
+        "pjMode": [
+          "VERIFICA_DECISION_EXTERNA",
+          "CONTEXTO"
+        ],
+        "externalForPJ": true,
+        "observa": [
+          "PJ",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "define": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "decide": [
+          "AUTORIDAD_ESPECIAL",
+          "JUEZ"
+        ],
+        "ejecuta": [
+          "PJ",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "controla": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "recibe": [
+          "AUTORIDAD_ESPECIAL",
+          "TITULAR"
+        ],
+        "custodia": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "administra": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "involved": [
+          "PJ",
+          "AUTORIDAD_ESPECIAL",
+          "JUEZ",
+          "TITULAR"
+        ],
+        "primaryView": "PJ",
+        "specificActors": [
+          "DCCAE",
+          "autoridad militar/policial"
+        ],
+        "systemInference": false
+      }
     },
     "ESP-ARM-D": {
       "id": "ESP-ARM-D",
@@ -1992,7 +3364,50 @@
           "label": "Disposición final de menos letal",
           "next": "DES-AML-PREV"
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "regimen_menos_letal",
+        "pjMode": [
+          "RESUELVE_CON_HECHOS",
+          "VERIFICA_DECISION_EXTERNA"
+        ],
+        "externalForPJ": true,
+        "observa": [
+          "PJ",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "define": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "decide": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "ejecuta": [
+          "PJ",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "controla": [],
+        "recibe": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "custodia": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "administra": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "involved": [
+          "PJ",
+          "AUTORIDAD_ESPECIAL",
+          "ALFRED"
+        ],
+        "primaryView": "PJ",
+        "specificActors": [
+          "DCCAE",
+          "INDUMIL"
+        ],
+        "systemInference": true
+      }
     },
     "ESP-AMB": {
       "id": "ESP-AMB",
@@ -2031,7 +3446,59 @@
           "label": "Selector general de regímenes especiales",
           "next": "ESP"
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "regimen_ambiental",
+        "pjMode": [
+          "RESUELVE_CON_HECHOS",
+          "COORDINA_REMITE"
+        ],
+        "externalForPJ": false,
+        "observa": [
+          "PJ",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "define": [
+          "AUTORIDAD_ESPECIAL",
+          "FISCAL"
+        ],
+        "decide": [
+          "AUTORIDAD_ESPECIAL",
+          "FISCAL",
+          "JUEZ"
+        ],
+        "ejecuta": [
+          "PJ",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "controla": [
+          "AUTORIDAD_ESPECIAL",
+          "JUEZ"
+        ],
+        "recibe": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "custodia": [
+          "AUTORIDAD_ESPECIAL",
+          "CUSTODIO"
+        ],
+        "administra": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "involved": [
+          "PJ",
+          "AUTORIDAD_ESPECIAL",
+          "FISCAL",
+          "ALFRED",
+          "JUEZ",
+          "CUSTODIO"
+        ],
+        "primaryView": "PJ",
+        "specificActors": [
+          "autoridad ambiental competente"
+        ],
+        "systemInference": true
+      }
     },
     "ESP-AMB-A": {
       "id": "ESP-AMB-A",
@@ -2074,7 +3541,51 @@
           "label": "Selector general de regímenes especiales",
           "next": "ESP"
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "estado_tecnico_individuo",
+        "pjMode": [
+          "VERIFICA_DECISION_EXTERNA",
+          "COORDINA_REMITE"
+        ],
+        "externalForPJ": true,
+        "observa": [
+          "PJ",
+          "PERITO",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "define": [
+          "PERITO",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "decide": [
+          "AUTORIDAD_ESPECIAL",
+          "FISCAL"
+        ],
+        "ejecuta": [
+          "PJ",
+          "PERITO",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "controla": [],
+        "recibe": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "custodia": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "administra": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "involved": [
+          "PJ",
+          "PERITO",
+          "AUTORIDAD_ESPECIAL",
+          "FISCAL"
+        ],
+        "primaryView": "PJ",
+        "systemInference": false
+      }
     },
     "ESP-AMB-B": {
       "id": "ESP-AMB-B",
@@ -2121,7 +3632,54 @@
           "label": "Solo muestra ambiental para laboratorio",
           "next": "FIN-AMB-MUESTRA"
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "necesidad_conservacion_muestra",
+        "pjMode": [
+          "APORTA_HECHOS",
+          "VERIFICA_DECISION_EXTERNA"
+        ],
+        "externalForPJ": true,
+        "observa": [
+          "PJ",
+          "PERITO",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "define": [
+          "PERITO",
+          "FISCAL",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "decide": [
+          "FISCAL",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "ejecuta": [
+          "PJ",
+          "PERITO",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "controla": [],
+        "recibe": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "custodia": [
+          "AUTORIDAD_ESPECIAL",
+          "CUSTODIO"
+        ],
+        "administra": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "involved": [
+          "PJ",
+          "PERITO",
+          "AUTORIDAD_ESPECIAL",
+          "FISCAL",
+          "CUSTODIO"
+        ],
+        "primaryView": "PJ",
+        "systemInference": false
+      }
     },
     "ESP-AMB-C": {
       "id": "ESP-AMB-C",
@@ -2180,7 +3738,60 @@
           "label": "Maquinaria pesada y sus partes utilizadas en exploración o explotación minera sin autorizaciones legales",
           "next": "ESP-MIN"
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "titulo_y_funcion",
+        "pjMode": [
+          "APORTA_HECHOS",
+          "VERIFICA_DECISION_EXTERNA"
+        ],
+        "externalForPJ": true,
+        "observa": [
+          "PJ",
+          "FISCAL",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "define": [
+          "FISCAL",
+          "JUEZ",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "decide": [
+          "FISCAL",
+          "JUEZ",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "ejecuta": [
+          "PJ",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "controla": [
+          "JUEZ",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "recibe": [
+          "ADMINISTRADOR",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "custodia": [
+          "CUSTODIO",
+          "ADMINISTRADOR"
+        ],
+        "administra": [
+          "ADMINISTRADOR",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "involved": [
+          "PJ",
+          "FISCAL",
+          "AUTORIDAD_ESPECIAL",
+          "JUEZ",
+          "ADMINISTRADOR",
+          "CUSTODIO"
+        ],
+        "primaryView": "PJ",
+        "systemInference": false
+      }
     },
     "ESP-CON": {
       "id": "ESP-CON",
@@ -2231,7 +3842,52 @@
           "label": "Consulta jurídica o técnica requerida",
           "next": "FIN-CONSULTA"
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "coexistencia_aduanera_penal",
+        "pjMode": [
+          "RESUELVE_CON_HECHOS",
+          "COORDINA_REMITE"
+        ],
+        "externalForPJ": false,
+        "observa": [
+          "PJ",
+          "FISCAL",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "define": [
+          "AUTORIDAD_ESPECIAL",
+          "FISCAL"
+        ],
+        "decide": [
+          "AUTORIDAD_ESPECIAL",
+          "FISCAL"
+        ],
+        "ejecuta": [
+          "PJ",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "controla": [],
+        "recibe": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "custodia": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "administra": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "involved": [
+          "PJ",
+          "FISCAL",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "primaryView": "PJ",
+        "specificActors": [
+          "DIAN"
+        ],
+        "systemInference": false
+      }
     },
     "ESP-HUM": {
       "id": "ESP-HUM",
@@ -2270,7 +3926,55 @@
           "label": "Obtención de muestras biológicas o corporales de víctimas, indiciados o imputados vivos",
           "next": "ESP-HUM-D"
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "seleccion_regimen_forense",
+        "pjMode": [
+          "RESUELVE_CON_HECHOS",
+          "COORDINA_REMITE"
+        ],
+        "externalForPJ": false,
+        "observa": [
+          "PJ",
+          "PERITO"
+        ],
+        "define": [
+          "PERITO"
+        ],
+        "decide": [
+          "FISCAL",
+          "JUEZ"
+        ],
+        "ejecuta": [
+          "PJ",
+          "PERITO"
+        ],
+        "controla": [],
+        "recibe": [
+          "PERITO",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "custodia": [
+          "PERITO",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "administra": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "involved": [
+          "PJ",
+          "PERITO",
+          "ALFRED",
+          "FISCAL",
+          "JUEZ",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "primaryView": "PJ",
+        "specificActors": [
+          "INMLCF"
+        ],
+        "systemInference": true
+      }
     },
     "ESP-HUM-A": {
       "id": "ESP-HUM-A",
@@ -2305,7 +4009,55 @@
           "label": "Restos óseos, cuerpos esqueletizados, exhumados o no identificados y personas desaparecidas",
           "next": "ESP-HUM-B"
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "estado_necropsia_entrega",
+        "pjMode": [
+          "VERIFICA_DECISION_EXTERNA",
+          "COORDINA_REMITE"
+        ],
+        "externalForPJ": true,
+        "observa": [
+          "PJ",
+          "PERITO",
+          "FISCAL"
+        ],
+        "define": [
+          "PERITO",
+          "FISCAL"
+        ],
+        "decide": [
+          "FISCAL",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "ejecuta": [
+          "PERITO",
+          "PJ"
+        ],
+        "controla": [],
+        "recibe": [
+          "TITULAR",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "custodia": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "administra": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "involved": [
+          "PJ",
+          "PERITO",
+          "FISCAL",
+          "AUTORIDAD_ESPECIAL",
+          "TITULAR"
+        ],
+        "primaryView": "PJ",
+        "specificActors": [
+          "INMLCF"
+        ],
+        "systemInference": false
+      }
     },
     "ESP-HUM-B": {
       "id": "ESP-HUM-B",
@@ -2344,7 +4096,56 @@
           "label": "Consulta jurídica o técnica requerida",
           "next": "FIN-CONSULTA"
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "estado_identificacion_forense",
+        "pjMode": [
+          "VERIFICA_DECISION_EXTERNA",
+          "CONTEXTO"
+        ],
+        "externalForPJ": true,
+        "observa": [
+          "PJ",
+          "PERITO",
+          "FISCAL"
+        ],
+        "define": [
+          "PERITO",
+          "FISCAL"
+        ],
+        "decide": [
+          "FISCAL",
+          "JUEZ"
+        ],
+        "ejecuta": [
+          "PERITO",
+          "PJ"
+        ],
+        "controla": [],
+        "recibe": [
+          "TITULAR",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "custodia": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "administra": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "involved": [
+          "PJ",
+          "PERITO",
+          "FISCAL",
+          "JUEZ",
+          "TITULAR",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "primaryView": "PJ",
+        "specificActors": [
+          "INMLCF"
+        ],
+        "systemInference": false
+      }
     },
     "ESP-HUM-C": {
       "id": "ESP-HUM-C",
@@ -2391,7 +4192,54 @@
           "label": "Consulta jurídica o técnica requerida",
           "next": "FIN-CONSULTA"
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "estado_muestra_remanente",
+        "pjMode": [
+          "VERIFICA_DECISION_EXTERNA",
+          "COORDINA_REMITE"
+        ],
+        "externalForPJ": true,
+        "observa": [
+          "PJ",
+          "PERITO"
+        ],
+        "define": [
+          "PERITO"
+        ],
+        "decide": [
+          "FISCAL",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "ejecuta": [
+          "PERITO"
+        ],
+        "controla": [],
+        "recibe": [
+          "PERITO",
+          "CUSTODIO"
+        ],
+        "custodia": [
+          "PERITO",
+          "CUSTODIO"
+        ],
+        "administra": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "involved": [
+          "PJ",
+          "PERITO",
+          "FISCAL",
+          "AUTORIDAD_ESPECIAL",
+          "CUSTODIO"
+        ],
+        "primaryView": "PJ",
+        "specificActors": [
+          "laboratorio competente",
+          "INMLCF"
+        ],
+        "systemInference": false
+      }
     },
     "ESP-HUM-D": {
       "id": "ESP-HUM-D",
@@ -2426,7 +4274,60 @@
           "label": "Consulta jurídica o técnica requerida",
           "next": "FIN-CONSULTA"
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "habilitacion_intervencion_corporal",
+        "pjMode": [
+          "VERIFICA_DECISION_EXTERNA",
+          "COORDINA_REMITE",
+          "CONTEXTO"
+        ],
+        "externalForPJ": true,
+        "observa": [
+          "PJ",
+          "FISCAL",
+          "TITULAR"
+        ],
+        "define": [
+          "FISCAL",
+          "JUEZ",
+          "TITULAR"
+        ],
+        "decide": [
+          "JUEZ",
+          "FISCAL"
+        ],
+        "ejecuta": [
+          "PERITO",
+          "PJ"
+        ],
+        "controla": [
+          "JUEZ"
+        ],
+        "recibe": [
+          "PERITO"
+        ],
+        "custodia": [
+          "PERITO",
+          "CUSTODIO"
+        ],
+        "administra": [],
+        "involved": [
+          "PJ",
+          "FISCAL",
+          "TITULAR",
+          "JUEZ",
+          "PERITO",
+          "CUSTODIO"
+        ],
+        "primaryView": "PJ",
+        "specificActors": [
+          "INMLCF",
+          "establecimiento de salud"
+        ],
+        "note": "PJ coordina y documenta; no reemplaza consentimiento, autorización judicial ni conocimiento sanitario.",
+        "systemInference": false
+      }
     },
     "ESP-PAT": {
       "id": "ESP-PAT",
@@ -2473,7 +4374,62 @@
           "label": "Consulta jurídica o técnica requerida",
           "next": "FIN-CONSULTA"
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "regimen_patrimonial_especial",
+        "pjMode": [
+          "RESUELVE_CON_HECHOS",
+          "VERIFICA_DECISION_EXTERNA",
+          "COORDINA_REMITE"
+        ],
+        "externalForPJ": true,
+        "observa": [
+          "PJ",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "define": [
+          "AUTORIDAD_ESPECIAL",
+          "FISCAL",
+          "PERITO"
+        ],
+        "decide": [
+          "AUTORIDAD_ESPECIAL",
+          "FISCAL",
+          "JUEZ"
+        ],
+        "ejecuta": [
+          "PJ",
+          "PERITO",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "controla": [
+          "JUEZ",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "recibe": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "custodia": [
+          "AUTORIDAD_ESPECIAL",
+          "CUSTODIO"
+        ],
+        "administra": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "involved": [
+          "PJ",
+          "AUTORIDAD_ESPECIAL",
+          "FISCAL",
+          "PERITO",
+          "JUEZ",
+          "CUSTODIO"
+        ],
+        "primaryView": "PJ",
+        "specificActors": [
+          "autoridad cultural competente"
+        ],
+        "systemInference": false
+      }
     },
     "ESP-PAT-A": {
       "id": "ESP-PAT-A",
@@ -2516,7 +4472,62 @@
           "label": "Consulta jurídica o técnica requerida",
           "next": "FIN-CONSULTA"
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "regimen_patrimonial_especial",
+        "pjMode": [
+          "RESUELVE_CON_HECHOS",
+          "VERIFICA_DECISION_EXTERNA",
+          "COORDINA_REMITE"
+        ],
+        "externalForPJ": true,
+        "observa": [
+          "PJ",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "define": [
+          "AUTORIDAD_ESPECIAL",
+          "FISCAL",
+          "PERITO"
+        ],
+        "decide": [
+          "AUTORIDAD_ESPECIAL",
+          "FISCAL",
+          "JUEZ"
+        ],
+        "ejecuta": [
+          "PJ",
+          "PERITO",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "controla": [
+          "JUEZ",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "recibe": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "custodia": [
+          "AUTORIDAD_ESPECIAL",
+          "CUSTODIO"
+        ],
+        "administra": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "involved": [
+          "PJ",
+          "AUTORIDAD_ESPECIAL",
+          "FISCAL",
+          "PERITO",
+          "JUEZ",
+          "CUSTODIO"
+        ],
+        "primaryView": "PJ",
+        "specificActors": [
+          "ICANH"
+        ],
+        "systemInference": false
+      }
     },
     "ESP-PAT-B": {
       "id": "ESP-PAT-B",
@@ -2571,7 +4582,62 @@
           "label": "Consulta jurídica o técnica requerida",
           "next": "FIN-CONSULTA"
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "regimen_patrimonial_especial",
+        "pjMode": [
+          "RESUELVE_CON_HECHOS",
+          "VERIFICA_DECISION_EXTERNA",
+          "COORDINA_REMITE"
+        ],
+        "externalForPJ": true,
+        "observa": [
+          "PJ",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "define": [
+          "AUTORIDAD_ESPECIAL",
+          "FISCAL",
+          "PERITO"
+        ],
+        "decide": [
+          "AUTORIDAD_ESPECIAL",
+          "FISCAL",
+          "JUEZ"
+        ],
+        "ejecuta": [
+          "PJ",
+          "PERITO",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "controla": [
+          "JUEZ",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "recibe": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "custodia": [
+          "AUTORIDAD_ESPECIAL",
+          "CUSTODIO"
+        ],
+        "administra": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "involved": [
+          "PJ",
+          "AUTORIDAD_ESPECIAL",
+          "FISCAL",
+          "PERITO",
+          "JUEZ",
+          "CUSTODIO"
+        ],
+        "primaryView": "PJ",
+        "specificActors": [
+          "Ministerio de las Culturas / autoridad BIC competente"
+        ],
+        "systemInference": false
+      }
     },
     "ESP-PAT-C": {
       "id": "ESP-PAT-C",
@@ -2618,7 +4684,62 @@
           "label": "Consulta jurídica o técnica requerida",
           "next": "FIN-CONSULTA"
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "regimen_patrimonial_especial",
+        "pjMode": [
+          "RESUELVE_CON_HECHOS",
+          "VERIFICA_DECISION_EXTERNA",
+          "COORDINA_REMITE"
+        ],
+        "externalForPJ": true,
+        "observa": [
+          "PJ",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "define": [
+          "AUTORIDAD_ESPECIAL",
+          "FISCAL",
+          "PERITO"
+        ],
+        "decide": [
+          "AUTORIDAD_ESPECIAL",
+          "FISCAL",
+          "JUEZ"
+        ],
+        "ejecuta": [
+          "PJ",
+          "PERITO",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "controla": [
+          "JUEZ",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "recibe": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "custodia": [
+          "AUTORIDAD_ESPECIAL",
+          "CUSTODIO"
+        ],
+        "administra": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "involved": [
+          "PJ",
+          "AUTORIDAD_ESPECIAL",
+          "FISCAL",
+          "PERITO",
+          "JUEZ",
+          "CUSTODIO"
+        ],
+        "primaryView": "PJ",
+        "specificActors": [
+          "Archivo General de la Nación / autoridad archivística competente"
+        ],
+        "systemInference": false
+      }
     },
     "ESP-PAT-D": {
       "id": "ESP-PAT-D",
@@ -2669,7 +4790,62 @@
           "label": "Consulta jurídica o técnica requerida",
           "next": "FIN-CONSULTA"
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "regimen_patrimonial_especial",
+        "pjMode": [
+          "RESUELVE_CON_HECHOS",
+          "VERIFICA_DECISION_EXTERNA",
+          "COORDINA_REMITE"
+        ],
+        "externalForPJ": true,
+        "observa": [
+          "PJ",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "define": [
+          "AUTORIDAD_ESPECIAL",
+          "FISCAL",
+          "PERITO"
+        ],
+        "decide": [
+          "AUTORIDAD_ESPECIAL",
+          "FISCAL",
+          "JUEZ"
+        ],
+        "ejecuta": [
+          "PJ",
+          "PERITO",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "controla": [
+          "JUEZ",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "recibe": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "custodia": [
+          "AUTORIDAD_ESPECIAL",
+          "CUSTODIO"
+        ],
+        "administra": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "involved": [
+          "PJ",
+          "AUTORIDAD_ESPECIAL",
+          "FISCAL",
+          "PERITO",
+          "JUEZ",
+          "CUSTODIO"
+        ],
+        "primaryView": "PJ",
+        "specificActors": [
+          "autoridad bibliográfica, audiovisual o patrimonial competente"
+        ],
+        "systemInference": false
+      }
     },
     "ESP-PAT-E": {
       "id": "ESP-PAT-E",
@@ -2708,7 +4884,62 @@
           "label": "Consulta jurídica o técnica requerida",
           "next": "FIN-CONSULTA"
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "regimen_patrimonial_especial",
+        "pjMode": [
+          "RESUELVE_CON_HECHOS",
+          "VERIFICA_DECISION_EXTERNA",
+          "COORDINA_REMITE"
+        ],
+        "externalForPJ": true,
+        "observa": [
+          "PJ",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "define": [
+          "AUTORIDAD_ESPECIAL",
+          "FISCAL",
+          "PERITO"
+        ],
+        "decide": [
+          "AUTORIDAD_ESPECIAL",
+          "FISCAL",
+          "JUEZ"
+        ],
+        "ejecuta": [
+          "PJ",
+          "PERITO",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "controla": [
+          "JUEZ",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "recibe": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "custodia": [
+          "AUTORIDAD_ESPECIAL",
+          "CUSTODIO"
+        ],
+        "administra": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "involved": [
+          "PJ",
+          "AUTORIDAD_ESPECIAL",
+          "FISCAL",
+          "PERITO",
+          "JUEZ",
+          "CUSTODIO"
+        ],
+        "primaryView": "PJ",
+        "specificActors": [
+          "autoridad competente en Patrimonio Cultural Sumergido"
+        ],
+        "systemInference": false
+      }
     },
     "ESP-EXT": {
       "id": "ESP-EXT",
@@ -2743,7 +4974,57 @@
           "label": "Consulta jurídica o técnica requerida",
           "next": "FIN-CONSULTA"
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "estado_extincion_dominio",
+        "pjMode": [
+          "VERIFICA_DECISION_EXTERNA",
+          "CONTEXTO"
+        ],
+        "externalForPJ": true,
+        "observa": [
+          "PJ",
+          "FISCAL",
+          "ADMINISTRADOR"
+        ],
+        "define": [
+          "FISCAL",
+          "JUEZ"
+        ],
+        "decide": [
+          "FISCAL",
+          "JUEZ"
+        ],
+        "ejecuta": [
+          "PJ",
+          "ADMINISTRADOR"
+        ],
+        "controla": [
+          "JUEZ"
+        ],
+        "recibe": [
+          "ADMINISTRADOR"
+        ],
+        "custodia": [
+          "ADMINISTRADOR",
+          "CUSTODIO"
+        ],
+        "administra": [
+          "ADMINISTRADOR"
+        ],
+        "involved": [
+          "PJ",
+          "FISCAL",
+          "ADMINISTRADOR",
+          "JUEZ",
+          "CUSTODIO"
+        ],
+        "primaryView": "PJ",
+        "specificActors": [
+          "SAE"
+        ],
+        "systemInference": false
+      }
     },
     "ESP-MET": {
       "id": "ESP-MET",
@@ -2790,7 +5071,61 @@
           "label": "Custodia financiera especial",
           "next": "FIN-MET-CUSTODIA"
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "regimen_valores",
+        "pjMode": [
+          "RESUELVE_CON_HECHOS",
+          "VERIFICA_DECISION_EXTERNA",
+          "COORDINA_REMITE"
+        ],
+        "externalForPJ": true,
+        "observa": [
+          "PJ",
+          "FISCAL",
+          "ADMINISTRADOR"
+        ],
+        "define": [
+          "FISCAL",
+          "ADMINISTRADOR",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "decide": [
+          "FISCAL",
+          "JUEZ"
+        ],
+        "ejecuta": [
+          "PJ",
+          "ADMINISTRADOR",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "controla": [],
+        "recibe": [
+          "ADMINISTRADOR",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "custodia": [
+          "ADMINISTRADOR",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "administra": [
+          "ADMINISTRADOR"
+        ],
+        "involved": [
+          "PJ",
+          "FISCAL",
+          "ADMINISTRADOR",
+          "AUTORIDAD_ESPECIAL",
+          "JUEZ"
+        ],
+        "primaryView": "PJ",
+        "specificActors": [
+          "FEAB",
+          "SAE",
+          "Banco de la República"
+        ],
+        "systemInference": false
+      }
     },
     "ESP-DIG": {
       "id": "ESP-DIG",
@@ -2845,7 +5180,50 @@
           "label": "Consulta jurídica o técnica requerida",
           "next": "FIN-CONSULTA"
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "evidencia_digital",
+        "pjMode": [
+          "RESUELVE_CON_HECHOS",
+          "PRESERVA_DOCUMENTA",
+          "COORDINA_REMITE"
+        ],
+        "externalForPJ": false,
+        "observa": [
+          "PJ",
+          "PERITO"
+        ],
+        "define": [
+          "PJ",
+          "PERITO",
+          "FISCAL"
+        ],
+        "decide": [
+          "FISCAL"
+        ],
+        "ejecuta": [
+          "PJ",
+          "PERITO"
+        ],
+        "controla": [],
+        "recibe": [
+          "PERITO",
+          "CUSTODIO"
+        ],
+        "custodia": [
+          "PERITO",
+          "CUSTODIO"
+        ],
+        "administra": [],
+        "involved": [
+          "PJ",
+          "PERITO",
+          "FISCAL",
+          "CUSTODIO"
+        ],
+        "primaryView": "PJ",
+        "systemInference": false
+      }
     },
     "ESP-MACRO": {
       "id": "ESP-MACRO",
@@ -2872,7 +5250,55 @@
           "label": "Identificación de macroelemento material probatorio",
           "next": "P12"
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "macroelemento_especial",
+        "pjMode": [
+          "RESUELVE_CON_HECHOS",
+          "PRESERVA_DOCUMENTA"
+        ],
+        "externalForPJ": false,
+        "observa": [
+          "PJ",
+          "PERITO"
+        ],
+        "define": [
+          "PJ",
+          "PERITO"
+        ],
+        "decide": [
+          "FISCAL",
+          "JUEZ"
+        ],
+        "ejecuta": [
+          "PJ",
+          "PERITO"
+        ],
+        "controla": [],
+        "recibe": [
+          "TITULAR",
+          "ADMINISTRADOR"
+        ],
+        "custodia": [
+          "PJ",
+          "CUSTODIO"
+        ],
+        "administra": [
+          "ADMINISTRADOR"
+        ],
+        "involved": [
+          "PJ",
+          "PERITO",
+          "ALFRED",
+          "FISCAL",
+          "JUEZ",
+          "TITULAR",
+          "ADMINISTRADOR",
+          "CUSTODIO"
+        ],
+        "primaryView": "PJ",
+        "systemInference": true
+      }
     },
     "ESP-MIN": {
       "id": "ESP-MIN",
@@ -2915,7 +5341,66 @@
           "label": "Consulta jurídica o técnica requerida",
           "next": "FIN-CONSULTA"
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "regimen_mineria",
+        "pjMode": [
+          "RESUELVE_CON_HECHOS",
+          "COORDINA_REMITE",
+          "VERIFICA_DECISION_EXTERNA"
+        ],
+        "externalForPJ": true,
+        "observa": [
+          "PJ",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "define": [
+          "AUTORIDAD_ESPECIAL",
+          "FISCAL"
+        ],
+        "decide": [
+          "FISCAL",
+          "AUTORIDAD_ESPECIAL",
+          "JUEZ"
+        ],
+        "ejecuta": [
+          "PJ",
+          "AUTORIDAD_ESPECIAL",
+          "PERITO"
+        ],
+        "controla": [
+          "JUEZ",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "recibe": [
+          "AUTORIDAD_ESPECIAL",
+          "ADMINISTRADOR"
+        ],
+        "custodia": [
+          "AUTORIDAD_ESPECIAL",
+          "CUSTODIO"
+        ],
+        "administra": [
+          "AUTORIDAD_ESPECIAL",
+          "ADMINISTRADOR"
+        ],
+        "involved": [
+          "PJ",
+          "AUTORIDAD_ESPECIAL",
+          "FISCAL",
+          "JUEZ",
+          "PERITO",
+          "ADMINISTRADOR",
+          "CUSTODIO"
+        ],
+        "primaryView": "PJ",
+        "specificActors": [
+          "ANM",
+          "ANLA/autoridad ambiental",
+          "Policía Nacional/DICAR"
+        ],
+        "systemInference": false
+      }
     },
     "ESP": {
       "id": "ESP",
@@ -2986,7 +5471,44 @@
           "label": "Consulta jurídica o técnica requerida",
           "next": "FIN-CONSULTA"
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "selector_general_regimen",
+        "pjMode": [
+          "RESUELVE_CON_HECHOS"
+        ],
+        "externalForPJ": false,
+        "observa": [
+          "PJ"
+        ],
+        "define": [
+          "PJ",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "decide": [],
+        "ejecuta": [
+          "PJ"
+        ],
+        "controla": [],
+        "recibe": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "custodia": [
+          "PJ",
+          "CUSTODIO"
+        ],
+        "administra": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "involved": [
+          "PJ",
+          "ALFRED",
+          "AUTORIDAD_ESPECIAL",
+          "CUSTODIO"
+        ],
+        "primaryView": "PJ",
+        "systemInference": true
+      }
     },
     "P01B": {
       "id": "P01B",
@@ -3028,7 +5550,38 @@
           "executes": "Policía Judicial, autoridad sectorial o destinatario legal según corresponda.",
           "receives": "Depende de la ruta posterior."
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "clasificacion_bien",
+        "pjMode": [
+          "RESUELVE_CON_HECHOS"
+        ],
+        "externalForPJ": false,
+        "observa": [
+          "PJ"
+        ],
+        "define": [
+          "PJ",
+          "FISCAL"
+        ],
+        "decide": [],
+        "ejecuta": [
+          "PJ"
+        ],
+        "controla": [],
+        "recibe": [],
+        "custodia": [
+          "PJ"
+        ],
+        "administra": [],
+        "involved": [
+          "PJ",
+          "ALFRED",
+          "FISCAL"
+        ],
+        "primaryView": "PJ",
+        "systemInference": true
+      }
     },
     "P05M": {
       "id": "P05M",
@@ -3070,7 +5623,38 @@
           "executes": "Policía Judicial.",
           "receives": "No se determina un nuevo receptor por esta pantalla; la situación posterior depende de la materialización y del control."
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "estado_actuacion",
+        "pjMode": [
+          "RESUELVE_CON_HECHOS",
+          "EJECUTA"
+        ],
+        "externalForPJ": false,
+        "observa": [
+          "PJ",
+          "FISCAL"
+        ],
+        "define": [
+          "PJ"
+        ],
+        "decide": [],
+        "ejecuta": [
+          "PJ"
+        ],
+        "controla": [],
+        "recibe": [],
+        "custodia": [
+          "PJ"
+        ],
+        "administra": [],
+        "involved": [
+          "PJ",
+          "FISCAL"
+        ],
+        "primaryView": "PJ",
+        "systemInference": false
+      }
     },
     "DES-87-CUST": {
       "id": "DES-87-CUST",
@@ -3109,7 +5693,37 @@
           "action": "Individualizar el custodio actual y el título que explica la tenencia antes de continuar."
         }
       ],
-      "warning": "El artículo 87 regula la destrucción, pero hasta que esta se ejecute subsiste responsabilidad de custodia y trazabilidad."
+      "warning": "El artículo 87 regula la destrucción, pero hasta que esta se ejecute subsiste responsabilidad de custodia y trazabilidad.",
+      "actorMeta": {
+        "questionClass": "custodia_actual",
+        "pjMode": [
+          "RESUELVE_CON_HECHOS"
+        ],
+        "externalForPJ": false,
+        "observa": [
+          "PJ",
+          "CUSTODIO"
+        ],
+        "define": [
+          "CUSTODIO"
+        ],
+        "decide": [],
+        "ejecuta": [
+          "CUSTODIO"
+        ],
+        "controla": [],
+        "recibe": [],
+        "custodia": [
+          "CUSTODIO"
+        ],
+        "administra": [],
+        "involved": [
+          "PJ",
+          "CUSTODIO"
+        ],
+        "primaryView": "PJ",
+        "systemInference": false
+      }
     },
     "DES-87-PREV": {
       "id": "DES-87-PREV",
@@ -3132,7 +5746,41 @@
           "action": "Mantener la custodia vigente, obtener el informe pericial oficial y completar la preservación documental o de cadena requerida antes de volver a esta ruta.",
           "primaryLaw": "Ley 906 de 2004, art. 87."
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "requisito_preservacion",
+        "pjMode": [
+          "RESUELVE_CON_HECHOS",
+          "PRESERVA_DOCUMENTA"
+        ],
+        "externalForPJ": false,
+        "observa": [
+          "PJ",
+          "CUSTODIO"
+        ],
+        "define": [
+          "PJ",
+          "FISCAL"
+        ],
+        "decide": [],
+        "ejecuta": [
+          "PJ",
+          "CUSTODIO"
+        ],
+        "controla": [],
+        "recibe": [],
+        "custodia": [
+          "CUSTODIO"
+        ],
+        "administra": [],
+        "involved": [
+          "PJ",
+          "CUSTODIO",
+          "FISCAL"
+        ],
+        "primaryView": "PJ",
+        "systemInference": false
+      }
     },
     "DES-DROGA-CUST": {
       "id": "DES-DROGA-CUST",
@@ -3153,7 +5801,40 @@
           "next": "FIN-CONSULTA"
         }
       ],
-      "warning": "La destrucción en sitio no significa ausencia de custodia: hasta su ejecución debe existir control material y responsabilidad sobre el lugar y los elementos."
+      "warning": "La destrucción en sitio no significa ausencia de custodia: hasta su ejecución debe existir control material y responsabilidad sobre el lugar y los elementos.",
+      "actorMeta": {
+        "questionClass": "custodia_actual",
+        "pjMode": [
+          "RESUELVE_CON_HECHOS"
+        ],
+        "externalForPJ": false,
+        "observa": [
+          "PJ",
+          "CUSTODIO"
+        ],
+        "define": [
+          "PJ",
+          "CUSTODIO"
+        ],
+        "decide": [],
+        "ejecuta": [
+          "PJ",
+          "CUSTODIO"
+        ],
+        "controla": [],
+        "recibe": [],
+        "custodia": [
+          "PJ",
+          "CUSTODIO"
+        ],
+        "administra": [],
+        "involved": [
+          "PJ",
+          "CUSTODIO"
+        ],
+        "primaryView": "PJ",
+        "systemInference": false
+      }
     },
     "DES-DROGA-PREV": {
       "id": "DES-DROGA-PREV",
@@ -3175,7 +5856,42 @@
           "action": "Completar primero la toma de muestras, fijación fotográfica o videográfica y la cadena de custodia de esos soportes.",
           "primaryLaw": "Ley 906 de 2004, art. 87, inciso 2."
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "requisito_muestras",
+        "pjMode": [
+          "RESUELVE_CON_HECHOS",
+          "PRESERVA_DOCUMENTA"
+        ],
+        "externalForPJ": false,
+        "observa": [
+          "PJ",
+          "PERITO"
+        ],
+        "define": [
+          "PJ",
+          "PERITO"
+        ],
+        "decide": [],
+        "ejecuta": [
+          "PJ",
+          "PERITO"
+        ],
+        "controla": [],
+        "recibe": [],
+        "custodia": [
+          "PJ",
+          "CUSTODIO"
+        ],
+        "administra": [],
+        "involved": [
+          "PJ",
+          "PERITO",
+          "CUSTODIO"
+        ],
+        "primaryView": "PJ",
+        "systemInference": false
+      }
     },
     "DES-REM-CUST": {
       "id": "DES-REM-CUST",
@@ -3195,7 +5911,43 @@
           "action": "Regularizar la identificación y custodia del remanente antes de considerar una destrucción.",
           "primaryLaw": "Ley 906 de 2004, arts. 261 y 262."
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "custodia_laboratorio",
+        "pjMode": [
+          "VERIFICA_DECISION_EXTERNA",
+          "CONTEXTO"
+        ],
+        "externalForPJ": true,
+        "observa": [
+          "PJ",
+          "PERITO",
+          "CUSTODIO"
+        ],
+        "define": [
+          "PERITO",
+          "CUSTODIO"
+        ],
+        "decide": [],
+        "ejecuta": [
+          "PERITO",
+          "CUSTODIO"
+        ],
+        "controla": [],
+        "recibe": [],
+        "custodia": [
+          "PERITO",
+          "CUSTODIO"
+        ],
+        "administra": [],
+        "involved": [
+          "PJ",
+          "PERITO",
+          "CUSTODIO"
+        ],
+        "primaryView": "PJ",
+        "systemInference": false
+      }
     },
     "DES-REM-ORDER": {
       "id": "DES-REM-ORDER",
@@ -3215,7 +5967,48 @@
           "action": "Mantener el remanente identificado en el almacén del laboratorio hasta que exista decisión de la autoridad judicial competente.",
           "primaryLaw": "Ley 906 de 2004, art. 262."
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "decision_externa",
+        "pjMode": [
+          "VERIFICA_DECISION_EXTERNA",
+          "CONTEXTO"
+        ],
+        "externalForPJ": true,
+        "observa": [
+          "PJ",
+          "PERITO",
+          "CUSTODIO"
+        ],
+        "define": [
+          "FISCAL",
+          "JUEZ"
+        ],
+        "decide": [
+          "FISCAL",
+          "JUEZ"
+        ],
+        "ejecuta": [
+          "PERITO",
+          "CUSTODIO"
+        ],
+        "controla": [],
+        "recibe": [],
+        "custodia": [
+          "PERITO",
+          "CUSTODIO"
+        ],
+        "administra": [],
+        "involved": [
+          "PJ",
+          "PERITO",
+          "CUSTODIO",
+          "FISCAL",
+          "JUEZ"
+        ],
+        "primaryView": "PJ",
+        "systemInference": false
+      }
     },
     "DES-FEAB-BASE": {
       "id": "DES-FEAB-BASE",
@@ -3237,7 +6030,50 @@
           "action": "Mantener la custodia correspondiente al título actual y definir primero si jurídicamente procede y se materializa su ingreso al FEAB.",
           "primaryLaw": "Ley 1615 de 2013, arts. 6, 11 y 12."
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "estado_administracion",
+        "pjMode": [
+          "VERIFICA_DECISION_EXTERNA",
+          "CONTEXTO"
+        ],
+        "externalForPJ": true,
+        "observa": [
+          "PJ",
+          "ADMINISTRADOR"
+        ],
+        "define": [
+          "ADMINISTRADOR"
+        ],
+        "decide": [
+          "ADMINISTRADOR"
+        ],
+        "ejecuta": [
+          "ADMINISTRADOR",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "controla": [],
+        "recibe": [
+          "ADMINISTRADOR"
+        ],
+        "custodia": [
+          "CUSTODIO"
+        ],
+        "administra": [
+          "ADMINISTRADOR"
+        ],
+        "involved": [
+          "PJ",
+          "ADMINISTRADOR",
+          "AUTORIDAD_ESPECIAL",
+          "CUSTODIO"
+        ],
+        "primaryView": "PJ",
+        "specificActors": [
+          "FEAB"
+        ],
+        "systemInference": false
+      }
     },
     "DES-DIAN-BASE": {
       "id": "DES-DIAN-BASE",
@@ -3257,7 +6093,47 @@
           "next": "FIN-CONSULTA",
           "action": "No utilizar la ruta DIAN de destrucción sin un título aduanero vigente."
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "estado_aduanero",
+        "pjMode": [
+          "VERIFICA_DECISION_EXTERNA",
+          "CONTEXTO"
+        ],
+        "externalForPJ": true,
+        "observa": [
+          "PJ",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "define": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "decide": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "ejecuta": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "controla": [],
+        "recibe": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "custodia": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "administra": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "involved": [
+          "PJ",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "primaryView": "PJ",
+        "specificActors": [
+          "DIAN"
+        ],
+        "systemInference": false
+      }
     },
     "DES-DIAN-PROB": {
       "id": "DES-DIAN-PROB",
@@ -3283,7 +6159,52 @@
           "action": "No ejecutar una disposición irreversible antes de coordinar con Fiscalía la recolección de los EMP y EF necesarios.",
           "primaryLaw": "Ley 2586 de 2026, art. 40."
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "coordinacion_penal_aduanera",
+        "pjMode": [
+          "VERIFICA_DECISION_EXTERNA",
+          "COORDINA_REMITE"
+        ],
+        "externalForPJ": true,
+        "observa": [
+          "PJ",
+          "FISCAL",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "define": [
+          "FISCAL",
+          "PJ"
+        ],
+        "decide": [
+          "FISCAL",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "ejecuta": [
+          "PJ",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "controla": [],
+        "recibe": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "custodia": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "administra": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "involved": [
+          "PJ",
+          "FISCAL",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "primaryView": "PJ",
+        "specificActors": [
+          "DIAN"
+        ],
+        "systemInference": false
+      }
     },
     "DES-ARM563-CUST": {
       "id": "DES-ARM563-CUST",
@@ -3322,7 +6243,42 @@
           "action": "Individualizar el custodio actual y el título que explica la tenencia antes de continuar."
         }
       ],
-      "warning": "La destrucción del artículo 563 solo se ejecuta después de cadena de custodia, examen pericial, cesación de necesidad en la actuación y orden del fiscal."
+      "warning": "La destrucción del artículo 563 solo se ejecuta después de cadena de custodia, examen pericial, cesación de necesidad en la actuación y orden del fiscal.",
+      "actorMeta": {
+        "questionClass": "custodia_actual",
+        "pjMode": [
+          "RESUELVE_CON_HECHOS"
+        ],
+        "externalForPJ": false,
+        "observa": [
+          "PJ",
+          "CUSTODIO",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "define": [
+          "CUSTODIO"
+        ],
+        "decide": [],
+        "ejecuta": [
+          "CUSTODIO"
+        ],
+        "controla": [],
+        "recibe": [],
+        "custodia": [
+          "CUSTODIO",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "administra": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "involved": [
+          "PJ",
+          "CUSTODIO",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "primaryView": "PJ",
+        "systemInference": false
+      }
     },
     "DES-ARM563-PREV": {
       "id": "DES-ARM563-PREV",
@@ -3342,7 +6298,39 @@
           "action": "Mantener la custodia vigente y completar el presupuesto faltante antes de ejecutar la destrucción.",
           "primaryLaw": "Ley 906 de 2004, art. 563."
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "requisito_cadena",
+        "pjMode": [
+          "RESUELVE_CON_HECHOS",
+          "PRESERVA_DOCUMENTA"
+        ],
+        "externalForPJ": false,
+        "observa": [
+          "PJ",
+          "CUSTODIO"
+        ],
+        "define": [
+          "PJ"
+        ],
+        "decide": [],
+        "ejecuta": [
+          "PJ",
+          "CUSTODIO"
+        ],
+        "controla": [],
+        "recibe": [],
+        "custodia": [
+          "CUSTODIO"
+        ],
+        "administra": [],
+        "involved": [
+          "PJ",
+          "CUSTODIO"
+        ],
+        "primaryView": "PJ",
+        "systemInference": false
+      }
     },
     "DES-AML-PREV": {
       "id": "DES-AML-PREV",
@@ -3362,7 +6350,47 @@
           "action": "Mantener la custodia sectorial correspondiente y completar el presupuesto faltante antes de la destrucción.",
           "primaryLaw": "Ley 2197 de 2022, art. 34."
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "estado_decomiso_sectorial",
+        "pjMode": [
+          "VERIFICA_DECISION_EXTERNA",
+          "CONTEXTO"
+        ],
+        "externalForPJ": true,
+        "observa": [
+          "PJ",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "define": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "decide": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "ejecuta": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "controla": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "recibe": [],
+        "custodia": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "administra": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "involved": [
+          "PJ",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "primaryView": "PJ",
+        "specificActors": [
+          "DCCAE/autoridad sectorial"
+        ],
+        "systemInference": false
+      }
     },
     "P12A2": {
       "id": "P12A2",
@@ -3384,7 +6412,41 @@
           "action": "Completar la recolección, identificación, embalaje y cadena de custodia que correspondan.",
           "primaryLaw": "Ley 906 de 2004, art. 256."
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "estado_recoleccion",
+        "pjMode": [
+          "RESUELVE_CON_HECHOS",
+          "PRESERVA_DOCUMENTA"
+        ],
+        "externalForPJ": false,
+        "observa": [
+          "PJ",
+          "PERITO"
+        ],
+        "define": [
+          "PJ"
+        ],
+        "decide": [],
+        "ejecuta": [
+          "PJ",
+          "PERITO"
+        ],
+        "controla": [],
+        "recibe": [],
+        "custodia": [
+          "PJ",
+          "CUSTODIO"
+        ],
+        "administra": [],
+        "involved": [
+          "PJ",
+          "PERITO",
+          "CUSTODIO"
+        ],
+        "primaryView": "PJ",
+        "systemInference": false
+      }
     },
     "P12A3": {
       "id": "P12A3",
@@ -3406,7 +6468,42 @@
           "action": "Completar la fijación y documentación antes de definir la salida física del macroelemento.",
           "primaryLaw": "Ley 906 de 2004, art. 256."
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "estado_documentacion",
+        "pjMode": [
+          "RESUELVE_CON_HECHOS",
+          "PRESERVA_DOCUMENTA"
+        ],
+        "externalForPJ": false,
+        "observa": [
+          "PJ",
+          "PERITO"
+        ],
+        "define": [
+          "PJ",
+          "PERITO"
+        ],
+        "decide": [],
+        "ejecuta": [
+          "PJ",
+          "PERITO"
+        ],
+        "controla": [],
+        "recibe": [],
+        "custodia": [
+          "PJ",
+          "CUSTODIO"
+        ],
+        "administra": [],
+        "involved": [
+          "PJ",
+          "PERITO",
+          "CUSTODIO"
+        ],
+        "primaryView": "PJ",
+        "systemInference": false
+      }
     },
     "DES-87-PERITO": {
       "id": "DES-87-PERITO",
@@ -3428,7 +6525,42 @@
           "action": "Mantener la custodia vigente y obtener el informe antes de destruir.",
           "primaryLaw": "Ley 906 de 2004, art. 87."
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "decision_tecnica_externa",
+        "pjMode": [
+          "VERIFICA_DECISION_EXTERNA",
+          "COORDINA_REMITE"
+        ],
+        "externalForPJ": true,
+        "observa": [
+          "PJ",
+          "FISCAL",
+          "PERITO"
+        ],
+        "define": [
+          "PERITO"
+        ],
+        "decide": [],
+        "ejecuta": [
+          "PERITO"
+        ],
+        "controla": [],
+        "recibe": [],
+        "custodia": [
+          "PERITO",
+          "CUSTODIO"
+        ],
+        "administra": [],
+        "involved": [
+          "PJ",
+          "FISCAL",
+          "PERITO",
+          "CUSTODIO"
+        ],
+        "primaryView": "PJ",
+        "systemInference": false
+      }
     },
     "DES-DROGA-REGISTRO": {
       "id": "DES-DROGA-REGISTRO",
@@ -3450,7 +6582,38 @@
           "action": "Completar la fijación fotográfica o en video antes de destruir.",
           "primaryLaw": "Ley 906 de 2004, art. 87, inciso 2."
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "requisito_documentacion",
+        "pjMode": [
+          "RESUELVE_CON_HECHOS",
+          "PRESERVA_DOCUMENTA"
+        ],
+        "externalForPJ": false,
+        "observa": [
+          "PJ"
+        ],
+        "define": [
+          "PJ"
+        ],
+        "decide": [],
+        "ejecuta": [
+          "PJ"
+        ],
+        "controla": [],
+        "recibe": [],
+        "custodia": [
+          "PJ",
+          "CUSTODIO"
+        ],
+        "administra": [],
+        "involved": [
+          "PJ",
+          "CUSTODIO"
+        ],
+        "primaryView": "PJ",
+        "systemInference": false
+      }
     },
     "DES-DROGA-CADENA": {
       "id": "DES-DROGA-CADENA",
@@ -3472,7 +6635,39 @@
           "action": "Completar la identificación y cadena de custodia antes de destruir.",
           "primaryLaw": "Ley 906 de 2004, art. 87, inciso 2."
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "requisito_cadena",
+        "pjMode": [
+          "RESUELVE_CON_HECHOS",
+          "PRESERVA_DOCUMENTA"
+        ],
+        "externalForPJ": false,
+        "observa": [
+          "PJ",
+          "CUSTODIO"
+        ],
+        "define": [
+          "PJ"
+        ],
+        "decide": [],
+        "ejecuta": [
+          "PJ",
+          "CUSTODIO"
+        ],
+        "controla": [],
+        "recibe": [],
+        "custodia": [
+          "CUSTODIO"
+        ],
+        "administra": [],
+        "involved": [
+          "PJ",
+          "CUSTODIO"
+        ],
+        "primaryView": "PJ",
+        "systemInference": false
+      }
     },
     "DES-ARM563-PERICIA": {
       "id": "DES-ARM563-PERICIA",
@@ -3494,7 +6689,40 @@
           "action": "Mantener la custodia y practicar el examen antes de destruir.",
           "primaryLaw": "Ley 906 de 2004, art. 563."
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "estado_examen",
+        "pjMode": [
+          "VERIFICA_DECISION_EXTERNA",
+          "COORDINA_REMITE"
+        ],
+        "externalForPJ": true,
+        "observa": [
+          "PJ",
+          "PERITO"
+        ],
+        "define": [
+          "PERITO"
+        ],
+        "decide": [],
+        "ejecuta": [
+          "PERITO"
+        ],
+        "controla": [],
+        "recibe": [],
+        "custodia": [
+          "PERITO",
+          "CUSTODIO"
+        ],
+        "administra": [],
+        "involved": [
+          "PJ",
+          "PERITO",
+          "CUSTODIO"
+        ],
+        "primaryView": "PJ",
+        "systemInference": false
+      }
     },
     "DES-ARM563-NECESIDAD": {
       "id": "DES-ARM563-NECESIDAD",
@@ -3516,7 +6744,45 @@
           "action": "Mantener la custodia probatoria mientras subsista la necesidad.",
           "primaryLaw": "Ley 906 de 2004, art. 563."
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "decision_necesidad_probatoria",
+        "pjMode": [
+          "VERIFICA_DECISION_EXTERNA",
+          "CONTEXTO"
+        ],
+        "externalForPJ": true,
+        "observa": [
+          "PJ",
+          "PERITO",
+          "FISCAL"
+        ],
+        "define": [
+          "FISCAL"
+        ],
+        "decide": [
+          "FISCAL"
+        ],
+        "ejecuta": [],
+        "controla": [],
+        "recibe": [],
+        "custodia": [
+          "CUSTODIO",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "administra": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "involved": [
+          "PJ",
+          "PERITO",
+          "FISCAL",
+          "CUSTODIO",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "primaryView": "PJ",
+        "systemInference": false
+      }
     },
     "DES-ARM563-ORDEN": {
       "id": "DES-ARM563-ORDEN",
@@ -3538,7 +6804,46 @@
           "action": "Mantener la custodia y gestionar la decisión correspondiente.",
           "primaryLaw": "Ley 906 de 2004, art. 563."
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "orden_fiscal",
+        "pjMode": [
+          "VERIFICA_DECISION_EXTERNA",
+          "CONTEXTO"
+        ],
+        "externalForPJ": true,
+        "observa": [
+          "PJ",
+          "FISCAL",
+          "CUSTODIO"
+        ],
+        "define": [
+          "FISCAL"
+        ],
+        "decide": [
+          "FISCAL"
+        ],
+        "ejecuta": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "controla": [],
+        "recibe": [],
+        "custodia": [
+          "CUSTODIO",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "administra": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "involved": [
+          "PJ",
+          "FISCAL",
+          "CUSTODIO",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "primaryView": "PJ",
+        "systemInference": false
+      }
     },
     "DES-AML-DCCAE": {
       "id": "DES-AML-DCCAE",
@@ -3560,7 +6865,48 @@
           "action": "Mantener la custodia sectorial y gestionar el concepto antes de destruir.",
           "primaryLaw": "Ley 2197 de 2022, art. 34."
         }
-      ]
+      ],
+      "actorMeta": {
+        "questionClass": "concepto_sectorial",
+        "pjMode": [
+          "VERIFICA_DECISION_EXTERNA",
+          "CONTEXTO"
+        ],
+        "externalForPJ": true,
+        "observa": [
+          "PJ",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "define": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "decide": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "ejecuta": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "controla": [],
+        "recibe": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "custodia": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "administra": [
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "involved": [
+          "PJ",
+          "AUTORIDAD_ESPECIAL"
+        ],
+        "primaryView": "PJ",
+        "specificActors": [
+          "DCCAE",
+          "INDUMIL"
+        ],
+        "systemInference": false
+      }
     }
   },
   "resultMap": {
@@ -12425,5 +15771,86 @@
         "status": "v16"
       }
     ]
+  },
+  "actorModel": {
+    "primaryAudience": [
+      "PJ"
+    ],
+    "secondaryAudience": [
+      "ESTUDIANTE"
+    ],
+    "principle": "Una sola lógica jurídica y operativa por detrás; ALFRED organiza e infiere con base en reglas, pero no sustituye la competencia de los actores humanos o institucionales. La experiencia visible puede adaptarse al rol sin crear árboles jurídicos separados.",
+    "roles": {
+      "ALFRED": {
+        "label": "ALFRED",
+        "type": "motor",
+        "description": "Organiza hechos, reglas y estados; no sustituye competencia jurídica, técnica o administrativa."
+      },
+      "PJ": {
+        "label": "Policía Judicial",
+        "type": "proceso",
+        "description": "Observa, documenta, preserva, recolecta, materializa actuaciones habilitadas, coordina, informa y entrega según la ruta."
+      },
+      "FISCAL": {
+        "label": "Fiscal",
+        "type": "proceso",
+        "description": "Dirige y coordina la investigación; adopta, solicita u ordena las actuaciones que la ley le atribuye."
+      },
+      "JUEZ": {
+        "label": "Juez competente",
+        "type": "proceso",
+        "description": "Ejerce control o adopta decisiones judiciales cuando la ley lo exige."
+      },
+      "PERITO": {
+        "label": "Perito / área técnico-científica",
+        "type": "proceso",
+        "description": "Define y ejecuta valoraciones, exámenes o conceptos que requieren conocimiento especializado."
+      },
+      "CUSTODIO": {
+        "label": "Custodio material",
+        "type": "proceso",
+        "description": "Conserva físicamente el bien o elemento mientras exista un título o necesidad válida de custodia."
+      },
+      "ADMINISTRADOR": {
+        "label": "Administrador legal",
+        "type": "proceso",
+        "description": "Administra jurídicamente el bien dentro del régimen que resulte aplicable."
+      },
+      "AUTORIDAD_ESPECIAL": {
+        "label": "Autoridad especial o sectorial",
+        "type": "proceso",
+        "description": "Ejerce competencias especiales por la naturaleza del bien o por un régimen sectorial."
+      },
+      "TITULAR": {
+        "label": "Propietario, poseedor, tenedor o legitimado",
+        "type": "interesado",
+        "description": "Persona legitimada para recibir, reclamar o ejercer derechos sobre el bien cuando proceda."
+      },
+      "MINISTERIO_PUBLICO": {
+        "label": "Ministerio Público",
+        "type": "control",
+        "description": "Interviene en las actuaciones para las que la ley exige o prevé su presencia."
+      }
+    },
+    "dimensions": {
+      "observa": "Quién puede aportar o verificar el hecho que alimenta la pregunta.",
+      "define": "Quién tiene la competencia o conocimiento para definir el punto de fondo.",
+      "decide": "Quién adopta la decisión u orden jurídicamente relevante.",
+      "ejecuta": "Quién materializa la actuación.",
+      "controla": "Quién ejerce control judicial, administrativo o de legalidad cuando aplica.",
+      "recibe": "Quién puede recibir materialmente el bien o elemento en ese tramo.",
+      "custodia": "Quién puede conservarlo físicamente mientras subsiste el estado actual.",
+      "administra": "Quién ejerce la administración legal o sectorial cuando aplica.",
+      "systemInference": "Indica que ALFRED puede derivar una clasificación o reencauzamiento a partir de hechos y reglas; no atribuye competencia jurídica, técnica o administrativa al sistema."
+    },
+    "pjModes": {
+      "RESUELVE_CON_HECHOS": "PJ puede responder desde hechos observables o información ordinariamente disponible en la actuación.",
+      "APORTA_HECHOS": "PJ aporta los hechos que otro actor debe valorar o decidir.",
+      "VERIFICA_DECISION_EXTERNA": "PJ no decide el fondo; verifica si ya existe la decisión, orden, concepto o estado externo.",
+      "EJECUTA": "PJ materializa una actuación ya habilitada o jurídicamente procedente.",
+      "COORDINA_REMITE": "PJ coordina, remite o pone a disposición de otro actor.",
+      "PRESERVA_DOCUMENTA": "PJ preserva, fija, documenta o asegura trazabilidad.",
+      "CONTEXTO": "El nodo describe principalmente una competencia ajena; PJ necesita entenderla para continuar la ruta."
+    }
   }
 }

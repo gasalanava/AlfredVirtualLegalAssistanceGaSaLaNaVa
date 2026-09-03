@@ -1,0 +1,127 @@
+{
+  "auditVersion": "v17 beta 0.12 - auditada",
+  "auditDate": "2026-09-03",
+  "summary": {
+    "nodes": 79,
+    "results": 103,
+    "destinations": 42,
+    "destinationRoutes": 10,
+    "requirements": 41,
+    "documentedTests": 46,
+    "actorTaggedNodes": 79,
+    "externalForPJNodes": 48,
+    "systemInferenceNodes": 18
+  },
+  "checks": {
+    "zipIntegrity": "PASS (verified after packaging)",
+    "jsSyntax": {
+      "app.js": "PASS",
+      "data.js": "PASS",
+      "sw.js": "PASS"
+    },
+    "dataJsJsonSync": "PASS",
+    "routeLogicUnchangedVsOriginalV17": true,
+    "badOptionTargets": [],
+    "badResultReferences": [],
+    "badChecklistReferences": [],
+    "unreachableNodesFromP01": [],
+    "closedNoExitCycles": [],
+    "actorMetadataMissing": [],
+    "invalidActorCodes": [],
+    "alfredIncorrectlyUsedAsCompetentActor": {
+      "observa": [],
+      "define": [],
+      "decide": [],
+      "ejecuta": [],
+      "controla": [],
+      "recibe": [],
+      "custodia": [],
+      "administra": []
+    },
+    "actorCsvRows": 79,
+    "actorCsvUniqueIds": 79,
+    "actorCsvMissingNodes": [],
+    "actorCsvExtraNodes": [],
+    "html": {
+      "index.html": {
+        "duplicateIds": [],
+        "missingLocalResources": []
+      },
+      "desktop.html": {
+        "duplicateIds": [],
+        "missingLocalResources": []
+      },
+      "mobile.html": {
+        "duplicateIds": [],
+        "missingLocalResources": []
+      }
+    },
+    "appDomIdsNotStatic": [
+      "emptyResultStart"
+    ],
+    "expectedDynamicDomIds": [
+      "emptyResultStart"
+    ],
+    "localHttpServe": "PASS (HTTP 200)",
+    "headlessBrowserE2E": "NOT EXECUTED: Chromium timed out in this container because of DBus/zygote environment restrictions."
+  },
+  "legalSpotCheck": {
+    "scope": "Focused revalidation of current/high-risk anchors; not a line-by-line recertification of all 79 nodes and all special regimes.",
+    "anchors": [
+      {
+        "topic": "Comiso",
+        "rule": "Ley 906/2004 art. 82 current categories checked",
+        "status": "PASS"
+      },
+      {
+        "topic": "Destrucción art. 87",
+        "rule": "official perito illegitimacy + PJ execution + presence fiscal and Ministerio Público; lab/crop sample/photo/video/chain",
+        "status": "PASS"
+      },
+      {
+        "topic": "Macroelementos/explosivos",
+        "rule": "Ley 906/2004 arts. 256 and 266 checked",
+        "status": "PASS"
+      },
+      {
+        "topic": "Remanentes",
+        "rule": "Ley 906/2004 art. 262 lab store + competent judicial authority destruction",
+        "status": "PASS"
+      },
+      {
+        "topic": "Armas art. 563",
+        "rule": "chain + pericial exam + no longer required + prior prosecutor order",
+        "status": "PASS"
+      },
+      {
+        "topic": "Menos letales",
+        "rule": "Ley 2197/2022 art. 34: incautados then decomisados + DCCAE concept + INDUMIL destruction",
+        "status": "PASS"
+      },
+      {
+        "topic": "DIAN",
+        "rule": "Ley 2586/2026 current; prior Decreto Ley 920/2023 treated as repealed",
+        "status": "PASS"
+      },
+      {
+        "topic": "FEAB",
+        "rule": "Ley 1615/2013 arts. 11-12 current destruction/chatarrización framework checked",
+        "status": "PASS"
+      }
+    ]
+  },
+  "nonBlockingObservations": [
+    "The footer modal called “Validación técnica” renders a documented matrix whose PASS labels are stored data, not automated browser tests. This was not changed in order to avoid altering the visible UX in the audited package.",
+    "Actor metadata is normalized on decision nodes. Destinations/results already carry operational fields but are not yet normalized into the same actorMeta schema; this matters only for a future visible multi-role mode.",
+    "A full real-browser click-through could not be executed inside the container. A short smoke test should be done on the published GitHub Pages URL."
+  ],
+  "hashesSha256": {
+    "index.html": "699d2d9b6383850406e4dfdf48f8bab04ce5fab579e5f0e21e9ba8c67540566f",
+    "app.js": "6650e4f097b3accdaf662150221ab6a6fc194fca3d89b864c99ca68f283b6ef9",
+    "data.js": "c2892fa78b8166f92fb12b0dbc9469cc150cb71496b93dd00580c9964bcf95a8",
+    "styles.css": "a9d82edd960ffad68a11c0cab7f3c51e45276c1fe77554716bd2469d757ac56d",
+    "sw.js": "f0fc36793c48eac6f4c4e84c9f7c767094ed3a0d904c4a56e52add33f359b95f",
+    "manifest.webmanifest": "4b95b4c9999ccdc2aeea9fd4edfd505570882d36fca9462fea254fb09b589f51",
+    "ruta_destinos_ux.json": "68fc1f1ae0e78b934fee35083eac2389dbeb4eb4230888dbb20a86d583b5f2e7"
+  }
+}
