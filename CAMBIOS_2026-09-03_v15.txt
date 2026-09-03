@@ -1,0 +1,92 @@
+ALFRED · beta 0.10
+RECONSTRUCCIÓN DEL MÓDULO DE DESTRUCCIÓN
+03/09/2026
+
+1. La destrucción ya no se presenta como un receptor o “destino final” genérico.
+   Se incorporó una pantalla específica de TRATAMIENTO / DISPOSICIÓN FINAL.
+
+2. La nueva pantalla diferencia expresamente:
+   - quién custodia mientras el objeto todavía existe;
+   - administración o competencia vigente;
+   - quién decide o autoriza;
+   - quién ejecuta materialmente;
+   - qué debe preservarse antes;
+   - qué debe hacer Policía Judicial;
+   - soporte mínimo; y
+   - qué subsiste después de la destrucción.
+
+3. Se reconstruyó P08/P08A para identificar primero el régimen de destrucción.
+   Nuevas familias visibles:
+   - artículo 87 CPP;
+   - laboratorio rústico / cultivo ilícito;
+   - explosivos;
+   - armas de fuego o blancas;
+   - remanentes;
+   - FEAB;
+   - DIAN;
+   - ambiental/minería/sanitario;
+   - consulta cuando no se identifica el régimen.
+
+4. Artículo 87 CPP:
+   - nueva pregunta de custodia previa;
+   - verificación de cadena/preservación;
+   - informe del perito oficial sobre ilegitimidad;
+   - destrucción por Policía Judicial en presencia de fiscal y Ministerio Público;
+   - checklist específico.
+
+5. Laboratorio rústico / cultivo ilícito:
+   - identifica control/custodia del lugar;
+   - exige muestras, fotografías o video antes de destruir;
+   - conserva esos soportes bajo cadena de custodia;
+   - checklist específico.
+
+6. Remanentes:
+   - permanencia en almacén del laboratorio;
+   - identificación recuperable;
+   - destrucción solo cuando lo disponga autoridad judicial competente;
+   - resultado temporal si todavía no existe decisión.
+
+7. FEAB:
+   - verifica que el bien haya ingresado realmente al Fondo;
+   - separa administración FEAB de simple susceptibilidad de comiso;
+   - incorpora situación jurídica, publicidad, archivo fotográfico, acto motivado y notificación del artículo 12 de la Ley 1615 de 2013;
+   - checklist propio para destrucción/chatarrización.
+
+8. DIAN:
+   - distingue mercancía aduanera de EMP y EF;
+   - conserva la custodia aduanera de la mercancía;
+   - si existe conducta punible, exige coordinación previa para que Fiscalía recolecte los EMP y EF necesarios antes de una disposición irreversible;
+   - identifica DIAN/operador como actores de disposición;
+   - checklist propio.
+
+9. Armas:
+   - artículo 563: cadena + peritaje + cesación de necesidad + orden del fiscal antes de destruir;
+   - menos letales: decomiso sectorial + concepto DCCAE + destrucción por INDUMIL;
+   - explosivos: ruta específica para destrucción segura en sitio, priorizando seguridad.
+
+10. Ambiental y minería:
+   - los resultados de destrucción ya utilizan pantallas y checklists de disposición, no un destino genérico.
+
+11. UX:
+   - el checklist cambia a “CHECKLIST PARA LA DESTRUCCIÓN” cuando la ruta es irreversible;
+   - el botón dice “Revisar requisitos para la destrucción”;
+   - el resultado final habla de custodia, autoridad, ejecutor y evidencia que subsiste, no de “quién recibe”.
+
+12. Acceso directo:
+   - se añadió “Bien o elemento que puede estar sometido a destrucción”.
+   - los regímenes de destrucción no aparecen en el buscador de destinatarios/receptores, porque no son receptores.
+
+13. Estados temporales nuevos:
+   - artículo 87 pendiente de peritaje/preservación;
+   - laboratorio/cultivo pendiente de evidencia sustitutiva;
+   - remanente pendiente de orden;
+   - FEAB todavía no activado;
+   - DIAN pendiente de recolección penal;
+   - arma art.563 pendiente de presupuesto;
+   - menos letal pendiente de decomiso/concepto DCCAE.
+
+14. Validaciones técnicas:
+   - sintaxis JS verificada con Node;
+   - grafo verificado sin referencias rotas;
+   - todos los nuevos nodos de destrucción son alcanzables desde la ruta general;
+   - 70 nodos, 89 resultados, 42 destinos/tratamientos, 41 checklists y 42 pruebas registradas.

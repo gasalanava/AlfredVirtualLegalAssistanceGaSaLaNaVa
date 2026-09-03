@@ -1,0 +1,38 @@
+{
+  "version": "ALFRED beta 0.10 / v15",
+  "date": "2026-09-03",
+  "nodes": 70,
+  "results": 89,
+  "destinations_or_treatments": 42,
+  "destination_routes": 10,
+  "checklists": 41,
+  "tests": 42,
+  "destruction_nodes": [
+    "DES-87-CUST",
+    "DES-87-PREV",
+    "DES-DROGA-CUST",
+    "DES-DROGA-PREV",
+    "DES-REM-CUST",
+    "DES-REM-ORDER",
+    "DES-FEAB-BASE",
+    "DES-DIAN-BASE",
+    "DES-DIAN-PROB",
+    "DES-ARM563-CUST",
+    "DES-ARM563-PREV",
+    "DES-AML-PREV"
+  ],
+  "destruction_treatments": [
+    "DEST-DESTR-87",
+    "DEST-DESTR-DROGA",
+    "DEST-DESTR-REM",
+    "DEST-DESTR-FEAB",
+    "DEST-DESTR-DIAN",
+    "DEST-DESTR-ARM563",
+    "DEST-DESTR-AML",
+    "DEST-DESTR-EXP-SITIO",
+    "DEST-DESTR-AMB",
+    "DEST-DESTR-MIN"
+  ],
+  "broken_references": 0,
+  "note": "Destrucción reconstruida como tratamiento/disposición con custodia previa, preservación, autoridad, ejecutor y cierre."
+}

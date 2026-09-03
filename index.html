@@ -129,6 +129,15 @@
         <details><summary>Ver fundamento del destino</summary><div id="destLegal"></div></details>
       </section>
 
+      <section id="dispositionCard" class="card withArt hidden">
+        <img src="assets/alfred-idea.webp" alt="Alfred orientando" class="stageArt">
+        <div class="kicker">TRATAMIENTO / DISPOSICIÓN FINAL</div><h2 id="dispTitle"></h2>
+        <p class="destinationLead">La destrucción no elimina la etapa de custodia. Alfred separa quién responde por el bien mientras existe, qué debe preservarse, quién decide y quién ejecuta la disposición.</p>
+        <div id="dispSummary" class="resultGrid"></div>
+        <div class="buttons"><button id="dispositionValidateBtn" class="primary" type="button">Revisar requisitos para la destrucción</button><button id="dispositionBack" class="secondary" type="button">← Revisar ruta</button></div>
+        <details><summary>Ver fundamento de la disposición</summary><div id="dispLegal"></div></details>
+      </section>
+
       <section id="temporaryCard" class="card final withArt hidden">
         <img src="assets/alfred-idea.webp" alt="Alfred orientando" class="stageArt">
         <div id="tempStatus" class="status mid"></div><h2 id="tempTitle"></h2>
@@ -139,8 +148,8 @@
 
       <section id="checkCard" class="card withArt hidden">
         <img src="assets/alfred-main.webp" alt="Alfred verificando" class="stageArt">
-        <div class="kicker">CHECKLIST DE RECEPCIÓN</div><h2 id="checkTitle"></h2>
-        <p class="sub">Marca cada requisito según la situación real. Los requisitos condicionales permiten “No aplica”.</p>
+        <div id="checkKicker" class="kicker">CHECKLIST DE RECEPCIÓN</div><h2 id="checkTitle"></h2>
+        <p id="checkSub" class="sub">Marca cada requisito según la situación real. Los requisitos condicionales permiten “No aplica”.</p>
         <div id="checkItems"></div>
         <div class="buttons"><button id="evaluateBtn" class="primary" type="button">Evaluar</button><button id="checkBack" class="secondary" type="button">← Volver al destino</button></div>
       </section>
@@ -156,7 +165,7 @@
 
   <footer class="footerBar">
     <div class="footerCredit"><img src="assets/gsn-logo.webp" alt="Gabriel Salazar Navarro" class="footerLogo"><span>Desarrollado por Gabriel Salazar Navarro · Proyecto personal</span></div>
-    <div class="footerMeta"><span>ALFRED · versión beta 0.9</span><button id="testsBtn" class="footerLink" type="button">Validación técnica</button></div>
+    <div class="footerMeta"><span>ALFRED · versión beta 0.10</span><button id="testsBtn" class="footerLink" type="button">Validación técnica</button></div>
   </footer>
 </div>
 
