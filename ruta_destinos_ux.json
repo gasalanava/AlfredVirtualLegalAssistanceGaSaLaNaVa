@@ -1,10 +1,10 @@
 {
   "meta": {
     "title": "¿Qué hacer con los bienes o elementos resultantes de una investigación penal?",
-    "version": "ALFRED · beta 0.10",
+    "version": "ALFRED · beta 0.11",
     "generated": "2026-09-03",
     "startNode": "P01",
-    "note": "Responde con base en hechos observables. Alfred distingue función, custodia, administración y disposición final. En destrucción identifica primero el régimen, conserva la trazabilidad mientras el objeto existe, verifica qué evidencia debe preservarse, quién decide y quién ejecuta."
+    "note": "Responde con hechos observables o actuaciones que puedas verificar. Alfred no traslada al usuario conclusiones que correspondan al fiscal, juez, perito u otra autoridad: identifica quién define cada punto, evita preguntas compuestas y entrega resultados temporales accionables cuando falta una decisión externa."
   },
   "nodes": {
     "P01": {
@@ -94,14 +94,14 @@
     "P02A": {
       "id": "P02A",
       "kind": "route",
-      "title": "Pertinencia y viabilidad técnico-científica",
-      "question": "¿El examen, análisis o servicio solicitado es técnico-científicamente pertinente, aplicable y viable para el EMP y EF y para la pregunta formulada?",
+      "title": "Definición técnico-científica del examen o tratamiento",
+      "question": "¿El laboratorio, perito o área técnico-científica competente ya definió qué examen, análisis o tratamiento procede para este EMP y EF?",
       "options": [
         {
-          "label": "Sí",
+          "label": "Sí, el área competente ya definió qué examen, análisis o tratamiento procede",
           "next": "P03",
-          "concept": "Existe correspondencia entre la pregunta investigativa, la naturaleza y estado del EMP y EF, la disciplina forense, la metodología disponible y el resultado que razonablemente puede obtenerse. Esta valoración técnica no sustituye la pertinencia jurídica ni las decisiones que correspondan al fiscal o al juez.",
-          "action": "Recibir y verificar el elemento y la solicitud; realizar el examen conforme al procedimiento validado de la disciplina; documentar método, instrumentos, resultados, interpretación, limitaciones y estado final del EMP y EF; mantener cadena de custodia. Después del análisis, aplicar las reglas sobre remanentes y continuar la ruta de custodia o destinación.",
+          "concept": "La pertinencia y viabilidad técnico-científica no deben ser adivinadas por el usuario. La definición debe provenir del experto, laboratorio o área competente, a partir de la pregunta investigativa y de la naturaleza del EMP y EF.",
+          "action": "Seguir la orientación técnica emitida por el área competente, formular o ajustar la solicitud cuando corresponda, preservar autenticidad y trazabilidad y continuar con la identificación de las demás funciones o regímenes que puedan concurrir.",
           "primaryLaw": "Ley 906 de 2004, arts. 210, 260, 262, 273, 278, 405, 406 y 417.",
           "complementaryLaw": "Manual SCC 2018, num. 8.3: la Unidad de Recepción recibe los EMP y EF, evalúa la solicitud e inicia el procedimiento interno del laboratorio. Manual Único PJ 2025, nums. 15.6 y 15.7.",
           "jurisprudence": "CSJ SP086-2023 y AP2020-2015, sobre función de la prueba pericial y necesidad de conocimiento especializado. El término 'pertinencia técnico-científica' se utiliza aquí como criterio técnico de trabajo, no como categoría legal autónoma del CPP.",
@@ -115,10 +115,27 @@
           "receives": "Laboratorio/unidad técnica durante el examen; después retorna a la custodia o destino que corresponda."
         },
         {
-          "label": "No",
+          "label": "Sí, y determinó que no procede un examen especializado sobre este EMP y EF",
           "next": "P03",
-          "concept": "El examen inicialmente planteado no resulta adecuado, aplicable o viable en las condiciones del caso. Esto no elimina necesariamente la capacidad demostrativa del EMP y EF ni significa que carezca de utilidad para la investigación.",
-          "action": "El experto, laboratorio o unidad técnica debe documentar la razón técnica que impide o desaconseja el análisis y, cuando proceda conforme al procedimiento aplicable, solicitar aclaración, reformulación, remisión a otra especialidad o indicar alternativas técnicamente idóneas. Mantener preservación y trazabilidad del elemento.",
+          "concept": "El área competente puede concluir que el examen inicialmente considerado no es pertinente, aplicable o necesario. Esa conclusión técnica no elimina por sí sola la función probatoria ni las demás situaciones jurídicas del objeto.",
+          "action": "Documentar la orientación técnica recibida, no remitir el EMP y EF a un examen improcedente y continuar la ruta para definir su tratamiento posterior.",
+          "primaryLaw": "Ley 906 de 2004, arts. 210, 260, 273, 278, 405 y 406.",
+          "complementaryLaw": "Manual SCC 2018, num. 8.3 (evaluación de la solicitud); procedimientos internos de cada laboratorio y disciplina.",
+          "jurisprudence": "La decisión negativa debe estar sustentada en criterios de la disciplina y no en razones meramente administrativas. No se usan como fundamento directo las sentencias T-922A/2013 y T-235/2018, pues pertenecen al ámbito del derecho a la salud y solo ofrecen, a lo sumo, una analogía general sobre deferencia al conocimiento experto.",
+          "destinationText": "No ejecutar el análisis solicitado / reformular o buscar alternativa; continúa la ruta",
+          "warning": "No confundir inviabilidad de un examen concreto con pérdida de capacidad demostrativa ni con autorización para destruir, devolver o disponer del EMP y EF.",
+          "source": "Manual SCC 2018; proyecto Manual SCC 2026.",
+          "review": "CERRADO JURÍDICAMENTE - 20/08/2026",
+          "police": "Mantener preservación; recibir la justificación técnica y, con el fiscal cuando corresponda, reformular, consultar otra especialidad o continuar la ruta.",
+          "decides": "Experto/laboratorio determina la inviabilidad o improcedencia técnico-científica del examen concreto; fiscal/PJ redefinen la pregunta investigativa si es necesario.",
+          "executes": "Experto/laboratorio documenta la no realización; PJ materializa la reformulación o nueva remisión.",
+          "receives": "Custodio técnico o de cadena de custodia hasta nueva decisión."
+        },
+        {
+          "label": "No, la definición técnico-científica todavía está pendiente",
+          "next": "FIN-PEND-VALORACION-TECNICA",
+          "concept": "Todavía falta una definición que corresponde al experto, laboratorio o área técnico-científica competente.",
+          "action": "Gestionar la valoración con el área competente y mantener el EMP y EF identificado, preservado y trazable mientras se obtiene la definición técnica.",
           "primaryLaw": "Ley 906 de 2004, arts. 210, 260, 273, 278, 405 y 406.",
           "complementaryLaw": "Manual SCC 2018, num. 8.3 (evaluación de la solicitud); procedimientos internos de cada laboratorio y disciplina.",
           "jurisprudence": "La decisión negativa debe estar sustentada en criterios de la disciplina y no en razones meramente administrativas. No se usan como fundamento directo las sentencias T-922A/2013 y T-235/2018, pues pertenecen al ámbito del derecho a la salud y solo ofrecen, a lo sumo, una analogía general sobre deferencia al conocimiento experto.",
@@ -179,7 +196,7 @@
       "id": "P04",
       "kind": "route",
       "title": "Especialidad jurídica o técnica",
-      "question": "¿Por la naturaleza del objeto o bien, su origen, el procedimiento en el que fue afectado o una disposición legal específica existe una regla especial sobre su custodia, administración, análisis, disposición, devolución o destrucción?",
+      "question": "¿El objeto o bien pertenece a una categoría que normalmente tiene un manejo especial por su naturaleza, como armas o explosivos, fauna o flora, mercancía aduanera, restos humanos, patrimonio, dinero o metales, evidencia digital o minería?",
       "options": [
         {
           "label": "Sí",
@@ -220,14 +237,14 @@
     "P05": {
       "id": "P05",
       "kind": "route",
-      "title": "Susceptibilidad de comiso",
-      "question": "¿El bien cumple alguna de las condiciones legales que permiten considerarlo susceptible de comiso?",
+      "title": "Relación del bien con una posible causal de comiso",
+      "question": "¿Qué relación concreta tiene el bien o recurso con la conducta investigada?",
       "options": [
         {
-          "label": "Sí",
+          "label": "Es un instrumento o efecto con el que se cometió la conducta, o proviene de su ejecución, y no tiene libre comercio",
           "next": "P05A",
-          "concept": "Existen hechos que permiten ubicar preliminarmente el bien en una de las hipótesis legales de comiso. Esto no significa que el comiso ya haya sido decretado ni que exista por sí sola habilitación para materializar una incautación u ocupación con fines de comiso.",
-          "action": "Documentar de manera concreta la relación del bien con la conducta investigada y continuar con la verificación de la habilitación para materializar la medida cautelar. Si el bien conserva función probatoria, la ruta debe preservar también esa condición.",
+          "concept": "Alfred no te pide decidir jurídicamente el comiso. Selecciona la situación fáctica que puedas verificar. Las alternativas traducen las hipótesis de los artículos 100 del Código Penal y 82 del Código de Procedimiento Penal.",
+          "action": "Documentar de manera concreta la relación entre el bien, la conducta y las personas involucradas; preservar los soportes que la acreditan; poner la información en conocimiento del fiscal y continuar la ruta para verificar función probatoria, habilitación, materialización y control de la medida.",
           "primaryLaw": "Ley 599 de 2000, art. 100; Ley 906 de 2004, arts. 82 y 83.",
           "complementaryLaw": "Resolución FGN 0-0980 de 2020 y Directiva 0002 de 2020, apartados A y B; Ley 1908 de 2018 cuando resulte aplicable; Ley 1615 de 2013.",
           "jurisprudence": "Corte Constitucional C-782 de 2012: el comiso comporta privación definitiva del dominio y es una consecuencia jurídica de la conducta punible con finalidad de política criminal. Corte Constitucional C-591 de 2014: distingue medidas materiales con fines de comiso de la aprehensión probatoria. CSJ SP11015-2016, rad. 47660: precisa los bienes sobre los cuales procede el comiso, especialmente respecto de bienes de libre comercio pertenecientes al penalmente responsable.",
@@ -241,10 +258,78 @@
           "receives": "Todavía no hay destinatario definitivo; la administración FEAB depende de una medida válida y la ruta posterior."
         },
         {
-          "label": "No",
+          "label": "Tiene libre comercio, pertenece al penalmente responsable y fue utilizado para realizar un delito doloso o proviene de su ejecución",
+          "next": "P05A",
+          "concept": "Alfred no te pide decidir jurídicamente el comiso. Selecciona la situación fáctica que puedas verificar. Las alternativas traducen las hipótesis de los artículos 100 del Código Penal y 82 del Código de Procedimiento Penal.",
+          "action": "Documentar de manera concreta la relación entre el bien, la conducta y las personas involucradas; preservar los soportes que la acreditan; poner la información en conocimiento del fiscal y continuar la ruta para verificar función probatoria, habilitación, materialización y control de la medida.",
+          "primaryLaw": "Ley 599 de 2000, art. 100; Ley 906 de 2004, arts. 82 y 83.",
+          "complementaryLaw": "Resolución FGN 0-0980 de 2020 y Directiva 0002 de 2020, apartados A y B; Ley 1908 de 2018 cuando resulte aplicable; Ley 1615 de 2013.",
+          "jurisprudence": "Corte Constitucional C-782 de 2012: el comiso comporta privación definitiva del dominio y es una consecuencia jurídica de la conducta punible con finalidad de política criminal. Corte Constitucional C-591 de 2014: distingue medidas materiales con fines de comiso de la aprehensión probatoria. CSJ SP11015-2016, rad. 47660: precisa los bienes sobre los cuales procede el comiso, especialmente respecto de bienes de libre comercio pertenecientes al penalmente responsable.",
+          "destinationText": "Continúa a la habilitación y materialización de la medida con fines de comiso",
+          "warning": "SUSCEPTIBLE DE COMISO ≠ COMISADO. MOTIVOS FUNDADOS ≠ CERTEZA. VALOR ECONÓMICO ≠ CAUSAL DE COMISO. Antes de afectar, deben respetarse los derechos de víctimas y terceros de buena fe y descartarse los supuestos excluidos o de tratamiento especial.",
+          "source": "Ley 599/2000; Ley 906/2004; Directiva FGN 0002/2020; Manual Único PJ 2025 cap. 9; guía de bolsillo y artículo 'Los bienes en la labor del Policía Judicial Colombiano'.",
+          "review": "CERRADO JURÍDICAMENTE - 20/08/2026",
+          "police": "Documentar la causal posible, individualizar el bien, recaudar EMP y EF sobre procedencia, uso, titularidad y relación con el delito; informar al fiscal.",
+          "decides": "Fiscal valora si existen presupuestos para promover u ordenar la medida cautelar; el juez controla cuando corresponda.",
+          "executes": "Policía Judicial solo materializa una medida cuando exista orden fiscal o habilitación legal autónoma, como flagrancia.",
+          "receives": "Todavía no hay destinatario definitivo; la administración FEAB depende de una medida válida y la ruta posterior."
+        },
+        {
+          "label": "Es un bien o recurso del penalmente responsable que proviene directa o indirectamente del delito, o fue utilizado o destinado como medio o instrumento en un delito doloso",
+          "next": "P05A",
+          "concept": "Alfred no te pide decidir jurídicamente el comiso. Selecciona la situación fáctica que puedas verificar. Las alternativas traducen las hipótesis de los artículos 100 del Código Penal y 82 del Código de Procedimiento Penal.",
+          "action": "Documentar de manera concreta la relación entre el bien, la conducta y las personas involucradas; preservar los soportes que la acreditan; poner la información en conocimiento del fiscal y continuar la ruta para verificar función probatoria, habilitación, materialización y control de la medida.",
+          "primaryLaw": "Ley 599 de 2000, art. 100; Ley 906 de 2004, arts. 82 y 83.",
+          "complementaryLaw": "Resolución FGN 0-0980 de 2020 y Directiva 0002 de 2020, apartados A y B; Ley 1908 de 2018 cuando resulte aplicable; Ley 1615 de 2013.",
+          "jurisprudence": "Corte Constitucional C-782 de 2012: el comiso comporta privación definitiva del dominio y es una consecuencia jurídica de la conducta punible con finalidad de política criminal. Corte Constitucional C-591 de 2014: distingue medidas materiales con fines de comiso de la aprehensión probatoria. CSJ SP11015-2016, rad. 47660: precisa los bienes sobre los cuales procede el comiso, especialmente respecto de bienes de libre comercio pertenecientes al penalmente responsable.",
+          "destinationText": "Continúa a la habilitación y materialización de la medida con fines de comiso",
+          "warning": "SUSCEPTIBLE DE COMISO ≠ COMISADO. MOTIVOS FUNDADOS ≠ CERTEZA. VALOR ECONÓMICO ≠ CAUSAL DE COMISO. Antes de afectar, deben respetarse los derechos de víctimas y terceros de buena fe y descartarse los supuestos excluidos o de tratamiento especial.",
+          "source": "Ley 599/2000; Ley 906/2004; Directiva FGN 0002/2020; Manual Único PJ 2025 cap. 9; guía de bolsillo y artículo 'Los bienes en la labor del Policía Judicial Colombiano'.",
+          "review": "CERRADO JURÍDICAMENTE - 20/08/2026",
+          "police": "Documentar la causal posible, individualizar el bien, recaudar EMP y EF sobre procedencia, uso, titularidad y relación con el delito; informar al fiscal.",
+          "decides": "Fiscal valora si existen presupuestos para promover u ordenar la medida cautelar; el juez controla cuando corresponda.",
+          "executes": "Policía Judicial solo materializa una medida cuando exista orden fiscal o habilitación legal autónoma, como flagrancia.",
+          "receives": "Todavía no hay destinatario definitivo; la administración FEAB depende de una medida válida y la ruta posterior."
+        },
+        {
+          "label": "Bienes o recursos de origen ilícito fueron mezclados o encubiertos con bienes de procedencia lícita",
+          "next": "P05A",
+          "concept": "Alfred no te pide decidir jurídicamente el comiso. Selecciona la situación fáctica que puedas verificar. Las alternativas traducen las hipótesis de los artículos 100 del Código Penal y 82 del Código de Procedimiento Penal.",
+          "action": "Documentar de manera concreta la relación entre el bien, la conducta y las personas involucradas; preservar los soportes que la acreditan; poner la información en conocimiento del fiscal y continuar la ruta para verificar función probatoria, habilitación, materialización y control de la medida.",
+          "primaryLaw": "Ley 599 de 2000, art. 100; Ley 906 de 2004, arts. 82 y 83.",
+          "complementaryLaw": "Resolución FGN 0-0980 de 2020 y Directiva 0002 de 2020, apartados A y B; Ley 1908 de 2018 cuando resulte aplicable; Ley 1615 de 2013.",
+          "jurisprudence": "Corte Constitucional C-782 de 2012: el comiso comporta privación definitiva del dominio y es una consecuencia jurídica de la conducta punible con finalidad de política criminal. Corte Constitucional C-591 de 2014: distingue medidas materiales con fines de comiso de la aprehensión probatoria. CSJ SP11015-2016, rad. 47660: precisa los bienes sobre los cuales procede el comiso, especialmente respecto de bienes de libre comercio pertenecientes al penalmente responsable.",
+          "destinationText": "Continúa a la habilitación y materialización de la medida con fines de comiso",
+          "warning": "SUSCEPTIBLE DE COMISO ≠ COMISADO. MOTIVOS FUNDADOS ≠ CERTEZA. VALOR ECONÓMICO ≠ CAUSAL DE COMISO. Antes de afectar, deben respetarse los derechos de víctimas y terceros de buena fe y descartarse los supuestos excluidos o de tratamiento especial.",
+          "source": "Ley 599/2000; Ley 906/2004; Directiva FGN 0002/2020; Manual Único PJ 2025 cap. 9; guía de bolsillo y artículo 'Los bienes en la labor del Policía Judicial Colombiano'.",
+          "review": "CERRADO JURÍDICAMENTE - 20/08/2026",
+          "police": "Documentar la causal posible, individualizar el bien, recaudar EMP y EF sobre procedencia, uso, titularidad y relación con el delito; informar al fiscal.",
+          "decides": "Fiscal valora si existen presupuestos para promover u ordenar la medida cautelar; el juez controla cuando corresponda.",
+          "executes": "Policía Judicial solo materializa una medida cuando exista orden fiscal o habilitación legal autónoma, como flagrancia.",
+          "receives": "Todavía no hay destinatario definitivo; la administración FEAB depende de una medida válida y la ruta posterior."
+        },
+        {
+          "label": "Corresponde a un bien de valor equivalente porque el producto directo o indirecto del delito no puede localizarse, identificarse o afectarse materialmente",
+          "next": "P05A",
+          "concept": "Alfred no te pide decidir jurídicamente el comiso. Selecciona la situación fáctica que puedas verificar. Las alternativas traducen las hipótesis de los artículos 100 del Código Penal y 82 del Código de Procedimiento Penal.",
+          "action": "Documentar de manera concreta la relación entre el bien, la conducta y las personas involucradas; preservar los soportes que la acreditan; poner la información en conocimiento del fiscal y continuar la ruta para verificar función probatoria, habilitación, materialización y control de la medida.",
+          "primaryLaw": "Ley 599 de 2000, art. 100; Ley 906 de 2004, arts. 82 y 83.",
+          "complementaryLaw": "Resolución FGN 0-0980 de 2020 y Directiva 0002 de 2020, apartados A y B; Ley 1908 de 2018 cuando resulte aplicable; Ley 1615 de 2013.",
+          "jurisprudence": "Corte Constitucional C-782 de 2012: el comiso comporta privación definitiva del dominio y es una consecuencia jurídica de la conducta punible con finalidad de política criminal. Corte Constitucional C-591 de 2014: distingue medidas materiales con fines de comiso de la aprehensión probatoria. CSJ SP11015-2016, rad. 47660: precisa los bienes sobre los cuales procede el comiso, especialmente respecto de bienes de libre comercio pertenecientes al penalmente responsable.",
+          "destinationText": "Continúa a la habilitación y materialización de la medida con fines de comiso",
+          "warning": "SUSCEPTIBLE DE COMISO ≠ COMISADO. MOTIVOS FUNDADOS ≠ CERTEZA. VALOR ECONÓMICO ≠ CAUSAL DE COMISO. Antes de afectar, deben respetarse los derechos de víctimas y terceros de buena fe y descartarse los supuestos excluidos o de tratamiento especial.",
+          "source": "Ley 599/2000; Ley 906/2004; Directiva FGN 0002/2020; Manual Único PJ 2025 cap. 9; guía de bolsillo y artículo 'Los bienes en la labor del Policía Judicial Colombiano'.",
+          "review": "CERRADO JURÍDICAMENTE - 20/08/2026",
+          "police": "Documentar la causal posible, individualizar el bien, recaudar EMP y EF sobre procedencia, uso, titularidad y relación con el delito; informar al fiscal.",
+          "decides": "Fiscal valora si existen presupuestos para promover u ordenar la medida cautelar; el juez controla cuando corresponda.",
+          "executes": "Policía Judicial solo materializa una medida cuando exista orden fiscal o habilitación legal autónoma, como flagrancia.",
+          "receives": "Todavía no hay destinatario definitivo; la administración FEAB depende de una medida válida y la ruta posterior."
+        },
+        {
+          "label": "No, no identifico ninguna de estas relaciones con la información disponible",
           "next": "P04",
-          "concept": "No se identifica, con la información suministrada, una causal concreta de comiso. El bien puede seguir vinculado a la investigación por otra finalidad jurídica o estar sujeto a un régimen especial.",
-          "action": "No materializar una medida con fines de comiso por simple sospecha. Continuar con la verificación de manejo especial y, si no aplica, con las demás finalidades patrimoniales.",
+          "concept": "Con la información suministrada no se identifica por ahora una de las hipótesis de comiso que Alfred está evaluando.",
+          "action": "No materializar una medida con fines de comiso por esta sola ruta. Continuar con régimen especial, reparación, destrucción u otra finalidad jurídica.",
           "primaryLaw": "Ley 906 de 2004, arts. 82 y 83; Ley 599 de 2000, art. 100.",
           "complementaryLaw": "Directiva FGN 0002 de 2020, apartados A, B y C, cuando corresponda evaluar extinción de dominio.",
           "jurisprudence": "CSJ SP11015-2016, rad. 47660; Corte Constitucional C-591 de 2014.",
@@ -263,7 +348,7 @@
       "id": "P05A",
       "kind": "route",
       "title": "Barrera probatoria previa al comiso",
-      "question": "¿El bien conserva actualmente la calidad de elemento material probatorio o evidencia física (EMP y EF)?",
+      "question": "¿Consta que el bien todavía debe conservarse por una necesidad probatoria actual, un examen pendiente o una actuación de contradicción que aún no ha terminado?",
       "options": [
         {
           "label": "Sí",
@@ -592,7 +677,7 @@
       "id": "P07",
       "kind": "route",
       "title": "Finalidad reparadora / restablecimiento patrimonial",
-      "question": "¿La afectación del bien busca garantizar la reparación de las víctimas, restablecer sus derechos patrimoniales o asegurar una eventual indemnización?",
+      "question": "¿Existe una solicitud, orden o medida cuyo propósito sea garantizar la reparación de las víctimas, restablecer sus derechos patrimoniales o asegurar una eventual indemnización?",
       "options": [
         {
           "label": "Sí",
@@ -634,7 +719,7 @@
       "id": "P07A",
       "kind": "route",
       "title": "Selector de mecanismo reparador",
-      "question": "¿Qué mecanismo patrimonial orientado a la reparación o restablecimiento se aplica al bien?",
+      "question": "¿Qué medida, orden o mecanismo consta en el caso para la reparación o el restablecimiento?",
       "options": [
         {
           "label": "Embargo y secuestro (art. 92)",
@@ -828,7 +913,7 @@
       "id": "P08",
       "kind": "route",
       "title": "Posible destrucción: existencia de fundamento",
-      "question": "¿Existe una regla legal o una decisión válida que permita o imponga la destrucción de este bien, elemento o remanente?",
+      "question": "¿Ya existe una razón concreta y verificable para evaluar la destrucción del bien, elemento o remanente, como una norma especial, una orden o una decisión aplicable al caso?",
       "options": [
         {
           "label": "Sí",
@@ -982,7 +1067,7 @@
       "id": "P09A",
       "kind": "route",
       "title": "Título jurídico residual y administración general FGN",
-      "question": "Descartadas las rutas anteriores, ¿existe un título jurídico vigente que justifique que el bien permanezca a disposición de la Fiscalía por una causa distinta de cadena de custodia, comiso, reparación, destrucción o régimen especial?",
+      "question": "¿Puedes identificar un documento, acto, medida o título vigente por el que el bien deba seguir a disposición de la Fiscalía por una razón distinta de cadena de custodia, comiso, reparación, destrucción o régimen especial?",
       "options": [
         {
           "label": "Sí",
@@ -1024,7 +1109,7 @@
       "id": "P10",
       "kind": "route",
       "title": "Devolución, restitución y entrega - identificación del fundamento",
-      "question": "¿Cuál de estas situaciones explica jurídicamente por qué el bien o elemento debe ser entregado, devuelto o restituido?",
+      "question": "¿Qué ocurrió con el bien o elemento que explica por qué ahora debe evaluarse su entrega, devolución o restitución?",
       "options": [
         {
           "label": "Fue aprehendido o asegurado únicamente con fines de investigación o diligencia probatoria, sin medida cautelar material o jurídica vigente",
@@ -1303,7 +1388,7 @@
       "id": "P12",
       "kind": "route",
       "title": "Identificación de macroelemento material probatorio",
-      "question": "¿El objeto corresponde a un macroelemento material probatorio en los términos del artículo 256, es decir, un objeto de gran tamaño como nave, aeronave, vehículo automotor, máquina, grúa u otro similar que debe ser examinado para recoger los EMP y EF que se hallen en él?",
+      "question": "¿Se trata de una nave, aeronave, vehículo, máquina, grúa u otro objeto de gran tamaño que debe examinarse y documentarse para recoger los EMP y EF que se encuentren en él, en lugar de conservar necesariamente todo el objeto como evidencia?",
       "options": [
         {
           "label": "Sí",
@@ -1344,12 +1429,12 @@
     "P12A": {
       "id": "P12A",
       "kind": "route",
-      "title": "Aseguramiento probatorio sustitutivo del macroelemento",
-      "question": "¿Ya se realizó el examen pericial, se recogieron los EMP y EF hallados en el macroelemento y se documentó mediante fotografía o video su totalidad y los sitios relevantes, de manera suficiente para que esos registros sustituyan al elemento físico?",
+      "title": "Examen del macroelemento",
+      "question": "¿Ya se realizó el examen técnico o pericial necesario sobre el macroelemento?",
       "options": [
         {
-          "label": "Sí",
-          "next": "P12B",
+          "label": "Sí, el examen ya se realizó",
+          "next": "P12A2",
           "concept": "Se cumplió la fase probatoria esencial del artículo 256. La ley permite que las fotografías y videos sustituyan al macroelemento físico durante el juicio y en los demás momentos del procedimiento. Los EMP y EF separados del macroelemento continúan su propia cadena de custodia conforme a su naturaleza.",
           "action": "Verificar calidad técnica y suficiencia de la documentación; conservar fotografías y videos conforme a cadena de custodia; asegurar trazabilidad de cada EMP y EF recolectado; identificar plenamente el macroelemento y dejar constancia de su estado. Continuar a P12B para determinar su destino jurídico.",
           "primaryLaw": "Ley 906 de 2004, art. 256.",
@@ -1365,7 +1450,7 @@
           "receives": "EMP y EF y registros sustitutos permanecen bajo cadena de custodia; el macroelemento pasa a P12B para destino."
         },
         {
-          "label": "No",
+          "label": "No, el examen todavía está pendiente",
           "next": "FIN-PEND-MACRO-EXAMEN",
           "concept": "Mientras no se hayan realizado el examen, la recolección de los EMP y EF y la documentación sustitutiva exigida por el artículo 256, no está cumplido el presupuesto que permite prescindir probatoriamente del macroelemento físico.",
           "action": "No efectuar devolución ni disposición final basada en el art. 266 todavía. Coordinar el examen pericial y la fijación integral con personal competente; recoger y asegurar los EMP y EF; documentar cualquier imposibilidad técnica y adoptar solo las medidas temporales de preservación y seguridad necesarias. Revaluar P12A una vez concluida la actividad.",
@@ -1387,7 +1472,7 @@
       "id": "P12B",
       "kind": "route",
       "title": "Destino jurídico del macroelemento después del aseguramiento probatorio",
-      "question": "Cumplido el artículo 256, ¿cuál es la situación jurídica del macroelemento?",
+      "question": "Una vez completados el examen, la recolección y la documentación, ¿qué consta actualmente sobre la situación del macroelemento?",
       "options": [
         {
           "label": "No existe medida cautelar con fines de comiso y no se ha establecido que haya sido medio eficaz para la comisión del delito",
@@ -3029,20 +3114,20 @@
     "DES-87-PREV": {
       "id": "DES-87-PREV",
       "kind": "route",
-      "title": "Presupuestos previos de destrucción – artículo 87",
-      "question": "¿Ya se cumplieron las reglas de cadena de custodia aplicables y existe informe del perito oficial que establezca la ilegitimidad del bien?",
+      "title": "Preservación y cadena previa – artículo 87",
+      "question": "¿Ya se cumplieron las reglas de preservación y cadena de custodia que resultan aplicables antes de la destrucción?",
       "options": [
         {
-          "label": "Sí, ya se cumplieron ambos presupuestos",
-          "next": "DEST-DESTR-87",
+          "label": "Sí, la preservación y cadena aplicables ya están cumplidas",
+          "next": "DES-87-PERITO",
           "concept": "La ruta cuenta con los presupuestos expresamente exigidos por el artículo 87 para los objetos materiales de los delitos allí señalados.",
           "action": "Coordinar la destrucción por Policía Judicial con presencia del fiscal y del agente del Ministerio Público; documentar el acto y conservar las muestras o registros que correspondan.",
           "primaryLaw": "Ley 906 de 2004, art. 87.",
           "warning": "La ejecución material no debe adelantarse si falta alguno de los presupuestos legales."
         },
         {
-          "label": "No, falta el informe del perito oficial o no se ha completado la preservación/cadena necesaria",
-          "next": "FIN-PEND-DESTR-87",
+          "label": "No, todavía falta completar preservación o cadena de custodia",
+          "next": "FIN-PEND-DESTR-87-CADENA",
           "concept": "La destrucción aún no está lista para ejecutarse.",
           "action": "Mantener la custodia vigente, obtener el informe pericial oficial y completar la preservación documental o de cadena requerida antes de volver a esta ruta.",
           "primaryLaw": "Ley 906 de 2004, art. 87."
@@ -3073,19 +3158,19 @@
     "DES-DROGA-PREV": {
       "id": "DES-DROGA-PREV",
       "kind": "route",
-      "title": "Preservación probatoria antes de destruir",
-      "question": "¿Antes de la destrucción ya se tomaron las muestras necesarias y se realizaron fotografías o video del laboratorio, cultivo, elementos y sustancias, dejando esos soportes bajo cadena de custodia?",
+      "title": "Muestras antes de destruir laboratorio o cultivo",
+      "question": "¿Ya se tomaron las muestras necesarias antes de la destrucción?",
       "options": [
         {
-          "label": "Sí, la evidencia sustitutiva ya fue obtenida y preservada",
-          "next": "DEST-DESTR-DROGA",
+          "label": "Sí, las muestras necesarias ya fueron tomadas",
+          "next": "DES-DROGA-REGISTRO",
           "concept": "El inciso segundo del artículo 87 permite que fotografías, videos y muestras sustituyan el elemento físico después de la destrucción.",
           "action": "Ejecutar la destrucción conforme al procedimiento aplicable y cerrar documentalmente la actuación, preservando muestras y registros.",
           "primaryLaw": "Ley 906 de 2004, art. 87, inciso 2."
         },
         {
-          "label": "No, todavía falta obtener o asegurar muestras, fotografías, video o su cadena de custodia",
-          "next": "FIN-PEND-DESTR-DROGA",
+          "label": "No, todavía faltan muestras necesarias",
+          "next": "FIN-PEND-DESTR-DROGA-MUESTRAS",
           "concept": "Todavía no debe cerrarse la actuación mediante destrucción.",
           "action": "Completar primero la toma de muestras, fijación fotográfica o videográfica y la cadena de custodia de esos soportes.",
           "primaryLaw": "Ley 906 de 2004, art. 87, inciso 2."
@@ -3178,7 +3263,7 @@
       "id": "DES-DIAN-PROB",
       "kind": "route",
       "title": "Coordinación DIAN – investigación penal",
-      "question": "Si la mercancía está relacionada con una conducta punible, ¿la Fiscalía ya fue informada y se recolectaron los EMP y EF que requiere antes de que la DIAN disponga de la mercancía?",
+      "question": "Si existe una investigación penal relacionada con la mercancía, ¿la Fiscalía ya obtuvo y aseguró los EMP y EF que necesita antes de que la DIAN ejecute una disposición irreversible?",
       "options": [
         {
           "label": "Sí, la Fiscalía ya obtuvo lo necesario para la investigación penal",
@@ -3242,18 +3327,18 @@
     "DES-ARM563-PREV": {
       "id": "DES-ARM563-PREV",
       "kind": "route",
-      "title": "Presupuestos para destrucción del arma – artículo 563",
-      "question": "¿Ya se cumplieron la cadena de custodia y el examen pericial, el arma dejó de ser requerida en la actuación y existe orden del fiscal de conocimiento para destruirla?",
+      "title": "Cadena de custodia del arma – artículo 563",
+      "question": "¿Ya se cumplió la cadena de custodia aplicable respecto del arma de fuego o arma blanca?",
       "options": [
         {
-          "label": "Sí, todos esos presupuestos están cumplidos",
-          "next": "DEST-DESTR-ARM563",
+          "label": "Sí, la cadena de custodia aplicable ya está cumplida",
+          "next": "DES-ARM563-PERICIA",
           "action": "Coordinar la ejecución de la destrucción con el operador/autoridad técnicamente habilitada y documentar el cierre.",
           "primaryLaw": "Ley 906 de 2004, art. 563."
         },
         {
-          "label": "No, falta al menos uno de esos presupuestos",
-          "next": "FIN-PEND-DESTR-ARM563",
+          "label": "No, todavía falta completar la cadena de custodia aplicable",
+          "next": "FIN-PEND-DESTR-ARM563-CADENA",
           "action": "Mantener la custodia vigente y completar el presupuesto faltante antes de ejecutar la destrucción.",
           "primaryLaw": "Ley 906 de 2004, art. 563."
         }
@@ -3262,19 +3347,217 @@
     "DES-AML-PREV": {
       "id": "DES-AML-PREV",
       "kind": "route",
-      "title": "Destrucción de armas, elementos o dispositivos menos letales",
-      "question": "¿El elemento fue incautado y posteriormente decomisado por incumplimiento de los requisitos legales para su porte y ya existe concepto del DCCAE para su destrucción?",
+      "title": "Decomiso sectorial del elemento menos letal",
+      "question": "¿Ya consta el decomiso sectorial del elemento por incumplimiento de los requisitos legales aplicables?",
       "options": [
         {
-          "label": "Sí, existe decomiso y concepto previo del DCCAE",
-          "next": "DEST-DESTR-AML",
+          "label": "Sí, el decomiso sectorial ya consta",
+          "next": "DES-AML-DCCAE",
           "action": "Coordinar la entrega/ejecución con INDUMIL y documentar la disposición final.",
           "primaryLaw": "Ley 2197 de 2022, art. 34."
         },
         {
-          "label": "No, falta el decomiso sectorial o el concepto previo del DCCAE",
-          "next": "FIN-PEND-DESTR-AML",
+          "label": "No, el decomiso sectorial todavía no consta",
+          "next": "FIN-PEND-DESTR-AML-DECOMISO",
           "action": "Mantener la custodia sectorial correspondiente y completar el presupuesto faltante antes de la destrucción.",
+          "primaryLaw": "Ley 2197 de 2022, art. 34."
+        }
+      ]
+    },
+    "P12A2": {
+      "id": "P12A2",
+      "kind": "route",
+      "title": "Recolección de EMP y EF del macroelemento",
+      "question": "¿Ya se recogieron y aseguraron los EMP y EF pertinentes hallados en el macroelemento?",
+      "options": [
+        {
+          "label": "Sí, los EMP y EF pertinentes ya fueron recogidos y asegurados",
+          "next": "P12A3",
+          "concept": "Verificación de un requisito operativo concreto dentro de la ruta.",
+          "action": "Continuar con la documentación sustitutiva del macroelemento.",
+          "primaryLaw": "Ley 906 de 2004, art. 256."
+        },
+        {
+          "label": "No, todavía falta recoger o asegurar EMP y EF pertinentes",
+          "next": "FIN-PEND-MACRO-RECOLECCION",
+          "concept": "El requisito todavía no está cumplido; la ruta debe detenerse temporalmente sin convertir esa ausencia en un resultado definitivo.",
+          "action": "Completar la recolección, identificación, embalaje y cadena de custodia que correspondan.",
+          "primaryLaw": "Ley 906 de 2004, art. 256."
+        }
+      ]
+    },
+    "P12A3": {
+      "id": "P12A3",
+      "kind": "route",
+      "title": "Documentación sustitutiva del macroelemento",
+      "question": "¿Ya se documentó suficientemente el macroelemento mediante fotografías o video de su totalidad y de los sitios relevantes, para que esos registros puedan sustituir su conservación física cuando corresponda?",
+      "options": [
+        {
+          "label": "Sí, la documentación sustitutiva ya está completa",
+          "next": "P12B",
+          "concept": "Verificación de un requisito operativo concreto dentro de la ruta.",
+          "action": "Continuar a la situación jurídica final del macroelemento.",
+          "primaryLaw": "Ley 906 de 2004, art. 256."
+        },
+        {
+          "label": "No, todavía falta completar fotografías, video o registros suficientes",
+          "next": "FIN-PEND-MACRO-DOCUMENTACION",
+          "concept": "El requisito todavía no está cumplido; la ruta debe detenerse temporalmente sin convertir esa ausencia en un resultado definitivo.",
+          "action": "Completar la fijación y documentación antes de definir la salida física del macroelemento.",
+          "primaryLaw": "Ley 906 de 2004, art. 256."
+        }
+      ]
+    },
+    "DES-87-PERITO": {
+      "id": "DES-87-PERITO",
+      "kind": "route",
+      "title": "Informe pericial oficial de ilegitimidad – artículo 87",
+      "question": "¿Ya existe el informe del perito oficial que establece la ilegitimidad del bien u objeto?",
+      "options": [
+        {
+          "label": "Sí, ya existe el informe pericial oficial de ilegitimidad",
+          "next": "DEST-DESTR-87",
+          "concept": "Verificación de un requisito operativo concreto dentro de la ruta.",
+          "action": "Coordinar la ejecución de la destrucción conforme al artículo 87.",
+          "primaryLaw": "Ley 906 de 2004, art. 87."
+        },
+        {
+          "label": "No, el informe pericial oficial todavía está pendiente",
+          "next": "FIN-PEND-DESTR-87-PERITO",
+          "concept": "El requisito todavía no está cumplido; la ruta debe detenerse temporalmente sin convertir esa ausencia en un resultado definitivo.",
+          "action": "Mantener la custodia vigente y obtener el informe antes de destruir.",
+          "primaryLaw": "Ley 906 de 2004, art. 87."
+        }
+      ]
+    },
+    "DES-DROGA-REGISTRO": {
+      "id": "DES-DROGA-REGISTRO",
+      "kind": "route",
+      "title": "Registro fotográfico o en video antes de destruir",
+      "question": "¿Ya se realizaron fotografías o video suficientes del laboratorio, cultivo, elementos y sustancias antes de la destrucción?",
+      "options": [
+        {
+          "label": "Sí, ya existen fotografías o video suficientes",
+          "next": "DES-DROGA-CADENA",
+          "concept": "Verificación de un requisito operativo concreto dentro de la ruta.",
+          "action": "Continuar a verificar la cadena de custodia de las muestras y registros.",
+          "primaryLaw": "Ley 906 de 2004, art. 87, inciso 2."
+        },
+        {
+          "label": "No, todavía falta completar fotografías o video",
+          "next": "FIN-PEND-DESTR-DROGA-REGISTRO",
+          "concept": "El requisito todavía no está cumplido; la ruta debe detenerse temporalmente sin convertir esa ausencia en un resultado definitivo.",
+          "action": "Completar la fijación fotográfica o en video antes de destruir.",
+          "primaryLaw": "Ley 906 de 2004, art. 87, inciso 2."
+        }
+      ]
+    },
+    "DES-DROGA-CADENA": {
+      "id": "DES-DROGA-CADENA",
+      "kind": "route",
+      "title": "Cadena de custodia de evidencia sustitutiva",
+      "question": "¿Las muestras, fotografías, videos y demás soportes que deben conservarse están identificados y sometidos a la cadena de custodia que corresponda?",
+      "options": [
+        {
+          "label": "Sí, la evidencia sustitutiva ya está identificada y preservada",
+          "next": "DEST-DESTR-DROGA",
+          "concept": "Verificación de un requisito operativo concreto dentro de la ruta.",
+          "action": "Ejecutar la destrucción conforme al procedimiento aplicable y conservar la evidencia sustitutiva.",
+          "primaryLaw": "Ley 906 de 2004, art. 87, inciso 2."
+        },
+        {
+          "label": "No, todavía falta asegurar la identificación o cadena de custodia",
+          "next": "FIN-PEND-DESTR-DROGA-CADENA",
+          "concept": "El requisito todavía no está cumplido; la ruta debe detenerse temporalmente sin convertir esa ausencia en un resultado definitivo.",
+          "action": "Completar la identificación y cadena de custodia antes de destruir.",
+          "primaryLaw": "Ley 906 de 2004, art. 87, inciso 2."
+        }
+      ]
+    },
+    "DES-ARM563-PERICIA": {
+      "id": "DES-ARM563-PERICIA",
+      "kind": "route",
+      "title": "Examen pericial del arma – artículo 563",
+      "question": "¿Ya se practicó el examen pericial necesario sobre el arma?",
+      "options": [
+        {
+          "label": "Sí, el examen pericial ya fue practicado",
+          "next": "DES-ARM563-NECESIDAD",
+          "concept": "Verificación de un requisito operativo concreto dentro de la ruta.",
+          "action": "Continuar a verificar si el arma sigue siendo requerida en la actuación.",
+          "primaryLaw": "Ley 906 de 2004, art. 563."
+        },
+        {
+          "label": "No, el examen pericial todavía está pendiente",
+          "next": "FIN-PEND-DESTR-ARM563-PERICIA",
+          "concept": "El requisito todavía no está cumplido; la ruta debe detenerse temporalmente sin convertir esa ausencia en un resultado definitivo.",
+          "action": "Mantener la custodia y practicar el examen antes de destruir.",
+          "primaryLaw": "Ley 906 de 2004, art. 563."
+        }
+      ]
+    },
+    "DES-ARM563-NECESIDAD": {
+      "id": "DES-ARM563-NECESIDAD",
+      "kind": "route",
+      "title": "Necesidad probatoria del arma – artículo 563",
+      "question": "¿Consta que el arma ya no es requerida para la investigación o actuación penal?",
+      "options": [
+        {
+          "label": "Sí, consta que el arma ya no es requerida",
+          "next": "DES-ARM563-ORDEN",
+          "concept": "Verificación de un requisito operativo concreto dentro de la ruta.",
+          "action": "Continuar a verificar la orden del fiscal.",
+          "primaryLaw": "Ley 906 de 2004, art. 563."
+        },
+        {
+          "label": "No, el arma todavía es requerida o no consta que haya cesado esa necesidad",
+          "next": "FIN-PEND-DESTR-ARM563-NECESIDAD",
+          "concept": "El requisito todavía no está cumplido; la ruta debe detenerse temporalmente sin convertir esa ausencia en un resultado definitivo.",
+          "action": "Mantener la custodia probatoria mientras subsista la necesidad.",
+          "primaryLaw": "Ley 906 de 2004, art. 563."
+        }
+      ]
+    },
+    "DES-ARM563-ORDEN": {
+      "id": "DES-ARM563-ORDEN",
+      "kind": "route",
+      "title": "Orden fiscal de destrucción del arma – artículo 563",
+      "question": "¿Ya existe orden del fiscal de conocimiento para destruir el arma?",
+      "options": [
+        {
+          "label": "Sí, ya existe orden del fiscal para destruirla",
+          "next": "DEST-DESTR-ARM563",
+          "concept": "Verificación de un requisito operativo concreto dentro de la ruta.",
+          "action": "Coordinar la ejecución con el operador o autoridad técnicamente habilitada.",
+          "primaryLaw": "Ley 906 de 2004, art. 563."
+        },
+        {
+          "label": "No, la orden del fiscal todavía está pendiente",
+          "next": "FIN-PEND-DESTR-ARM563-ORDEN",
+          "concept": "El requisito todavía no está cumplido; la ruta debe detenerse temporalmente sin convertir esa ausencia en un resultado definitivo.",
+          "action": "Mantener la custodia y gestionar la decisión correspondiente.",
+          "primaryLaw": "Ley 906 de 2004, art. 563."
+        }
+      ]
+    },
+    "DES-AML-DCCAE": {
+      "id": "DES-AML-DCCAE",
+      "kind": "route",
+      "title": "Concepto previo del DCCAE",
+      "question": "¿Ya existe el concepto previo del DCCAE requerido para la destrucción?",
+      "options": [
+        {
+          "label": "Sí, ya existe el concepto previo del DCCAE",
+          "next": "DEST-DESTR-AML",
+          "concept": "Verificación de un requisito operativo concreto dentro de la ruta.",
+          "action": "Coordinar la disposición con INDUMIL conforme al régimen aplicable.",
+          "primaryLaw": "Ley 2197 de 2022, art. 34."
+        },
+        {
+          "label": "No, el concepto previo del DCCAE todavía está pendiente",
+          "next": "FIN-PEND-DESTR-AML-DCCAE",
+          "concept": "El requisito todavía no está cumplido; la ruta debe detenerse temporalmente sin convertir esa ausencia en un resultado definitivo.",
+          "action": "Mantener la custodia sectorial y gestionar el concepto antes de destruir.",
           "primaryLaw": "Ley 2197 de 2022, art. 34."
         }
       ]
@@ -3654,17 +3937,17 @@
       "where": "Permanece temporalmente con custodio actual seguro.",
       "receiver": "Custodio temporal.",
       "quality": "Macroelemento pendiente de art.256.",
-      "police": "Completar examen/recolección/fijación.",
+      "police": "Coordinar y realizar el examen correspondiente, manteniendo una custodia temporal segura y jurídicamente válida mientras se practica.",
       "change": "P12B determina destino.",
       "status": "CERRADO MEDIANTE D05 - 21/08/2026",
       "note": "No Almacén general por rutina.",
       "uiMode": "temporary_after_route",
-      "statusLabel": "RESULTADO TEMPORAL · MACROELEMENTO PENDIENTE DE EXAMEN",
-      "headline": "El macroelemento todavía requiere examen, recolección y documentación antes de definir su situación jurídica final.",
+      "statusLabel": "RESULTADO TEMPORAL · EXAMEN DEL MACROELEMENTO PENDIENTE",
+      "headline": "El macroelemento todavía no puede avanzar porque falta realizar el examen técnico o pericial necesario.",
       "currentSituation": "Si el lugar y custodio actual son seguros y jurídicamente válidos, puede permanecer temporalmente allí mientras se completa el examen, sin convertir esa permanencia en un destino definitivo.",
-      "pending": "Completar el examen, recoger los EMP y EF pertinentes y documentar suficientemente el macroelemento conforme a la ruta aplicable.",
-      "resumeNode": "P12B",
-      "resumeLabel": "Examen completado: continuar"
+      "pending": "Realizar el examen técnico o pericial necesario sobre el macroelemento.",
+      "resumeNode": "P12A",
+      "resumeLabel": "Examen realizado: continuar"
     },
     "FIN-MACRO-DEV": {
       "origin": "P12B",
@@ -4540,6 +4823,188 @@
       "mapType": "DISPOSICION",
       "target": "DEST-DESTR-REM",
       "status": "RECONSTRUIDO - 03/09/2026"
+    },
+    "FIN-PEND-VALORACION-TECNICA": {
+      "origin": "P02A",
+      "type": "Temporal técnico-científico",
+      "uiMode": "temporary",
+      "statusLabel": "RESULTADO TEMPORAL · VALORACIÓN TÉCNICO-CIENTÍFICA PENDIENTE",
+      "headline": "El EMP y EF requiere una definición del laboratorio, perito o área técnico-científica competente antes de continuar esta parte de la ruta.",
+      "police": "Precisar la pregunta investigativa, gestionar la valoración o solicitud ante el área competente y conservar el EMP y EF identificado, preservado y trazable conforme a su naturaleza.",
+      "currentSituation": "El EMP y EF sigue bajo la custodia jurídicamente procedente mientras se obtiene la orientación técnica. Este resultado no crea por sí solo un nuevo destino definitivo.",
+      "pending": "Que el área técnico-científica competente defina qué examen, análisis o tratamiento procede, o que determine que no se requiere uno especializado.",
+      "resumeNode": "P02A",
+      "resumeLabel": "Ya tengo la definición técnica: continuar",
+      "note": "La herramienta no sustituye el conocimiento especializado."
+    },
+    "FIN-PEND-MACRO-RECOLECCION": {
+      "origin": "P12A2",
+      "type": "Temporal probatorio",
+      "uiMode": "temporary",
+      "statusLabel": "RESULTADO TEMPORAL · RECOLECCIÓN PENDIENTE",
+      "headline": "Todavía faltan EMP y EF pertinentes por recoger o asegurar en el macroelemento.",
+      "police": "Completar la identificación, recolección, embalaje y cadena de custodia de los EMP y EF pertinentes antes de definir la salida del macroelemento.",
+      "currentSituation": "El macroelemento permanece temporalmente bajo una custodia segura y jurídicamente válida solo durante el tiempo necesario para completar la actuación.",
+      "pending": "Recoger y asegurar los EMP y EF pertinentes.",
+      "resumeNode": "P12A2",
+      "resumeLabel": "Recolección completada: continuar",
+      "note": "Ley 906 de 2004, art. 256."
+    },
+    "FIN-PEND-MACRO-DOCUMENTACION": {
+      "origin": "P12A3",
+      "type": "Temporal probatorio",
+      "uiMode": "temporary",
+      "statusLabel": "RESULTADO TEMPORAL · DOCUMENTACIÓN PENDIENTE",
+      "headline": "La fijación fotográfica o en video del macroelemento todavía no es suficiente para cerrar la fase probatoria sustitutiva.",
+      "police": "Completar fotografías, video y registros de la totalidad del objeto y de los sitios relevantes para la investigación.",
+      "currentSituation": "El macroelemento permanece temporalmente bajo la custodia jurídicamente procedente mientras se completa la documentación indispensable.",
+      "pending": "Completar la documentación sustitutiva suficiente.",
+      "resumeNode": "P12A3",
+      "resumeLabel": "Documentación completada: continuar",
+      "note": "Ley 906 de 2004, art. 256."
+    },
+    "FIN-PEND-DESTR-87-CADENA": {
+      "origin": "DES-87-PREV",
+      "type": "Pendiente destrucción art. 87",
+      "uiMode": "temporary",
+      "statusLabel": "DESTRUCCIÓN AÚN NO HABILITADA · PRESERVACIÓN PENDIENTE",
+      "headline": "Todavía falta completar la preservación o cadena de custodia aplicable antes de destruir.",
+      "police": "Mantener la custodia vigente y completar identificación, preservación, registros y continuidad que resulten exigibles.",
+      "currentSituation": "El objeto sigue existiendo y permanece bajo responsabilidad del custodio actual.",
+      "pending": "Completar la preservación y cadena de custodia aplicable.",
+      "resumeNode": "DES-87-PREV",
+      "resumeLabel": "Preservación completada: continuar",
+      "note": "Ley 906 de 2004, art. 87."
+    },
+    "FIN-PEND-DESTR-87-PERITO": {
+      "origin": "DES-87-PERITO",
+      "type": "Pendiente destrucción art. 87",
+      "uiMode": "temporary",
+      "statusLabel": "DESTRUCCIÓN AÚN NO HABILITADA · INFORME PERICIAL PENDIENTE",
+      "headline": "Todavía falta el informe del perito oficial que establezca la ilegitimidad del objeto.",
+      "police": "Mantener la custodia vigente y gestionar el examen o concepto pericial oficial antes de ejecutar la destrucción.",
+      "currentSituation": "El objeto sigue bajo la custodia jurídicamente procedente; no debe tratarse como ya destruido.",
+      "pending": "Obtener el informe pericial oficial de ilegitimidad.",
+      "resumeNode": "DES-87-PERITO",
+      "resumeLabel": "Ya existe el informe: continuar",
+      "note": "Ley 906 de 2004, art. 87."
+    },
+    "FIN-PEND-DESTR-DROGA-MUESTRAS": {
+      "origin": "DES-DROGA-PREV",
+      "type": "Pendiente destrucción droga/lab",
+      "uiMode": "temporary",
+      "statusLabel": "PRESERVACIÓN PREVIA PENDIENTE · MUESTRAS",
+      "headline": "Todavía faltan las muestras que deben conservarse antes de destruir.",
+      "police": "Tomar y asegurar las muestras necesarias. Mantener asegurado el lugar o los elementos solo durante el tiempo y bajo las condiciones jurídicamente necesarias para completar la actuación.",
+      "currentSituation": "La destrucción no debe ejecutarse todavía; la custodia o control actual se mantiene conforme al régimen aplicable.",
+      "pending": "Tomar y asegurar las muestras necesarias.",
+      "resumeNode": "DES-DROGA-PREV",
+      "resumeLabel": "Requisito completado: continuar",
+      "note": "Ley 906 de 2004, art. 87, inciso 2."
+    },
+    "FIN-PEND-DESTR-DROGA-REGISTRO": {
+      "origin": "DES-DROGA-REGISTRO",
+      "type": "Pendiente destrucción droga/lab",
+      "uiMode": "temporary",
+      "statusLabel": "PRESERVACIÓN PREVIA PENDIENTE · REGISTRO VISUAL",
+      "headline": "Todavía faltan fotografías o video suficientes antes de destruir.",
+      "police": "Completar la fijación fotográfica o en video. Mantener asegurado el lugar o los elementos solo durante el tiempo y bajo las condiciones jurídicamente necesarias para completar la actuación.",
+      "currentSituation": "La destrucción no debe ejecutarse todavía; la custodia o control actual se mantiene conforme al régimen aplicable.",
+      "pending": "Completar la fijación fotográfica o en video.",
+      "resumeNode": "DES-DROGA-REGISTRO",
+      "resumeLabel": "Requisito completado: continuar",
+      "note": "Ley 906 de 2004, art. 87, inciso 2."
+    },
+    "FIN-PEND-DESTR-DROGA-CADENA": {
+      "origin": "DES-DROGA-CADENA",
+      "type": "Pendiente destrucción droga/lab",
+      "uiMode": "temporary",
+      "statusLabel": "PRESERVACIÓN PREVIA PENDIENTE · CADENA DE CUSTODIA",
+      "headline": "La evidencia sustitutiva existe, pero todavía falta asegurar su identificación o cadena de custodia.",
+      "police": "Completar identificación, registro y cadena de custodia de las muestras y soportes. Mantener asegurado el lugar o los elementos solo durante el tiempo y bajo las condiciones jurídicamente necesarias para completar la actuación.",
+      "currentSituation": "La destrucción no debe ejecutarse todavía; la custodia o control actual se mantiene conforme al régimen aplicable.",
+      "pending": "Completar identificación, registro y cadena de custodia de las muestras y soportes.",
+      "resumeNode": "DES-DROGA-CADENA",
+      "resumeLabel": "Requisito completado: continuar",
+      "note": "Ley 906 de 2004, art. 87, inciso 2."
+    },
+    "FIN-PEND-DESTR-ARM563-CADENA": {
+      "origin": "DES-ARM563-PREV",
+      "type": "Pendiente destrucción arma",
+      "uiMode": "temporary",
+      "statusLabel": "DESTRUCCIÓN DEL ARMA PENDIENTE · CADENA",
+      "headline": "Todavía falta completar la cadena de custodia aplicable.",
+      "police": "Mantener el arma bajo la custodia jurídicamente procedente y completar la cadena de custodia aplicable.",
+      "currentSituation": "El arma continúa bajo custodia; no debe ejecutarse la destrucción hasta completar este requisito.",
+      "pending": "Completar la cadena de custodia aplicable.",
+      "resumeNode": "DES-ARM563-PREV",
+      "resumeLabel": "Requisito completado: continuar",
+      "note": "Ley 906 de 2004, art. 563."
+    },
+    "FIN-PEND-DESTR-ARM563-PERICIA": {
+      "origin": "DES-ARM563-PERICIA",
+      "type": "Pendiente destrucción arma",
+      "uiMode": "temporary",
+      "statusLabel": "DESTRUCCIÓN DEL ARMA PENDIENTE · PERITAJE",
+      "headline": "Todavía falta practicar el examen pericial necesario.",
+      "police": "Mantener el arma bajo la custodia jurídicamente procedente y practicar el examen pericial necesario.",
+      "currentSituation": "El arma continúa bajo custodia; no debe ejecutarse la destrucción hasta completar este requisito.",
+      "pending": "Practicar el examen pericial necesario.",
+      "resumeNode": "DES-ARM563-PERICIA",
+      "resumeLabel": "Requisito completado: continuar",
+      "note": "Ley 906 de 2004, art. 563."
+    },
+    "FIN-PEND-DESTR-ARM563-NECESIDAD": {
+      "origin": "DES-ARM563-NECESIDAD",
+      "type": "Pendiente destrucción arma",
+      "uiMode": "temporary",
+      "statusLabel": "DESTRUCCIÓN DEL ARMA PENDIENTE · NECESIDAD PROBATORIA",
+      "headline": "El arma todavía es requerida o no consta que haya cesado su necesidad probatoria.",
+      "police": "Mantener el arma bajo la custodia jurídicamente procedente y acreditar que el arma ya no es requerida para la investigación o actuación.",
+      "currentSituation": "El arma continúa bajo custodia; no debe ejecutarse la destrucción hasta completar este requisito.",
+      "pending": "Acreditar que el arma ya no es requerida para la investigación o actuación.",
+      "resumeNode": "DES-ARM563-NECESIDAD",
+      "resumeLabel": "Requisito completado: continuar",
+      "note": "Ley 906 de 2004, art. 563."
+    },
+    "FIN-PEND-DESTR-ARM563-ORDEN": {
+      "origin": "DES-ARM563-ORDEN",
+      "type": "Pendiente destrucción arma",
+      "uiMode": "temporary",
+      "statusLabel": "DESTRUCCIÓN DEL ARMA PENDIENTE · ORDEN FISCAL",
+      "headline": "Todavía falta la orden del fiscal de conocimiento para destruir el arma.",
+      "police": "Mantener el arma bajo la custodia jurídicamente procedente y obtener la orden del fiscal prevista para la destrucción.",
+      "currentSituation": "El arma continúa bajo custodia; no debe ejecutarse la destrucción hasta completar este requisito.",
+      "pending": "Obtener la orden del fiscal prevista para la destrucción.",
+      "resumeNode": "DES-ARM563-ORDEN",
+      "resumeLabel": "Requisito completado: continuar",
+      "note": "Ley 906 de 2004, art. 563."
+    },
+    "FIN-PEND-DESTR-AML-DECOMISO": {
+      "origin": "DES-AML-PREV",
+      "type": "Pendiente destrucción menos letal",
+      "uiMode": "temporary",
+      "statusLabel": "DISPOSICIÓN SECTORIAL PENDIENTE · DECOMISO",
+      "headline": "Todavía no consta el decomiso sectorial requerido.",
+      "police": "Mantener la custodia sectorial correspondiente y obtener o verificar el decomiso sectorial conforme al régimen aplicable.",
+      "currentSituation": "El elemento continúa bajo el régimen sectorial aplicable y todavía no debe pasar a destrucción.",
+      "pending": "Obtener o verificar el decomiso sectorial conforme al régimen aplicable.",
+      "resumeNode": "DES-AML-PREV",
+      "resumeLabel": "Requisito completado: continuar",
+      "note": "Ley 2197 de 2022, art. 34."
+    },
+    "FIN-PEND-DESTR-AML-DCCAE": {
+      "origin": "DES-AML-DCCAE",
+      "type": "Pendiente destrucción menos letal",
+      "uiMode": "temporary",
+      "statusLabel": "DISPOSICIÓN SECTORIAL PENDIENTE · CONCEPTO DCCAE",
+      "headline": "Todavía falta el concepto previo del DCCAE para la destrucción.",
+      "police": "Mantener la custodia sectorial correspondiente y obtener el concepto previo del dccae.",
+      "currentSituation": "El elemento continúa bajo el régimen sectorial aplicable y todavía no debe pasar a destrucción.",
+      "pending": "Obtener el concepto previo del DCCAE.",
+      "resumeNode": "DES-AML-DCCAE",
+      "resumeLabel": "Requisito completado: continuar",
+      "note": "Ley 2197 de 2022, art. 34."
     }
   },
   "destinationRoutes": {
@@ -8443,12 +8908,12 @@
       "destRoute": "D01 = Sí",
       "expected": "DEST-LAB",
       "checklist": "CK-LAB",
-      "critical": "¿Existe solicitud concreta y el servicio es técnicamente pertinente?",
+      "critical": "¿El área técnico-científica competente ya definió qué examen o tratamiento procede?",
       "ifYes": "Remitir a laboratorio",
-      "ifNo": "Reformular/subsanar; no enviar por rutina",
+      "ifNo": "Resultado temporal: gestionar valoración técnica; no adivinar el examen.",
       "status": "PASS",
       "finding": "Destino inicial distinto de custodia posterior",
-      "note": ""
+      "note": "v16 separa la necesidad investigativa de la definición técnico-científica externa."
     },
     {
       "case": "3",
@@ -9009,6 +9474,62 @@
       "status": "PASS ESTRUCTURAL",
       "finding": "Destrucción separa custodia, preservación, decisión y ejecución",
       "note": "Revisión 03/09/2026"
+    },
+    {
+      "case": "43",
+      "scenario": "EMP y EF requiere conocimiento especializado, pero el área técnica aún no ha definido el examen",
+      "legal": "P02A = pendiente",
+      "destRoute": "—",
+      "expected": "FIN-PEND-VALORACION-TECNICA",
+      "checklist": "—",
+      "critical": "La herramienta no obliga al PJ a escoger un examen técnico que no le corresponde definir.",
+      "ifYes": "Retomar P02A cuando exista definición técnica.",
+      "ifNo": "No continuar como si la pertinencia ya estuviera resuelta.",
+      "status": "PASS",
+      "finding": "Decisión externa convertida en resultado temporal accionable",
+      "note": "v16"
+    },
+    {
+      "case": "44",
+      "scenario": "Macroelemento examinado, pero faltan EMP y EF por recolectar",
+      "legal": "P12A = Sí → P12A2 = No",
+      "destRoute": "—",
+      "expected": "FIN-PEND-MACRO-RECOLECCION",
+      "checklist": "—",
+      "critical": "Identifica exactamente que falta recolección y no muestra un genérico 'falta algo'.",
+      "ifYes": "Completar recolección y retomar P12A2.",
+      "ifNo": "No definir destino final.",
+      "status": "PASS",
+      "finding": "Pregunta compuesta atomizada",
+      "note": "v16"
+    },
+    {
+      "case": "45",
+      "scenario": "Destrucción art. 87 con cadena completa pero sin informe pericial de ilegitimidad",
+      "legal": "DES-87-PREV = Sí → DES-87-PERITO = No",
+      "destRoute": "—",
+      "expected": "FIN-PEND-DESTR-87-PERITO",
+      "checklist": "—",
+      "critical": "Alfred identifica que falta el informe pericial, no mezcla cadena y peritaje.",
+      "ifYes": "Obtener informe y retomar.",
+      "ifNo": "No destruir.",
+      "status": "PASS",
+      "finding": "Requisitos de destrucción separados",
+      "note": "v16"
+    },
+    {
+      "case": "46",
+      "scenario": "Arma art. 563 con cadena y peritaje cumplidos, pero todavía requerida en la actuación",
+      "legal": "DES-ARM563-PREV Sí → PERICIA Sí → NECESIDAD No",
+      "destRoute": "—",
+      "expected": "FIN-PEND-DESTR-ARM563-NECESIDAD",
+      "checklist": "—",
+      "critical": "No permite destrucción mientras subsista necesidad probatoria.",
+      "ifYes": "Mantener custodia y retomar cuando cese necesidad.",
+      "ifNo": "No continuar a orden fiscal.",
+      "status": "PASS",
+      "finding": "Actor y requisito externo explícitos",
+      "note": "v16"
     }
   ],
   "ux": {
@@ -9047,18 +9568,17 @@
     "P02A": {
       "id": "P02A",
       "type": "Ruta general",
-      "title": "¿El examen solicitado sirve para este caso?",
-      "question": "¿El perito, laboratorio o área técnica confirmó que el examen que se quiere solicitar es pertinente y puede realizarse sobre este elemento?",
-      "intro": "La pertinencia técnico-científica no debe adivinarla el usuario de la herramienta.",
-      "how": "Marca SÍ cuando exista confirmación técnica o el servicio esté claramente definido para ese tipo de elemento y pregunta. Marca NO cuando se haya descartado, no sea viable o no corresponda.",
-      "examples": "Una muestra insuficiente, un soporte incompatible o una solicitud que no responde la pregunta investigativa pueden hacer inviable el examen.",
-      "dontNeed": "No necesitas conocer el método científico ni decidir por el laboratorio.",
-      "helpButton": "¿Qué hago si no sé si el examen es viable?",
-      "ifUncertain": "Consulta a la unidad de recepción, perito o laboratorio. No fuerces una respuesta técnica que no te corresponde.",
-      "mode": "decision_con_ayuda",
-      "source": "Ruta maestra v2 P02A",
-      "status": "CERRADO UX - 21/08/2026",
-      "note": "La pregunta se formula como verificación de una decisión técnica externa."
+      "title": "¿El área técnica ya definió qué examen procede?",
+      "question": "¿El laboratorio, perito o área técnico-científica competente ya definió qué examen, análisis o tratamiento procede para este EMP y EF?",
+      "intro": "No tienes que decidir por tu cuenta qué examen forense es pertinente. Alfred necesita saber si esa definición técnica ya existe.",
+      "how": "Revisa la solicitud, comunicación, concepto o indicación del laboratorio, perito o área competente. Responde según lo que esa instancia ya haya definido.",
+      "examples": "El laboratorio confirma el análisis solicitado; el perito indica que debe practicarse otro examen; el área técnica informa que el examen inicialmente pensado no procede.",
+      "dontNeed": "No necesitas sustituir al perito ni escoger una técnica científica que no conoces.",
+      "ifUncertain": "Si todavía no existe una definición técnica, Alfred dejará un resultado temporal con la actuación pendiente y podrás retomar la ruta cuando la tengas.",
+      "actor": "La pertinencia, aplicabilidad y viabilidad técnico-científica corresponden al perito, laboratorio o área especializada; el fiscal dirige la investigación y la Policía Judicial formula la necesidad investigativa y gestiona la solicitud.",
+      "mode": "decision_externa_verificable",
+      "source": "Ruta maestra P02A; Ley 906/2004; Manual SCC; Manual Único PJ",
+      "status": "DEPURADO TRANSVERSAL - v16"
     },
     "P03": {
       "id": "P03",
@@ -9079,18 +9599,17 @@
     "P04": {
       "id": "P04",
       "type": "Ruta general",
-      "title": "¿Tiene un manejo especial?",
-      "question": "¿Qué tipo de objeto o bien tienes frente a ti?",
-      "intro": "Algunas categorías tienen reglas especiales de custodia, análisis o disposición. No necesitas conocer la norma: identifica el objeto o la situación que mejor lo describe.",
-      "how": "Escoge directamente la categoría más parecida. Si ninguna aplica, continúa por la ruta general. Si varias parecen posibles, elige la que determine primero la seguridad, custodia o disposición y la herramienta conservará las demás como referencia.",
-      "examples": "Arma o explosivo; animal o madera; mercancía de contrabando; cadáver o muestra humana; pieza arqueológica; bien en extinción; dinero/divisas/metales; teléfono/computador; macroelemento; maquinaria de minería.",
-      "dontNeed": "No necesitas responder “sí existe una norma especial”. La herramienta ya conoce qué categorías tienen régimen especial.",
-      "helpButton": "No estoy seguro de la categoría: ayúdame a identificarla",
-      "ifUncertain": "Usa la ayuda guiada por características del objeto. Si aun así no puede clasificarse con seguridad, conserva la custodia lícita actual y consulta antes de trasladar o disponer.",
-      "mode": "selector_especial_directo",
-      "source": "Ruta maestra v2 P04 + Casos especiales v2",
-      "status": "CERRADO UX - 21/08/2026",
-      "note": "P04 deja de mostrarse como pregunta jurídica Sí/No y se convierte en selector por hechos."
+      "title": "¿Reconoces una categoría con manejo especial?",
+      "question": "¿El objeto o bien pertenece a una categoría que normalmente tiene un manejo especial por su naturaleza, como armas o explosivos, fauna o flora, mercancía aduanera, restos humanos, patrimonio, dinero o metales, evidencia digital o minería?",
+      "intro": "No necesitas conocer la norma especial. Identifica la naturaleza del objeto; Alfred te llevará al régimen correspondiente.",
+      "how": "Piensa en qué es físicamente el objeto o en qué procedimiento apareció. Si es arma, explosivo, fauna/flora, mercancía aduanera, material humano, patrimonio, dinero/metales, soporte digital o maquinaria minera, elige que sí.",
+      "examples": "Pistola; explosivo; animal silvestre; mercancía aprehendida por DIAN; restos humanos; pieza arqueológica; divisas; teléfono con evidencia digital; retroexcavadora de minería.",
+      "dontNeed": "No necesitas saber qué entidad recibe el objeto ni citar la norma especial antes de entrar a la subruta.",
+      "ifUncertain": "Usa la ayuda y revisa las categorías; si ninguna describe el objeto, continúa por la regla general.",
+      "actor": "Alfred identifica el régimen a partir de la categoría que el usuario puede reconocer; la decisión jurídica posterior corresponde a la autoridad competente según el caso.",
+      "mode": "reconocimiento_categoria",
+      "source": "Regímenes especiales ALFRED",
+      "status": "DEPURADO TRANSVERSAL - v16"
     },
     "P04A": {
       "id": "P04A",
@@ -9111,34 +9630,32 @@
     "P05": {
       "id": "P05",
       "type": "Ruta general",
-      "title": "¿El bien puede ser susceptible de comiso?",
-      "question": "¿El bien cumple alguna de las condiciones legales que permiten considerarlo susceptible de comiso?",
-      "intro": "No basta con que el bien tenga valor o aparezca en la investigación. Debe existir una relación concreta con alguna de las causales previstas en el artículo 100 del Código Penal y el artículo 82 del Código de Procedimiento Penal.",
-      "how": "Marca SÍ si puedes identificar al menos una de estas situaciones: (1) es un instrumento o efecto con el que se cometió la conducta punible y no tiene libre comercio; (2) proviene de la ejecución de la conducta punible y no tiene libre comercio; (3) tiene libre comercio, pertenece al penalmente responsable y fue utilizado para realizar un delito doloso o proviene de su ejecución; (4) es un bien o recurso del penalmente responsable que proviene directa o indirectamente del delito; (5) fue utilizado o estaba destinado a ser utilizado como medio o instrumento para ejecutar un delito doloso; (6) el producto ilícito fue mezclado o encubierto con bienes lícitos, en los términos legales; o (7) corresponde a un bien equivalente cuando el producto directo o indirecto no puede localizarse, identificarse o afectarse materialmente.",
-      "examples": "Dinero producto de una conducta delictiva; un bien del penalmente responsable usado como instrumento en un delito doloso; recursos destinados a ejecutar la conducta; bienes que encubren producto ilícito en los términos del artículo 82.",
-      "dontNeed": "No necesitas decidir todavía si existe orden para incautar, si el juez avalará la medida ni si el comiso será definitivo. Esa es la siguiente parte de la ruta.",
-      "helpButton": "Alfred, explícame cómo decidir",
-      "ifUncertain": "Si no puedes identificar y describir una causal concreta, no marques SÍ por simple sospecha. Documenta los hechos conocidos y ponlos en conocimiento del fiscal para la valoración jurídica correspondiente.",
-      "mode": "decision_con_ayuda",
-      "source": "Código Penal art. 100; Ley 906/2004 art. 82; material '¿Sobre qué bienes o recursos procede el comiso?'",
-      "status": "AJUSTADO UX - 02/09/2026",
-      "note": "La herramienta pide hechos; la ayuda explica los criterios jurídicos."
+      "title": "¿Qué relación tiene el bien con el delito?",
+      "question": "Selecciona la situación que realmente puedas verificar sobre la relación entre el bien o recurso y la conducta investigada.",
+      "intro": "No respondas “es susceptible de comiso”. Alfred construirá esa conclusión a partir de los hechos que selecciones.",
+      "how": "Compara el caso con las alternativas. Fíjate en el origen del bien, para qué fue utilizado, si estaba destinado al delito, si tiene libre comercio y si existe mezcla o equivalencia de bienes.",
+      "examples": "Dinero producto del delito; vehículo utilizado como instrumento en delito doloso; bien de origen ilícito mezclado con activos lícitos; bien equivalente cuando el producto ilícito no puede afectarse.",
+      "dontNeed": "No necesitas decretar el comiso ni decidir la legalidad de la medida. Tampoco confundas posible causal de comiso con incautación ya materializada o comiso definitivo.",
+      "ifUncertain": "Si no puedes verificar ninguna alternativa, selecciona la opción negativa. La ayuda jurídica muestra el fundamento de cada hipótesis.",
+      "actor": "La Policía Judicial documenta los hechos; el fiscal valora si promueve u ordena la afectación que corresponda y el juez ejerce el control judicial previsto por la ley.",
+      "mode": "diagnostico_factual_comiso",
+      "source": "CP art. 100; CPP art. 82; publicación del usuario sobre bienes y recursos objeto de comiso",
+      "status": "DEPURADO TRANSVERSAL - v16"
     },
     "P05A": {
       "id": "P05A",
       "type": "Ruta general",
-      "title": "¿Todavía debe conservarse como evidencia?",
-      "question": "¿Este bien todavía necesita conservarse físicamente como EMP y EF para la investigación o actuación?",
-      "intro": "Mientras conserve una necesidad probatoria real, la ruta de cadena de custodia tiene prioridad sobre su entrega patrimonial.",
-      "how": "Marca SÍ si todavía debe estar disponible como evidencia física. Marca NO cuando esa necesidad ya cesó o puede preservarse de otra forma conforme a la ruta aplicable.",
-      "examples": "Un arma pendiente de peritaje; un soporte que aún requiere examen; un elemento ya analizado y sin necesidad física posterior.",
-      "dontNeed": "No necesitas decidir en esta pantalla el destino final del bien.",
-      "helpButton": "¿Cómo sé si todavía debe conservarse físicamente?",
-      "ifUncertain": "Consulta la necesidad probatoria concreta con fiscal/perito. No confundas “podría servir algún día” con una necesidad real e indefinida.",
-      "mode": "decision_con_ayuda",
-      "source": "Ruta maestra v2 P05A",
-      "status": "CERRADO UX - 21/08/2026",
-      "note": "Lenguaje operativo en lugar de “conserva calidad de EMP y EF”."
+      "title": "¿Todavía debe conservarse por su función probatoria?",
+      "question": "¿Consta que el bien todavía debe conservarse por una necesidad probatoria actual, un examen pendiente o una actuación de contradicción que aún no ha terminado?",
+      "intro": "Esta pregunta no vuelve a decidir si alguna vez fue EMP y EF; verifica si hoy subsiste una necesidad probatoria que impida tratarlo únicamente por la ruta patrimonial.",
+      "how": "Revisa si hay examen pendiente, solicitud del fiscal, necesidad de presentación/contradicción o cualquier actuación probatoria actual que exija conservar el objeto.",
+      "examples": "Vehículo aún pendiente de peritaje; arma que todavía requiere análisis; objeto cuya prueba ya fue agotada y cuya conservación física dejó de ser necesaria.",
+      "dontNeed": "No necesitas declarar por tu cuenta que la prueba “ya no sirve”; responde con base en actuaciones, conceptos u órdenes verificables.",
+      "ifUncertain": "Si no consta que la necesidad probatoria haya cesado, conserva la ruta probatoria y consulta al fiscal o área competente.",
+      "actor": "La necesidad investigativa se define bajo dirección del fiscal y, cuando depende de conocimiento especializado, con apoyo del perito o laboratorio.",
+      "mode": "estado_probatorio_verificable",
+      "source": "Ruta maestra P05A",
+      "status": "DEPURADO TRANSVERSAL - v16"
     },
     "P05B": {
       "id": "P05B",
@@ -9153,8 +9670,9 @@
       "ifUncertain": "Si no puedes identificar la habilitación concreta, no materialices la medida. Documenta los hechos y pon la información en conocimiento del fiscal.",
       "mode": "decision_con_ayuda",
       "source": "Ruta maestra v2 P05B; Directiva FGN 0002 de 2020; Manual Único de Policía Judicial 2025.",
-      "status": "AJUSTADO UX - 02/09/2026",
-      "note": "Se separó susceptibilidad de comiso, habilitación, materialización, control y comiso definitivo."
+      "status": "DEPURADO TRANSVERSAL - v16",
+      "note": "Se separó susceptibilidad de comiso, habilitación, materialización, control y comiso definitivo.",
+      "actor": "El fiscal puede ordenar la actuación y la flagrancia puede constituir la habilitación legal en los eventos previstos; Policía Judicial materializa la medida."
     },
     "P05C": {
       "id": "P05C",
@@ -9169,8 +9687,9 @@
       "ifUncertain": "Revisa el acta o providencia del control. Si no existe información suficiente, mantén solo la custodia jurídicamente habilitada y consulta.",
       "mode": "selector_estado",
       "source": "Ruta maestra v2 P05C",
-      "status": "CERRADO UX - 21/08/2026",
-      "note": "Simplificar las etiquetas largas de las opciones."
+      "status": "DEPURADO TRANSVERSAL - v16",
+      "note": "Simplificar las etiquetas largas de las opciones.",
+      "actor": "El juez de control de garantías ejerce el control judicial posterior; Policía Judicial y fiscal documentan y promueven la actuación correspondiente."
     },
     "P06": {
       "id": "P06",
@@ -9185,8 +9704,9 @@
       "ifUncertain": "Revisa la última providencia o decisión vigente sobre la medida y el bien.",
       "mode": "selector_estado",
       "source": "Ruta maestra v2 P06",
-      "status": "CERRADO UX - 21/08/2026",
-      "note": "Pregunta centrada en el estado actual, no en una formulación acumulativa."
+      "status": "DEPURADO TRANSVERSAL - v16",
+      "note": "Pregunta centrada en el estado actual, no en una formulación acumulativa.",
+      "actor": "La autoridad judicial adopta el pronunciamiento definitivo; FEAB administra mientras la medida esté vigente dentro de su competencia."
     },
     "P06A": {
       "id": "P06A",
@@ -9201,31 +9721,31 @@
       "ifUncertain": "Lee integralmente la providencia y usa la salida de consulta antes de inventar un destinatario.",
       "mode": "selector_estado",
       "source": "Ruta maestra v2 P06A",
-      "status": "CERRADO UX - 21/08/2026",
-      "note": "La opción especial debe seguir hacia ESP."
+      "status": "DEPURADO TRANSVERSAL - v16",
+      "note": "La opción especial debe seguir hacia ESP.",
+      "actor": "Selecciona lo que decidió la autoridad competente; Alfred traduce esa decisión a la consecuencia operativa."
     },
     "P07": {
       "id": "P07",
       "type": "Ruta general",
-      "title": "¿La medida busca reparar o restituir a la víctima?",
-      "question": "¿La afectación del bien tiene como finalidad reparar a la víctima, devolverle algo o asegurar una eventual indemnización?",
-      "intro": "Esta ruta es distinta del comiso: aquí la finalidad principal es reparación o restablecimiento de derechos.",
-      "how": "Marca SÍ si la medida se adoptó con esa finalidad. Marca NO si la razón es otra.",
-      "examples": "Embargo y secuestro para reparación; restitución de un bien recuperado; uso provisional a favor de víctima.",
-      "dontNeed": "No necesitas elegir todavía el mecanismo exacto.",
-      "helpButton": "¿Qué diferencia hay entre reparación y comiso?",
-      "ifUncertain": "La ayuda debe explicar que comiso afecta bienes por su relación con el delito; reparación busca proteger o restablecer derechos de la víctima.",
-      "mode": "decision_con_ayuda",
-      "source": "Ruta maestra v2 P07",
-      "status": "CERRADO UX - 21/08/2026",
-      "note": "Ayuda conceptual breve, sin tratado jurídico."
+      "title": "¿Existe una medida orientada a reparación o restitución?",
+      "question": "¿Existe una solicitud, orden o medida cuyo propósito sea garantizar la reparación de las víctimas, restablecer sus derechos patrimoniales o asegurar una eventual indemnización?",
+      "intro": "Busca una actuación concreta en el caso; no necesitas calificarla jurídicamente antes de responder.",
+      "how": "Revisa órdenes, solicitudes o providencias que hablen de embargo, secuestro, prohibición de enajenar, restitución, uso provisional o medidas de reparación.",
+      "examples": "Embargo para garantizar perjuicios; restitución inmediata de un bien a la víctima; medida cautelar en incidente de reparación integral.",
+      "dontNeed": "No necesitas decidir tú cuál medida debería pedirse; responde según lo que existe o se está tramitando.",
+      "ifUncertain": "Si no consta una medida o finalidad reparadora, continúa con las demás rutas.",
+      "actor": "Fiscal, juez u otra autoridad competente adopta o promueve la medida según la figura; Policía Judicial verifica y ejecuta lo ordenado.",
+      "mode": "decision_externa_verificable",
+      "source": "Ruta maestra P07",
+      "status": "DEPURADO TRANSVERSAL - v16"
     },
     "P07A": {
       "id": "P07A",
       "type": "Ruta general",
-      "title": "¿Qué medida de reparación se aplicó?",
-      "question": "¿Cuál de estas medidas fue realmente decretada o autorizada sobre el bien?",
-      "intro": "No escojas por parecido: identifica la figura que aparece en la providencia o actuación.",
+      "title": "¿Qué medida u orden consta en el caso?",
+      "question": "¿Qué medida, orden o mecanismo consta en el caso para la reparación o el restablecimiento?",
+      "intro": "Selecciona la actuación que realmente fue solicitada, ordenada o decretada; Alfred aplicará después sus consecuencias.",
       "how": "Selecciona embargo y secuestro, prohibición de enajenar, restitución/uso provisional, entrega de bien en delito culposo, medida en incidente de reparación u otra.",
       "examples": "Revisa el nombre y contenido de la providencia.",
       "dontNeed": "No necesitas memorizar los números de los artículos; la aplicación los mostrará después.",
@@ -9234,7 +9754,8 @@
       "mode": "selector_figura",
       "source": "Ruta maestra v2 P07A",
       "status": "CERRADO UX - 21/08/2026",
-      "note": "Ocultar el artículo en el botón principal y dejarlo como subtítulo/fundamento."
+      "note": "Ocultar el artículo en el botón principal y dejarlo como subtítulo/fundamento.",
+      "actor": "La figura es decidida o decretada por la autoridad competente; el usuario solo identifica cuál consta en el expediente."
     },
     "P07B": {
       "id": "P07B",
@@ -9287,17 +9808,17 @@
     "P08": {
       "id": "P08",
       "type": "Ruta general",
-      "title": "¿Existe realmente una base para destruirlo?",
-      "question": "¿Existe una regla legal o una decisión válida que permita o imponga la destrucción de este bien, elemento o remanente?",
-      "intro": "La destrucción es irreversible. Antes de pensar en quién la ejecuta, Alfred debe identificar por qué puede destruirse y quién responde por el bien mientras todavía existe.",
-      "how": "Responde SÍ solo si puedes reconocer una regla, decisión o régimen que contemple la destrucción. Si no sabes cuál es, Alfred te ayudará a identificarlo en el paso siguiente.",
-      "examples": "Objeto material manifiestamente ilegítimo; laboratorio o cultivo ilícito; explosivo; arma; remanente; bien FEAB; mercancía DIAN; régimen ambiental o minero.",
-      "dontNeed": "No necesitas saber todavía quién destruye ni dónde se hará.",
-      "helpButton": "Alfred, explícame cómo decidir",
-      "ifUncertain": "Si la única razón es falta de espacio, deterioro o conveniencia, responde NO y continúa por otra salida jurídica.",
-      "mode": "decision_con_ayuda",
-      "source": "Revisión módulo destrucción 03/09/2026",
-      "status": "AJUSTADO UX - 03/09/2026"
+      "title": "¿Hay una razón concreta para evaluar su destrucción?",
+      "question": "¿Ya existe una razón concreta y verificable para evaluar la destrucción del bien, elemento o remanente, como una norma especial, una orden o una decisión aplicable al caso?",
+      "intro": "No tienes que decidir que la destrucción es jurídicamente válida. Identifica si existe una base concreta que active esa evaluación.",
+      "how": "Revisa si el objeto encaja en un supuesto legal de destrucción o si existe una orden, acto, decisión o régimen especial que obligue a revisar esa salida.",
+      "examples": "Objeto material de delitos del art. 87; laboratorio o cultivo ilícito; arma con régimen de destrucción; mercancía DIAN; bien bajo FEAB con causal de destrucción; remanente de laboratorio.",
+      "dontNeed": "No necesitas saber todavía quién destruye ni si todos los requisitos están cumplidos; la subruta los verificará uno por uno.",
+      "ifUncertain": "Si reconoces que puede ser un caso de destrucción pero no sabes cuál, usa la ayuda y entra al selector de régimen.",
+      "actor": "La habilitación final depende de la norma, orden o autoridad competente; Alfred identifica el régimen y verifica sus presupuestos.",
+      "mode": "activacion_factual",
+      "source": "Ruta destrucción v15 + fuentes del usuario",
+      "status": "DEPURADO TRANSVERSAL - v16"
     },
     "P08A": {
       "id": "P08A",
@@ -9333,9 +9854,9 @@
     "P09A": {
       "id": "P09A",
       "type": "Ruta general",
-      "title": "¿Existe otra razón válida para que la FGN conserve el bien?",
-      "question": "¿Existe hoy una orden, acto o título jurídico distinto de cadena, comiso, reparación, destrucción o régimen especial que obligue o permita que este bien siga a disposición de la Fiscalía?",
-      "intro": "La competencia administrativa para tener bodegas o administrar bienes no crea por sí sola el derecho a retenerlos.",
+      "title": "¿Existe otra razón documentada para que la Fiscalía lo conserve?",
+      "question": "¿Puedes identificar un documento, acto, medida o título vigente por el que el bien deba seguir a disposición de la Fiscalía por una razón distinta de cadena de custodia, comiso, reparación, destrucción o régimen especial?",
+      "intro": "Responde por la existencia de un título o actuación concreta, no por una valoración jurídica abstracta.",
       "how": "Marca SÍ si puedes señalar el título vigente. Marca NO si no existe.",
       "examples": "Una providencia o acto específico que mantiene el bien a disposición de FGN por otra causa legal.",
       "dontNeed": "No necesitas inventar una categoría para evitar devolver el bien.",
@@ -9344,14 +9865,15 @@
       "mode": "decision_con_ayuda",
       "source": "Ruta maestra v2 P09A",
       "status": "CERRADO UX - 21/08/2026",
-      "note": "Refuerza título jurídico ≠ competencia administrativa."
+      "note": "Refuerza título jurídico ≠ competencia administrativa.",
+      "actor": "La autoridad competente define el título; el usuario identifica si ese soporte existe y cuál es."
     },
     "P10": {
       "id": "P10",
       "type": "Ruta general",
-      "title": "¿Por qué debe entregarse o devolverse?",
-      "question": "¿Cuál de estas situaciones explica mejor por qué el bien debe salir de la custodia actual y ser entregado, devuelto o restituido?",
-      "intro": "No necesitas escoger el artículo. Identifica el hecho o decisión que origina la entrega.",
+      "title": "¿Qué ocurrió con el bien o elemento?",
+      "question": "¿Qué ocurrió con el bien o elemento que explica por qué ahora debe evaluarse su entrega, devolución o restitución?",
+      "intro": "Selecciona el hecho o decisión que consta en el caso; Alfred determinará la ruta jurídica de entrega o devolución.",
       "how": "Elige la situación concreta: solo se retuvo para investigar; se levanta una medida de comiso; bien recuperado para víctima; uso provisional; delito culposo; macroelemento; ya existe orden de entrega; o existe controversia.",
       "examples": "Un celular retenido solo para extraer información; vehículo con medida levantada; objeto robado recuperado; macroelemento ya examinado.",
       "dontNeed": "No necesitas decidir todavía quién está legitimado para recibir: eso se verifica después.",
@@ -9360,7 +9882,8 @@
       "mode": "selector_casos",
       "source": "Ruta maestra v2 P10",
       "status": "CERRADO UX - 21/08/2026",
-      "note": "Botones deben hablar de hechos, no de artículos."
+      "note": "Botones deben hablar de hechos, no de artículos.",
+      "actor": "La orden o decisión de entrega corresponde a la autoridad competente según la figura; Policía Judicial identifica el supuesto y ejecuta lo dispuesto."
     },
     "P11": {
       "id": "P11",
@@ -9375,8 +9898,9 @@
       "ifUncertain": "La ayuda explica que debe existir identificación del receptor, coincidencia del bien y constancia del traspaso.",
       "mode": "decision_con_ayuda",
       "source": "Ruta maestra v2 P11",
-      "status": "CERRADO UX - 21/08/2026",
-      "note": "Separar decisión y materialización."
+      "status": "DEPURADO TRANSVERSAL - v16",
+      "note": "Separar decisión y materialización.",
+      "actor": "La autoridad competente ordena la devolución, restitución o entrega; el custodio o Policía Judicial materializa la entrega."
     },
     "P11A": {
       "id": "P11A",
@@ -9391,15 +9915,16 @@
       "ifUncertain": "La ayuda debe mostrar una línea de tiempo simple de comunicación, término y reclamación.",
       "mode": "selector_estado",
       "source": "Ruta maestra v2 P11A",
-      "status": "CERRADO UX - 21/08/2026",
-      "note": "Hacer visible la secuencia temporal."
+      "status": "DEPURADO TRANSVERSAL - v16",
+      "note": "Hacer visible la secuencia temporal.",
+      "actor": "Responde por hechos verificables de comunicación, término, reclamación o identidad del legitimado."
     },
     "P12": {
       "id": "P12",
       "type": "Ruta general",
-      "title": "¿Es un macroelemento?",
-      "question": "¿Es un objeto grande que puede examinarse en el lugar o donde se encuentre, recoger de él los EMP y EF y documentarlo suficientemente sin conservar todo el objeto?",
-      "intro": "La categoría no depende solo del tamaño: la lógica es poder sustituir la conservación física del objeto completo mediante examen, recolección y documentación.",
+      "title": "¿Es un objeto grande que debe examinarse y documentarse?",
+      "question": "¿Se trata de una nave, aeronave, vehículo, máquina, grúa u otro objeto de gran tamaño que debe examinarse y documentarse para recoger los EMP y EF que se encuentren en él, en lugar de conservar necesariamente todo el objeto como evidencia?",
+      "intro": "Identifica las características materiales del objeto. Alfred aplicará la regla del macroelemento si corresponde.",
       "how": "Marca SÍ para naves, aeronaves, vehículos, máquinas, grúas u objetos similares cuando aplique la regla del art. 256. Marca NO si no corresponde.",
       "examples": "Vehículo, grúa, máquina industrial, aeronave, embarcación.",
       "dontNeed": "No necesitas llamar macroelemento a todo objeto voluminoso.",
@@ -9408,30 +9933,30 @@
       "mode": "decision_con_ayuda",
       "source": "Ruta maestra v2 P12",
       "status": "CERRADO UX - 21/08/2026",
-      "note": "Evita equiparar tamaño con categoría jurídica."
+      "note": "Evita equiparar tamaño con categoría jurídica.",
+      "actor": "Policía Judicial y los expertos realizan el examen y documentación; la situación patrimonial posterior depende de la autoridad competente."
     },
     "P12A": {
       "id": "P12A",
       "type": "Ruta general",
-      "title": "¿Ya quedó asegurada la prueba del macroelemento?",
-      "question": "¿Ya se examinó el macroelemento, se recogieron los EMP y EF necesarios y quedó documentada su totalidad y las zonas relevantes mediante fotografía o video?",
-      "intro": "Antes de definir qué pasa con el objeto grande, debe quedar asegurada la información probatoria que sustituirá su conservación física.",
-      "how": "Marca SÍ solo cuando las tres tareas estén completas: examen, recolección y documentación suficiente. Marca NO si falta alguna.",
-      "examples": "Peritaje del vehículo, levantamiento de rastros, fotografías generales y de zonas de interés.",
-      "dontNeed": "No necesitas decidir aún si se devuelve o se afecta patrimonialmente.",
-      "helpButton": "¿Qué debe estar completo antes de seguir?",
-      "ifUncertain": "La ayuda muestra el checklist de examen + recolección + documentación.",
-      "mode": "checklist_previo",
-      "source": "Ruta maestra v2 P12A",
-      "status": "CERRADO UX - 21/08/2026",
-      "note": "Evitar respuesta superficial Sí/No."
+      "title": "¿Ya se realizó el examen del macroelemento?",
+      "question": "¿Ya se realizó el examen técnico o pericial necesario sobre el macroelemento?",
+      "intro": "Primero verifica el examen. Alfred preguntará por separado la recolección de EMP y EF y la documentación fotográfica o en video.",
+      "how": "Responde según el informe, actuación o constancia del examen técnico/pericial.",
+      "examples": "Inspección de un vehículo, maquinaria, nave o aeronave antes de definir su entrega o afectación.",
+      "dontNeed": "No marques que todo está completo si solo se hizo una parte. Alfred separará cada requisito.",
+      "ifUncertain": "Si el examen no se ha realizado, la ruta indicará qué debe hacerse y cuándo retomarla.",
+      "actor": "El examen corresponde a Policía Judicial y/o al experto competente, según la naturaleza de la actuación.",
+      "mode": "requisito_atomico",
+      "source": "CPP art. 256",
+      "status": "DEPURADO TRANSVERSAL - v16"
     },
     "P12B": {
       "id": "P12B",
       "type": "Ruta general",
-      "title": "¿Qué situación tiene ahora el macroelemento?",
-      "question": "Una vez asegurada la prueba, ¿cuál de estas situaciones describe hoy al macroelemento?",
-      "intro": "Ahora sí se decide su tratamiento jurídico, separado de los EMP y EF que ya fueron recolectados.",
+      "title": "¿Qué consta ahora sobre el macroelemento?",
+      "question": "Una vez completados el examen, la recolección y la documentación, ¿qué consta actualmente sobre la situación del macroelemento?",
+      "intro": "Selecciona la medida, situación o hecho que realmente consta después de completar la fase probatoria.",
       "how": "Selecciona: sin medida y sin fundamento de comiso; medida de comiso vigente; posible medio eficaz sin medida válida; régimen especial concurrente; control de legalidad pendiente; controversia sobre receptor; duda de comiso; otra incertidumbre.",
       "examples": "Vehículo para devolver; vehículo ya incautado con fines de comiso; maquinaria con régimen ambiental; vehículo cuya medida espera control.",
       "dontNeed": "No necesitas volver a conservar todo el macroelemento solo porque los EMP y EF ya fueron recolectados.",
@@ -9440,7 +9965,8 @@
       "mode": "selector_estado",
       "source": "Ruta maestra v2 P12B",
       "status": "CERRADO UX - 21/08/2026",
-      "note": "Simplificar las ocho respuestas largas de la matriz."
+      "note": "Simplificar las ocho respuestas largas de la matriz.",
+      "actor": "La situación jurídica depende de las medidas u órdenes adoptadas por la autoridad competente; el usuario identifica cuál existe."
     },
     "ESP": {
       "id": "ESP",
@@ -10116,39 +10642,41 @@
     "DES-87-PREV": {
       "id": "DES-87-PREV",
       "type": "Ruta general",
-      "title": "¿Ya está listo jurídicamente para destruir?",
-      "question": "¿Ya se cumplieron las reglas de cadena de custodia aplicables y existe informe del perito oficial que establezca la ilegitimidad del bien?",
-      "intro": "Para los casos del artículo 87 no basta con que el objeto parezca ilegal. Deben cumplirse la cadena de custodia aplicable y existir informe del perito oficial que establezca su ilegitimidad.",
-      "how": "Comprueba dos hechos: que la preservación/cadena exigible esté cumplida y que exista el informe oficial de ilegitimidad.",
+      "title": "¿Ya está completa la preservación y cadena aplicable?",
+      "question": "¿Ya se cumplieron las reglas de preservación y cadena de custodia que resultan aplicables antes de la destrucción?",
+      "intro": "Alfred separa este requisito del informe pericial para que puedas identificar exactamente qué falta.",
+      "how": "Verifica identificación, preservación, registros y continuidad que correspondan al objeto antes de una destrucción irreversible.",
       "examples": "Medicamentos adulterados, moneda falsa, falsedad marcaria u objetos materiales de delitos de propiedad intelectual.",
       "dontNeed": "No necesitas decidir tú solo la ilegitimidad.",
       "helpButton": "Alfred, explícame cómo decidir",
       "ifUncertain": "Si falta el peritaje o la preservación, Alfred te dejará en un resultado temporal con la actuación pendiente.",
       "mode": "decision_con_ayuda",
       "source": "Ley 906/2004 art. 87",
-      "status": "AJUSTADO UX - 03/09/2026"
+      "status": "DEPURADO TRANSVERSAL - v16",
+      "actor": "Policía Judicial y los custodios responsables aseguran la cadena; la autoridad competente controla la actuación según el caso."
     },
     "DES-DROGA-PREV": {
       "id": "DES-DROGA-PREV",
       "type": "Ruta general",
-      "title": "¿Ya preservaste lo que debe sobrevivir a la destrucción?",
-      "question": "¿Antes de la destrucción ya se tomaron las muestras necesarias y se realizaron fotografías o video del laboratorio, cultivo, elementos y sustancias, dejando esos soportes bajo cadena de custodia?",
-      "intro": "En laboratorios rústicos y cultivos ilícitos la ley permite que el elemento físico desaparezca, pero exige preservar antes muestras, fotografías o video que lo sustituyan.",
-      "how": "Verifica que esas muestras y registros ya existan, estén identificados y sometidos a cadena de custodia.",
+      "title": "¿Ya se tomaron las muestras necesarias?",
+      "question": "¿Ya se tomaron las muestras necesarias antes de la destrucción?",
+      "intro": "Alfred verifica por separado muestras, registros visuales y cadena de custodia.",
+      "how": "Comprueba que las muestras que deben sobrevivir a la destrucción ya estén obtenidas.",
       "examples": "Muestras de sustancias, fotografías del laboratorio, video del cultivo y registros de los elementos encontrados.",
       "dontNeed": "No necesitas conservar físicamente todo el laboratorio o cultivo una vez cumplida la regla aplicable.",
       "helpButton": "Alfred, explícame cómo decidir",
       "ifUncertain": "Si todavía falta la evidencia sustitutiva, no cierres la ruta con destrucción.",
       "mode": "decision_con_ayuda",
       "source": "Ley 906/2004 art. 87 inc. 2",
-      "status": "AJUSTADO UX - 03/09/2026"
+      "status": "DEPURADO TRANSVERSAL - v16",
+      "actor": "Policía Judicial y/o el experto competente toman las muestras conforme a la actuación aplicable."
     },
     "DES-DIAN-PROB": {
       "id": "DES-DIAN-PROB",
       "type": "Ruta general",
-      "title": "¿Fiscalía ya obtuvo lo que necesita antes de que DIAN disponga?",
-      "question": "Si la mercancía está relacionada con una conducta punible, ¿la Fiscalía ya fue informada y se recolectaron los EMP y EF que requiere antes de que la DIAN disponga de la mercancía?",
-      "intro": "La mercancía y la evidencia penal no son necesariamente la misma cosa. La DIAN puede conservar y disponer la mercancía, mientras Fiscalía recolecta únicamente los EMP y EF que requiera.",
+      "title": "¿Fiscalía ya obtuvo lo que necesita preservar?",
+      "question": "Si existe una investigación penal relacionada con la mercancía, ¿la Fiscalía ya obtuvo y aseguró los EMP y EF que necesita antes de que la DIAN ejecute una disposición irreversible?",
+      "intro": "La pregunta no exige decidir competencias aduaneras; solo verificar si la investigación penal ya preservó lo que necesita antes de la disposición de la mercancía.",
       "how": "Si existe investigación penal, verifica que DIAN haya informado a Fiscalía y que ya se haya recolectado lo necesario antes de una destrucción irreversible.",
       "examples": "Mercancía de contrabando en bodega DIAN de la que se toman muestras, fotografías o unidades representativas para la investigación.",
       "dontNeed": "No necesitas trasladar toda la mercancía al Almacén de Evidencias por el solo hecho de existir una investigación penal.",
@@ -10156,7 +10684,8 @@
       "ifUncertain": "Si falta la recolección penal, detén la disposición y coordina primero con Fiscalía.",
       "mode": "decision_con_ayuda",
       "source": "Ley 2586/2026 art. 40",
-      "status": "AJUSTADO UX - 03/09/2026"
+      "status": "DEPURADO TRANSVERSAL - v16",
+      "actor": "La Fiscalía define y recolecta los EMP y EF necesarios para la investigación; la DIAN ejerce sus competencias sobre la mercancía bajo el régimen aduanero."
     },
     "DES-FEAB-BASE": {
       "id": "DES-FEAB-BASE",
@@ -10176,32 +10705,34 @@
     "DES-ARM563-PREV": {
       "id": "DES-ARM563-PREV",
       "type": "Ruta general",
-      "title": "¿El arma ya puede pasar de evidencia a disposición final?",
-      "question": "¿Ya se cumplieron la cadena de custodia y el examen pericial, el arma dejó de ser requerida en la actuación y existe orden del fiscal de conocimiento para destruirla?",
-      "intro": "El artículo 563 separa la fase probatoria de la destrucción: primero cadena y peritaje; después, si ya no se requiere, orden del fiscal.",
-      "how": "Comprueba cadena de custodia, examen pericial, cesación de necesidad y orden del fiscal.",
+      "title": "¿Ya está cumplida la cadena de custodia aplicable?",
+      "question": "¿Ya se cumplió la cadena de custodia aplicable respecto del arma de fuego o arma blanca?",
+      "intro": "Alfred verificará por separado cadena, peritaje, necesidad probatoria y orden del fiscal.",
+      "how": "Comprueba únicamente la cadena de custodia del arma.",
       "examples": "Arma de fuego o arma blanca utilizada como medio o instrumento del delito.",
       "dontNeed": "No necesitas asumir que toda arma incautada se destruye inmediatamente.",
       "helpButton": "Alfred, explícame cómo decidir",
       "ifUncertain": "Si falta un presupuesto, conserva la custodia vigente y completa la actuación pendiente.",
       "mode": "decision_con_ayuda",
       "source": "Ley 906/2004 art. 563",
-      "status": "AJUSTADO UX - 03/09/2026"
+      "status": "DEPURADO TRANSVERSAL - v16",
+      "actor": "Policía Judicial y custodios responsables aseguran la cadena de custodia."
     },
     "DES-AML-PREV": {
       "id": "DES-AML-PREV",
       "type": "Ruta general",
-      "title": "¿Ya está habilitada la destrucción del menos letal?",
-      "question": "¿El elemento fue incautado y posteriormente decomisado por incumplimiento de los requisitos legales para su porte y ya existe concepto del DCCAE para su destrucción?",
-      "intro": "En el régimen de la Ley 2197, la destrucción por INDUMIL requiere que el elemento haya sido incautado y posteriormente decomisado y exista concepto previo del DCCAE.",
-      "how": "Verifica decomiso sectorial y concepto del DCCAE antes de coordinar la disposición con INDUMIL.",
+      "title": "¿Ya consta el decomiso sectorial?",
+      "question": "¿Ya consta el decomiso sectorial del elemento por incumplimiento de los requisitos legales aplicables?",
+      "intro": "Alfred separa el decomiso sectorial del concepto previo del DCCAE.",
+      "how": "Verifica el acto, decisión o soporte que acredita el decomiso bajo el régimen aplicable.",
       "examples": "Armas, elementos y dispositivos menos letales, accesorios, partes y municiones sometidos a ese régimen.",
       "dontNeed": "No necesitas confundir este decomiso sectorial con el comiso penal.",
       "helpButton": "Alfred, explícame cómo decidir",
       "ifUncertain": "Si falta el decomiso o el concepto, conserva la custodia sectorial y completa el trámite.",
       "mode": "decision_con_ayuda",
       "source": "Ley 2197/2022 art. 34",
-      "status": "AJUSTADO UX - 03/09/2026"
+      "status": "DEPURADO TRANSVERSAL - v16",
+      "actor": "La autoridad sectorial competente adopta el decomiso; no debe confundirse con el comiso penal."
     },
     "DES-DROGA-CUST": {
       "id": "DES-DROGA-CUST",
@@ -10262,129 +10793,174 @@
       "mode": "decision_con_ayuda",
       "source": "Ley 2586/2026; Decreto 1165/2019",
       "status": "AJUSTADO UX - 03/09/2026"
+    },
+    "P12A2": {
+      "id": "P12A2",
+      "type": "Ruta general",
+      "title": "¿Ya recogiste los EMP y EF pertinentes?",
+      "question": "¿Ya se recogieron y aseguraron los EMP y EF pertinentes hallados en el macroelemento?",
+      "intro": "Esta verificación es independiente del examen y de las fotografías o video.",
+      "how": "Comprueba que los EMP y EF que debían separarse del macroelemento ya estén identificados, recolectados y asegurados.",
+      "examples": "Muestras, partes, rastros o elementos contenidos en un vehículo o maquinaria.",
+      "dontNeed": "No necesitas conservar todo el macroelemento para suplir una recolección que todavía falta.",
+      "ifUncertain": "Si falta recolectar algo pertinente, conserva temporalmente la situación necesaria y completa esa actuación.",
+      "actor": "Policía Judicial realiza la recolección y asegura la cadena de custodia; el fiscal dirige y coordina la investigación.",
+      "mode": "requisito_atomico",
+      "source": "CPP art. 256",
+      "status": "NUEVO v16"
+    },
+    "P12A3": {
+      "id": "P12A3",
+      "type": "Ruta general",
+      "title": "¿Ya está completa la documentación sustitutiva?",
+      "question": "¿Ya se documentó suficientemente el macroelemento mediante fotografías o video de su totalidad y de los sitios relevantes, para que esos registros puedan sustituir su conservación física cuando corresponda?",
+      "intro": "La documentación se verifica por separado para saber exactamente qué falta antes de liberar o afectar el macroelemento.",
+      "how": "Revisa que existan fotografías o video suficientes de la totalidad del objeto y de los puntos relevantes para la investigación.",
+      "examples": "Registro integral de vehículo y zonas con impactos, compartimientos, números de identificación o sitios de hallazgo.",
+      "dontNeed": "No asumas que una fotografía general basta si todavía faltan los sitios relevantes.",
+      "ifUncertain": "Si la documentación es insuficiente, completa la fijación antes de continuar.",
+      "actor": "Policía Judicial realiza la fijación y documentación conforme a la actuación investigativa.",
+      "mode": "requisito_atomico",
+      "source": "CPP art. 256",
+      "status": "NUEVO v16"
+    },
+    "DES-87-PERITO": {
+      "id": "DES-87-PERITO",
+      "type": "Ruta general",
+      "title": "¿Ya existe el informe pericial de ilegitimidad?",
+      "question": "¿Ya existe el informe del perito oficial que establece la ilegitimidad del bien u objeto?",
+      "intro": "No necesitas decidir tú la ilegitimidad. Alfred solo verifica si el concepto oficial ya existe.",
+      "how": "Busca el informe del perito oficial que establece la ilegitimidad del objeto.",
+      "examples": "Medicamentos adulterados, moneda falsa, falsedad marcaria u objetos materiales de los delitos comprendidos por la regla.",
+      "dontNeed": "No sustituyas el concepto pericial con una apreciación visual o intuitiva.",
+      "ifUncertain": "Si el informe no existe, la destrucción queda temporalmente pendiente.",
+      "actor": "El perito oficial establece la ilegitimidad; Policía Judicial ejecuta la destrucción en las condiciones legales aplicables.",
+      "mode": "decision_externa_verificable",
+      "source": "CPP art. 87",
+      "status": "NUEVO v16"
+    },
+    "DES-DROGA-REGISTRO": {
+      "id": "DES-DROGA-REGISTRO",
+      "type": "Ruta general",
+      "title": "¿Ya existen fotografías o video suficientes?",
+      "question": "¿Ya se realizaron fotografías o video suficientes del laboratorio, cultivo, elementos y sustancias antes de la destrucción?",
+      "intro": "Verifica únicamente este requisito; Alfred ya preguntó por los anteriores.",
+      "how": "Responde según los registros y actuaciones realmente realizadas.",
+      "examples": "Muestras, fotografías, video y demás soportes que permanecerán después de la destrucción.",
+      "dontNeed": "No marques todo como cumplido si solo existe una parte de la evidencia sustitutiva.",
+      "ifUncertain": "Si falta este requisito, la destrucción queda temporalmente pendiente.",
+      "actor": "Policía Judicial realiza la fijación y documentación antes de la destrucción.",
+      "mode": "requisito_atomico",
+      "source": "CPP art. 87 inc. 2",
+      "status": "NUEVO v16"
+    },
+    "DES-DROGA-CADENA": {
+      "id": "DES-DROGA-CADENA",
+      "type": "Ruta general",
+      "title": "¿La evidencia sustitutiva ya está bajo cadena de custodia?",
+      "question": "¿Las muestras, fotografías, videos y demás soportes que deben conservarse están identificados y sometidos a la cadena de custodia que corresponda?",
+      "intro": "Verifica únicamente este requisito; Alfred ya preguntó por los anteriores.",
+      "how": "Responde según los registros y actuaciones realmente realizadas.",
+      "examples": "Muestras, fotografías, video y demás soportes que permanecerán después de la destrucción.",
+      "dontNeed": "No marques todo como cumplido si solo existe una parte de la evidencia sustitutiva.",
+      "ifUncertain": "Si falta este requisito, la destrucción queda temporalmente pendiente.",
+      "actor": "Policía Judicial y los custodios responsables aseguran la identificación, registro y continuidad de la evidencia sustitutiva.",
+      "mode": "requisito_atomico",
+      "source": "CPP art. 87 inc. 2",
+      "status": "NUEVO v16"
+    },
+    "DES-ARM563-PERICIA": {
+      "id": "DES-ARM563-PERICIA",
+      "type": "Ruta general",
+      "title": "¿Ya se practicó el examen pericial?",
+      "question": "¿Ya se practicó el examen pericial necesario sobre el arma?",
+      "intro": "Responde únicamente por este requisito verificable; Alfred ya controló los anteriores.",
+      "how": "Busca la actuación, informe u orden que acredite este punto.",
+      "examples": "Arma de fuego o arma blanca utilizada como medio o instrumento del delito.",
+      "dontNeed": "No necesitas concluir por tu cuenta que todos los presupuestos están cumplidos.",
+      "ifUncertain": "Si no consta el requisito, la destrucción queda temporalmente pendiente.",
+      "actor": "El perito o área técnico-científica competente realiza el examen.",
+      "mode": "requisito_atomico",
+      "source": "CPP art. 563",
+      "status": "NUEVO v16"
+    },
+    "DES-ARM563-NECESIDAD": {
+      "id": "DES-ARM563-NECESIDAD",
+      "type": "Ruta general",
+      "title": "¿Consta que el arma ya no es requerida?",
+      "question": "¿Consta que el arma ya no es requerida para la investigación o actuación penal?",
+      "intro": "Responde únicamente por este requisito verificable; Alfred ya controló los anteriores.",
+      "how": "Busca la actuación, informe u orden que acredite este punto.",
+      "examples": "Arma de fuego o arma blanca utilizada como medio o instrumento del delito.",
+      "dontNeed": "No necesitas concluir por tu cuenta que todos los presupuestos están cumplidos.",
+      "ifUncertain": "Si no consta el requisito, la destrucción queda temporalmente pendiente.",
+      "actor": "La necesidad probatoria se define en la actuación bajo dirección del fiscal, con apoyo técnico cuando corresponda.",
+      "mode": "requisito_atomico",
+      "source": "CPP art. 563",
+      "status": "NUEVO v16"
+    },
+    "DES-ARM563-ORDEN": {
+      "id": "DES-ARM563-ORDEN",
+      "type": "Ruta general",
+      "title": "¿Ya existe orden del fiscal para destruirla?",
+      "question": "¿Ya existe orden del fiscal de conocimiento para destruir el arma?",
+      "intro": "Responde únicamente por este requisito verificable; Alfred ya controló los anteriores.",
+      "how": "Busca la actuación, informe u orden que acredite este punto.",
+      "examples": "Arma de fuego o arma blanca utilizada como medio o instrumento del delito.",
+      "dontNeed": "No necesitas concluir por tu cuenta que todos los presupuestos están cumplidos.",
+      "ifUncertain": "Si no consta el requisito, la destrucción queda temporalmente pendiente.",
+      "actor": "El fiscal de conocimiento emite la orden prevista por la ruta antes de ejecutar la destrucción.",
+      "mode": "requisito_atomico",
+      "source": "CPP art. 563",
+      "status": "NUEVO v16"
+    },
+    "DES-AML-DCCAE": {
+      "id": "DES-AML-DCCAE",
+      "type": "Ruta general",
+      "title": "¿Ya existe el concepto previo del DCCAE?",
+      "question": "¿Ya existe el concepto previo del DCCAE requerido para la destrucción?",
+      "intro": "No necesitas valorar técnicamente el concepto; solo verificar si ya fue emitido.",
+      "how": "Busca el concepto previo del DCCAE dentro del trámite sectorial.",
+      "examples": "Armas, elementos o dispositivos menos letales, accesorios, partes y municiones sometidos a la Ley 2197.",
+      "dontNeed": "No confundas este requisito con el decomiso sectorial ni con el comiso penal.",
+      "ifUncertain": "Si no existe el concepto, la disposición permanece pendiente.",
+      "actor": "El DCCAE emite el concepto previo; INDUMIL ejecuta la destrucción en los supuestos de la ruta.",
+      "mode": "decision_externa_verificable",
+      "source": "Ley 2197/2022 art. 34",
+      "status": "NUEVO v16"
     }
   },
   "uxOptions": {
     "P04": [
       {
-        "key": "CAT-ARM",
-        "next": "ESP-ARM",
-        "label": "Arma, munición o explosivo",
-        "subtext": "Incluye armas de fuego, municiones, explosivos y dispositivos relacionados.",
-        "order": 1.0,
+        "key": "Sí",
+        "next": "ESP",
+        "label": "Sí, pertenece a una categoría con manejo especial",
+        "subtext": "Alfred te mostrará las categorías para identificar la subruta.",
+        "order": 1,
         "action": "navigate",
         "visible": "Sí",
-        "status": "CERRADO UX"
+        "status": "v16"
       },
       {
-        "key": "CAT-AMB",
-        "next": "ESP-AMB",
-        "label": "Animal, planta, madera u otro elemento ambiental",
-        "subtext": "Fauna, flora, productos ambientales, recursos hidrobiológicos o medios usados en infracción ambiental.",
-        "order": 2.0,
-        "action": "navigate",
-        "visible": "Sí",
-        "status": "CERRADO UX"
-      },
-      {
-        "key": "CAT-CON",
-        "next": "ESP-CON",
-        "label": "Mercancía de contrabando o bajo actuación de la DIAN",
-        "subtext": "Aprehensión, decomiso o disposición aduanera.",
-        "order": 3.0,
-        "action": "navigate",
-        "visible": "Sí",
-        "status": "CERRADO UX"
-      },
-      {
-        "key": "CAT-HUM",
-        "next": "ESP-HUM",
-        "label": "Cadáver, restos humanos o muestra biológica",
-        "subtext": "Incluye muestras ya obtenidas o por obtener de una persona viva.",
-        "order": 4.0,
-        "action": "navigate",
-        "visible": "Sí",
-        "status": "CERRADO UX"
-      },
-      {
-        "key": "CAT-PAT",
-        "next": "ESP-PAT",
-        "label": "Pieza arqueológica, bien cultural, documento o patrimonio",
-        "subtext": "Incluye patrimonio sumergido, archivos y ejemplares patrimoniales.",
-        "order": 5.0,
-        "action": "navigate",
-        "visible": "Sí",
-        "status": "CERRADO UX"
-      },
-      {
-        "key": "CAT-EXT",
-        "next": "ESP-EXT",
-        "label": "Bien relacionado con extinción de dominio",
-        "subtext": "Solo si existe o puede existir actuación autónoma de extinción.",
-        "order": 6.0,
-        "action": "navigate",
-        "visible": "Sí",
-        "status": "CERRADO UX"
-      },
-      {
-        "key": "CAT-MET",
-        "next": "ESP-MET",
-        "label": "Dinero, divisas, oro, plata o platino",
-        "subtext": "Valores con posible custodia o administración financiera especial.",
-        "order": 7.0,
-        "action": "navigate",
-        "visible": "Sí",
-        "status": "CERRADO UX"
-      },
-      {
-        "key": "CAT-DIG",
-        "next": "ESP-DIG",
-        "label": "Celular, computador u otro dispositivo con información digital",
-        "subtext": "Cuando el valor probatorio está en los datos, el soporte físico o ambos.",
-        "order": 8.0,
-        "action": "navigate",
-        "visible": "Sí",
-        "status": "CERRADO UX"
-      },
-      {
-        "key": "CAT-MACRO",
-        "next": "ESP-MACRO",
-        "label": "Vehículo, máquina u otro objeto de gran tamaño",
-        "subtext": "Cuando puede examinarse, recolectar de él los EMP y EF y documentarlo para no conservar todo el objeto.",
-        "order": 9.0,
-        "action": "navigate",
-        "visible": "Sí",
-        "status": "CERRADO UX"
-      },
-      {
-        "key": "CAT-MIN",
-        "next": "ESP-MIN",
-        "label": "Maquinaria pesada usada en minería sin autorizaciones",
-        "subtext": "Dragas, retroexcavadoras, buldóceres u otra maquinaria similar.",
-        "order": 10.0,
-        "action": "navigate",
-        "visible": "Sí",
-        "status": "CERRADO UX"
-      },
-      {
-        "key": "CAT-NONE",
+        "key": "No",
         "next": "P04A",
-        "label": "Ninguna de las anteriores",
-        "subtext": "No identifico una categoría con manejo especial.",
-        "order": 11.0,
+        "label": "No, ninguna de esas categorías describe el objeto",
+        "subtext": "Continúa por las reglas generales.",
+        "order": 2,
         "action": "navigate",
         "visible": "Sí",
-        "status": "CERRADO UX"
+        "status": "v16"
       },
       {
-        "key": "CAT-HELP",
+        "key": "Duda",
         "next": "",
         "label": "No estoy seguro",
-        "subtext": "La herramienta te ayudará a identificar la categoría sin pedirte que conozcas la norma.",
-        "order": 12.0,
+        "subtext": "Abre la explicación y los ejemplos antes de decidir.",
+        "order": 3,
         "action": "help",
         "visible": "Sí",
-        "status": "CERRADO UX"
+        "status": "v16"
       }
     ],
     "ESP": [
@@ -10575,56 +11151,96 @@
     ],
     "P05": [
       {
-        "key": "Sí",
+        "key": "C1",
         "next": "P05A",
-        "label": "Sí, se cumple al menos una causal concreta",
-        "subtext": "Alfred continuará con la habilitación para materializar la medida con fines de comiso.",
-        "order": 1.0,
+        "label": "Es un instrumento o efecto con el que se cometió la conducta, o proviene de su ejecución, y no tiene libre comercio",
+        "subtext": "Alfred tratará esta respuesta como una posible causal de comiso y continuará con las verificaciones necesarias.",
+        "order": 1,
         "action": "navigate",
         "visible": "Sí",
-        "status": "AJUSTADO UX"
+        "status": "v16"
+      },
+      {
+        "key": "C2",
+        "next": "P05A",
+        "label": "Tiene libre comercio, pertenece al penalmente responsable y fue utilizado para realizar un delito doloso o proviene de su ejecución",
+        "subtext": "Alfred tratará esta respuesta como una posible causal de comiso y continuará con las verificaciones necesarias.",
+        "order": 2,
+        "action": "navigate",
+        "visible": "Sí",
+        "status": "v16"
+      },
+      {
+        "key": "C3",
+        "next": "P05A",
+        "label": "Es un bien o recurso del penalmente responsable que proviene directa o indirectamente del delito, o fue utilizado o destinado como medio o instrumento en un delito doloso",
+        "subtext": "Alfred tratará esta respuesta como una posible causal de comiso y continuará con las verificaciones necesarias.",
+        "order": 3,
+        "action": "navigate",
+        "visible": "Sí",
+        "status": "v16"
+      },
+      {
+        "key": "C4",
+        "next": "P05A",
+        "label": "Bienes o recursos de origen ilícito fueron mezclados o encubiertos con bienes de procedencia lícita",
+        "subtext": "Alfred tratará esta respuesta como una posible causal de comiso y continuará con las verificaciones necesarias.",
+        "order": 4,
+        "action": "navigate",
+        "visible": "Sí",
+        "status": "v16"
+      },
+      {
+        "key": "C5",
+        "next": "P05A",
+        "label": "Corresponde a un bien de valor equivalente porque el producto directo o indirecto del delito no puede localizarse, identificarse o afectarse materialmente",
+        "subtext": "Alfred tratará esta respuesta como una posible causal de comiso y continuará con las verificaciones necesarias.",
+        "order": 5,
+        "action": "navigate",
+        "visible": "Sí",
+        "status": "v16"
       },
       {
         "key": "No",
         "next": "P04",
-        "label": "No, no puedo identificar una causal concreta de comiso",
-        "subtext": "Alfred revisará manejo especial y otras finalidades jurídicas del bien.",
-        "order": 2.0,
+        "label": "No, no identifico ninguna de estas relaciones con la información disponible",
+        "subtext": "Alfred revisará régimen especial u otras finalidades jurídicas.",
+        "order": 6,
         "action": "navigate",
         "visible": "Sí",
-        "status": "AJUSTADO UX"
+        "status": "v16"
       },
       {
         "key": "Duda",
         "next": "",
-        "label": "No estoy seguro",
-        "subtext": "Alfred te muestra las causales y ejemplos antes de que respondas.",
-        "order": 3.0,
+        "label": "No estoy seguro de cómo encaja el caso",
+        "subtext": "Abre la explicación antes de seleccionar una causal.",
+        "order": 7,
         "action": "help",
         "visible": "Sí",
-        "status": "AJUSTADO UX"
+        "status": "v16"
       }
     ],
     "P05A": [
       {
         "key": "Sí",
         "next": "FIN-PEND-EMP-EF",
-        "label": "Sí, todavía debe conservarse físicamente como evidencia",
-        "subtext": "",
-        "order": 1.0,
+        "label": "Sí, todavía existe una necesidad probatoria actual",
+        "subtext": "La afectación patrimonial no desplaza la obligación de preservar la prueba.",
+        "order": 1,
         "action": "navigate",
         "visible": "Sí",
-        "status": "CERRADO UX"
+        "status": "v16"
       },
       {
         "key": "No",
         "next": "P05B",
-        "label": "No, la necesidad probatoria física ya cesó",
-        "subtext": "",
-        "order": 2.0,
+        "label": "No, ya no consta una necesidad probatoria que exija conservarlo por esa razón",
+        "subtext": "Continúa con la habilitación y situación de la medida patrimonial.",
+        "order": 2,
         "action": "navigate",
         "visible": "Sí",
-        "status": "CERRADO UX"
+        "status": "v16"
       }
     ],
     "P05B": [
@@ -11435,6 +12051,378 @@
         "action": "navigate",
         "visible": "Sí",
         "status": "NUEVO UX"
+      }
+    ],
+    "P02A": [
+      {
+        "key": "Definido",
+        "next": "P03",
+        "label": "Sí, el área competente ya definió qué examen o tratamiento procede",
+        "subtext": "Continúa con la ruta usando esa definición técnica.",
+        "order": 1,
+        "action": "navigate",
+        "visible": "Sí",
+        "status": "v16"
+      },
+      {
+        "key": "No procede",
+        "next": "P03",
+        "label": "Sí, y determinó que no procede un examen especializado",
+        "subtext": "No se fuerza un análisis innecesario; la ruta continúa.",
+        "order": 2,
+        "action": "navigate",
+        "visible": "Sí",
+        "status": "v16"
+      },
+      {
+        "key": "Pendiente",
+        "next": "FIN-PEND-VALORACION-TECNICA",
+        "label": "No, todavía está pendiente la valoración técnico-científica",
+        "subtext": "Alfred te indicará qué hacer mientras se obtiene la definición.",
+        "order": 3,
+        "action": "navigate",
+        "visible": "Sí",
+        "status": "v16"
+      }
+    ],
+    "P08": [
+      {
+        "key": "Sí",
+        "next": "P08A",
+        "label": "Sí, existe una base concreta para evaluar la destrucción",
+        "subtext": "Alfred identificará el régimen y sus requisitos.",
+        "order": 1,
+        "action": "navigate",
+        "visible": "Sí",
+        "status": "v16"
+      },
+      {
+        "key": "No",
+        "next": "P09",
+        "label": "No, no existe una base de destrucción identificada",
+        "subtext": "Continúa con las demás situaciones jurídicas del bien.",
+        "order": 2,
+        "action": "navigate",
+        "visible": "Sí",
+        "status": "v16"
+      },
+      {
+        "key": "Duda",
+        "next": "",
+        "label": "No estoy seguro",
+        "subtext": "Abre la explicación y revisa ejemplos de regímenes de destrucción.",
+        "order": 3,
+        "action": "help",
+        "visible": "Sí",
+        "status": "v16"
+      }
+    ],
+    "P12A": [
+      {
+        "key": "Sí",
+        "next": "P12A2",
+        "label": "Sí, el examen ya se realizó",
+        "subtext": "",
+        "order": 1,
+        "action": "navigate",
+        "visible": "Sí",
+        "status": "v16"
+      },
+      {
+        "key": "No",
+        "next": "FIN-PEND-MACRO-EXAMEN",
+        "label": "No, el examen todavía está pendiente",
+        "subtext": "Alfred te indicará qué hacer antes de continuar.",
+        "order": 2,
+        "action": "navigate",
+        "visible": "Sí",
+        "status": "v16"
+      }
+    ],
+    "P12A2": [
+      {
+        "key": "Sí",
+        "next": "P12A3",
+        "label": "Sí, los EMP y EF pertinentes ya fueron recogidos y asegurados",
+        "subtext": "",
+        "order": 1,
+        "action": "navigate",
+        "visible": "Sí",
+        "status": "v16"
+      },
+      {
+        "key": "No",
+        "next": "FIN-PEND-MACRO-RECOLECCION",
+        "label": "No, todavía falta recoger o asegurar EMP y EF pertinentes",
+        "subtext": "",
+        "order": 2,
+        "action": "navigate",
+        "visible": "Sí",
+        "status": "v16"
+      }
+    ],
+    "P12A3": [
+      {
+        "key": "Sí",
+        "next": "P12B",
+        "label": "Sí, la documentación sustitutiva ya está completa",
+        "subtext": "",
+        "order": 1,
+        "action": "navigate",
+        "visible": "Sí",
+        "status": "v16"
+      },
+      {
+        "key": "No",
+        "next": "FIN-PEND-MACRO-DOCUMENTACION",
+        "label": "No, todavía falta completar fotografías, video o registros suficientes",
+        "subtext": "",
+        "order": 2,
+        "action": "navigate",
+        "visible": "Sí",
+        "status": "v16"
+      }
+    ],
+    "DES-87-PREV": [
+      {
+        "key": "Sí",
+        "next": "DES-87-PERITO",
+        "label": "Sí, la preservación y cadena aplicables ya están cumplidas",
+        "subtext": "",
+        "order": 1,
+        "action": "navigate",
+        "visible": "Sí",
+        "status": "v16"
+      },
+      {
+        "key": "No",
+        "next": "FIN-PEND-DESTR-87-CADENA",
+        "label": "No, todavía falta completar preservación o cadena de custodia",
+        "subtext": "",
+        "order": 2,
+        "action": "navigate",
+        "visible": "Sí",
+        "status": "v16"
+      }
+    ],
+    "DES-87-PERITO": [
+      {
+        "key": "Sí",
+        "next": "DEST-DESTR-87",
+        "label": "Sí, ya existe el informe pericial oficial de ilegitimidad",
+        "subtext": "",
+        "order": 1,
+        "action": "navigate",
+        "visible": "Sí",
+        "status": "v16"
+      },
+      {
+        "key": "No",
+        "next": "FIN-PEND-DESTR-87-PERITO",
+        "label": "No, el informe pericial oficial todavía está pendiente",
+        "subtext": "",
+        "order": 2,
+        "action": "navigate",
+        "visible": "Sí",
+        "status": "v16"
+      }
+    ],
+    "DES-DROGA-PREV": [
+      {
+        "key": "Sí",
+        "next": "DES-DROGA-REGISTRO",
+        "label": "Sí, las muestras necesarias ya fueron tomadas",
+        "subtext": "",
+        "order": 1,
+        "action": "navigate",
+        "visible": "Sí",
+        "status": "v16"
+      },
+      {
+        "key": "No",
+        "next": "FIN-PEND-DESTR-DROGA-MUESTRAS",
+        "label": "No, todavía faltan muestras necesarias",
+        "subtext": "",
+        "order": 2,
+        "action": "navigate",
+        "visible": "Sí",
+        "status": "v16"
+      }
+    ],
+    "DES-DROGA-REGISTRO": [
+      {
+        "key": "Sí",
+        "next": "DES-DROGA-CADENA",
+        "label": "Sí, ya existen fotografías o video suficientes",
+        "subtext": "",
+        "order": 1,
+        "action": "navigate",
+        "visible": "Sí",
+        "status": "v16"
+      },
+      {
+        "key": "No",
+        "next": "FIN-PEND-DESTR-DROGA-REGISTRO",
+        "label": "No, todavía falta completar fotografías o video",
+        "subtext": "",
+        "order": 2,
+        "action": "navigate",
+        "visible": "Sí",
+        "status": "v16"
+      }
+    ],
+    "DES-DROGA-CADENA": [
+      {
+        "key": "Sí",
+        "next": "DEST-DESTR-DROGA",
+        "label": "Sí, la evidencia sustitutiva ya está identificada y preservada",
+        "subtext": "",
+        "order": 1,
+        "action": "navigate",
+        "visible": "Sí",
+        "status": "v16"
+      },
+      {
+        "key": "No",
+        "next": "FIN-PEND-DESTR-DROGA-CADENA",
+        "label": "No, todavía falta asegurar identificación o cadena de custodia",
+        "subtext": "",
+        "order": 2,
+        "action": "navigate",
+        "visible": "Sí",
+        "status": "v16"
+      }
+    ],
+    "DES-ARM563-PREV": [
+      {
+        "key": "Sí",
+        "next": "DES-ARM563-PERICIA",
+        "label": "Sí, la cadena de custodia aplicable ya está cumplida",
+        "subtext": "",
+        "order": 1,
+        "action": "navigate",
+        "visible": "Sí",
+        "status": "v16"
+      },
+      {
+        "key": "No",
+        "next": "FIN-PEND-DESTR-ARM563-CADENA",
+        "label": "No, todavía falta completar la cadena de custodia aplicable",
+        "subtext": "",
+        "order": 2,
+        "action": "navigate",
+        "visible": "Sí",
+        "status": "v16"
+      }
+    ],
+    "DES-ARM563-PERICIA": [
+      {
+        "key": "Sí",
+        "next": "DES-ARM563-NECESIDAD",
+        "label": "Sí, el examen pericial ya fue practicado",
+        "subtext": "",
+        "order": 1,
+        "action": "navigate",
+        "visible": "Sí",
+        "status": "v16"
+      },
+      {
+        "key": "No",
+        "next": "FIN-PEND-DESTR-ARM563-PERICIA",
+        "label": "No, el examen pericial todavía está pendiente",
+        "subtext": "",
+        "order": 2,
+        "action": "navigate",
+        "visible": "Sí",
+        "status": "v16"
+      }
+    ],
+    "DES-ARM563-NECESIDAD": [
+      {
+        "key": "Sí",
+        "next": "DES-ARM563-ORDEN",
+        "label": "Sí, consta que el arma ya no es requerida",
+        "subtext": "",
+        "order": 1,
+        "action": "navigate",
+        "visible": "Sí",
+        "status": "v16"
+      },
+      {
+        "key": "No",
+        "next": "FIN-PEND-DESTR-ARM563-NECESIDAD",
+        "label": "No, el arma todavía es requerida o no consta que haya cesado esa necesidad",
+        "subtext": "",
+        "order": 2,
+        "action": "navigate",
+        "visible": "Sí",
+        "status": "v16"
+      }
+    ],
+    "DES-ARM563-ORDEN": [
+      {
+        "key": "Sí",
+        "next": "DEST-DESTR-ARM563",
+        "label": "Sí, ya existe orden del fiscal para destruirla",
+        "subtext": "",
+        "order": 1,
+        "action": "navigate",
+        "visible": "Sí",
+        "status": "v16"
+      },
+      {
+        "key": "No",
+        "next": "FIN-PEND-DESTR-ARM563-ORDEN",
+        "label": "No, la orden del fiscal todavía está pendiente",
+        "subtext": "",
+        "order": 2,
+        "action": "navigate",
+        "visible": "Sí",
+        "status": "v16"
+      }
+    ],
+    "DES-AML-PREV": [
+      {
+        "key": "Sí",
+        "next": "DES-AML-DCCAE",
+        "label": "Sí, el decomiso sectorial ya consta",
+        "subtext": "",
+        "order": 1,
+        "action": "navigate",
+        "visible": "Sí",
+        "status": "v16"
+      },
+      {
+        "key": "No",
+        "next": "FIN-PEND-DESTR-AML-DECOMISO",
+        "label": "No, el decomiso sectorial todavía no consta",
+        "subtext": "",
+        "order": 2,
+        "action": "navigate",
+        "visible": "Sí",
+        "status": "v16"
+      }
+    ],
+    "DES-AML-DCCAE": [
+      {
+        "key": "Sí",
+        "next": "DEST-DESTR-AML",
+        "label": "Sí, ya existe el concepto previo del DCCAE",
+        "subtext": "",
+        "order": 1,
+        "action": "navigate",
+        "visible": "Sí",
+        "status": "v16"
+      },
+      {
+        "key": "No",
+        "next": "FIN-PEND-DESTR-AML-DCCAE",
+        "label": "No, el concepto previo del DCCAE todavía está pendiente",
+        "subtext": "",
+        "order": 2,
+        "action": "navigate",
+        "visible": "Sí",
+        "status": "v16"
       }
     ]
   }

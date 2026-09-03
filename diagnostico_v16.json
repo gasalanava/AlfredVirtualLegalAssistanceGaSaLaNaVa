@@ -1,0 +1,16 @@
+{
+  "version": "ALFRED · beta 0.11",
+  "generated": "2026-09-03",
+  "nodes": 79,
+  "results": 103,
+  "destinations": 42,
+  "destinationRoutes": 10,
+  "checklists": 41,
+  "tests": 46,
+  "brokenReferences": [],
+  "brokenReferenceCount": 0,
+  "reachableFromP01Count": 219,
+  "unreachableNodeCount": 0,
+  "unreachableNodes": [],
+  "notes": "Unreachable nodes can be valid when entered through direct access, special routes, destination modules or legacy compatibility."
+}

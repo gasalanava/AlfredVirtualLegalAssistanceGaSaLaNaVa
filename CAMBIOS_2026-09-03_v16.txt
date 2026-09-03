@@ -1,0 +1,60 @@
+ALFRED v16 / beta 0.11
+Fecha: 2026-09-03
+
+OBJETIVO
+Depuración transversal de la experiencia de decisión. La herramienta deja de pedir al usuario conclusiones que corresponden a peritos, fiscales, jueces u otras autoridades y prioriza hechos observables, actuaciones verificables y documentos existentes.
+
+CAMBIOS PRINCIPALES
+
+1. P02A — definición técnico-científica
+- Se elimina la pregunta que obligaba al usuario a decidir si un examen era pertinente o viable.
+- Ahora se pregunta si el laboratorio, perito o área técnico-científica competente ya definió qué examen o tratamiento procede.
+- Si la definición está pendiente, se genera un resultado temporal accionable: FIN-PEND-VALORACION-TECNICA.
+- La ayuda “Alfred, explícame cómo decidir” indica quién define el punto.
+
+2. P04 — especialidad
+- Ya no se pregunta si “existe una regla especial”.
+- Se pide reconocer categorías materiales o procedimentales que normalmente tienen manejo especial.
+- Se agregó opción de ayuda para quien no esté seguro.
+
+3. P05 — posible comiso
+- Se elimina la pregunta abstracta “¿el bien es susceptible de comiso?”.
+- Se convierte en un selector de relaciones fácticas derivadas de los artículos 100 CP y 82 CPP.
+- Alfred construye la conclusión a partir del hecho seleccionado.
+- Se mantiene separada la posible causal de comiso de la materialización de la incautación/ocupación y del comiso definitivo.
+
+4. P05A — barrera probatoria
+- Se pregunta si consta una necesidad probatoria actual que todavía exija conservar el bien.
+- Se evita pedir al usuario que declare unilateralmente si el objeto “conserva calidad de EMP y EF”.
+
+5. Reparación, destrucción, residual y devolución
+- P07/P07A: se pregunta por solicitudes, órdenes o medidas que consten en el caso.
+- P08: se pregunta por una base concreta que active la evaluación de destrucción, no por una conclusión jurídica.
+- P09A: se pregunta por un documento, acto, medida o título vigente identificable.
+- P10: se pregunta “qué ocurrió” con el bien para activar la ruta de entrega/devolución.
+
+6. Macroelementos
+- P12 se formula desde las características materiales del objeto.
+- P12A se divide en tres verificaciones independientes:
+  a) examen;
+  b) recolección de EMP y EF;
+  c) documentación sustitutiva.
+- Se agregan resultados temporales específicos para saber exactamente qué falta.
+
+7. Destrucción — eliminación de preguntas compuestas
+- Art. 87: se separan preservación/cadena e informe pericial de ilegitimidad.
+- Laboratorios/cultivos: se separan muestras, registro fotográfico/video y cadena de custodia.
+- Armas art. 563: se separan cadena, peritaje, cesación de necesidad y orden fiscal.
+- Menos letales: se separan decomiso sectorial y concepto previo del DCCAE.
+- DIAN: se simplifica la pregunta a si Fiscalía ya obtuvo y preservó los EMP y EF necesarios.
+
+8. Ayuda de ALFRED
+- El panel “Alfred, explícame cómo decidir” incorpora un nuevo bloque “Quién define este punto”.
+- Se refuerza el principio: el usuario responde hechos o actuaciones verificables; Alfred no le traslada decisiones técnicas o jurídicas ajenas a su rol.
+
+9. Navegación
+- Los “No” que dejan una actuación pendiente producen resultados temporales accionables:
+  qué hacer ahora + qué permanece bajo custodia + qué falta + cuándo retomar la ruta.
+
+NOTA
+No se reconstruyeron desde cero las normas, destinos o competencias ya cerrados. La intervención se concentra en propiedad de la decisión, formulación visible de preguntas y salidas de navegación.

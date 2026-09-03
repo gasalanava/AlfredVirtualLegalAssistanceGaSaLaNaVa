@@ -22,7 +22,7 @@
    const s=n.kind==="special"?n:(n.options?.[0]||{});
    return `<div class="detailGrid">${block("Concepto jurídico",s.concept,true)}${block("Qué dispone la ruta",s.action,true)}${block("Policía Judicial",s.police,true)}${block("Quién decide",s.decides)}${block("Quién ejecuta",s.executes)}${block("Quién recibe / custodia / administra",s.receives,true)}${block("Norma principal",s.primaryLaw,true)}${block("Normas complementarias",s.complementaryLaw,true)}${block("Jurisprudencia / criterio",s.jurisprudence,true)}${block("Advertencia técnica",s.warning,true)}</div>`;
  }
- function helpHTML(u){if(!u)return"";return `<div class="helpLayout"><img src="assets/alfred-doubt.webp" class="helpMascot" alt="Alfred pensando"><div class="helpNote">${non(u.how)?`<h3>Cómo decidir</h3><p>${esc(u.how)}</p>`:""}${non(u.examples)?`<h3>Ejemplos</h3><p>${esc(u.examples)}</p>`:""}${non(u.dontNeed)?`<h3>No necesitas saber esto todavía</h3><p>${esc(u.dontNeed)}</p>`:""}${non(u.ifUncertain)?`<h3>Si todavía tienes dudas</h3><p>${esc(u.ifUncertain)}</p>`:""}</div></div>`}
+ function helpHTML(u){if(!u)return"";return `<div class="helpLayout"><img src="assets/alfred-doubt.webp" class="helpMascot" alt="Alfred pensando"><div class="helpNote">${non(u.how)?`<h3>Cómo decidir</h3><p>${esc(u.how)}</p>`:""}${non(u.actor)?`<h3>Quién define este punto</h3><p>${esc(u.actor)}</p>`:""}${non(u.examples)?`<h3>Ejemplos</h3><p>${esc(u.examples)}</p>`:""}${non(u.dontNeed)?`<h3>No necesitas saber esto todavía</h3><p>${esc(u.dontNeed)}</p>`:""}${non(u.ifUncertain)?`<h3>Si todavía tienes dudas</h3><p>${esc(u.ifUncertain)}</p>`:""}</div></div>`}
  function getOptions(nid,baseOptions){if(UXO[nid]&&UXO[nid].length)return UXO[nid];return(baseOptions||[]).map((o,i)=>({label:o.label,next:o.next,subtext:"",action:"navigate",order:i+1}))}
  function coherenceFilter(nid,opts){
    $("coherence").classList.add("hidden");if(nid!=="P04A")return opts;
@@ -67,7 +67,7 @@
      if(n.id==="P01B"||n.id==="P03") return showIdentifyResult();
    }
    let t=o.next||"";
-   if(n.id==="P05"&&String(o.label||"").startsWith("Sí")&&lastChoice("P01")==="No")t="P05B";
+   if(n.id==="P05"&&t==="P05A"&&lastChoice("P01")==="No")t="P05B";
    if(t==="P03"&&lastChoice("P03")){
      const prior=lastChoice("P03");current=prior.startsWith("Sí,")?"P05":"P04";return renderLegal();
    }
